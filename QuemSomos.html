@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Quem Somos - Floricultura Web</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="icon" type="image" sizes="16x16" href="./src/image/logo/sunflower.png">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3048/3048127.png">
+    
+    <link rel="stylesheet" href="src/css/QuemSomos.css">
+</head>
+<body>
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5511999999999" class="whatsapp-btn floating">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    
+    <!-- Navigation -->
+   <nav class="navbar navbar-expand-xl navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="bi bi-flower1 me-2"></i>Floricultura Web
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Principal</a>
+                    </li>
+                       <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-shop me-1"></i> Produtos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="index.html"><i class="bi bi-tree me-2"></i> Plantas</a></li>
+                            <li><a class="dropdown-item" href="./presente.html"><i class="bi bi-gift me-2"></i> Presentes</a></li>
+                            <li><a class="dropdown-item" href="Vasos.html"><i class="bi bi-bucket me-2"></i> Vasos</a></li>
+                            <li><a class="dropdown-item" href="Sementes.html"><i class="bi bi-flower2 me-2"></i> Sementes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contato.html"><i class="bi bi-chat-left-text me-1"></i> Fale Conosco</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="quemsomos.html"><i class="bi bi-info-circle me-1"></i> Quem Somos</a>
+                    </li>
+                </ul>
+                
+                   <a href="carrinho.html" class="btn btn-outline-light position-relative">
+    <i class="bi bi-cart3"></i>
+    <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-counter">
+        0
+    </span>
+</a>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title animate__animated animate__fadeInDown">Nossa História</h1>
+            <p class="lead animate__animated animate__fadeInUp animate__delay-1s">Transformando momentos especiais com a beleza das flores desde 2018</p>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Quem Somos</h2>
+                    <p class="lead">Bem-vindo ao mundo mágico da Floricultura Abib!</p>
+                    <p>Somos uma floricultura apaixonada que se orgulha de oferecer aos nossos clientes a mais bela coleção de flores e arranjos florais. Nossa jornada começou há 5 anos como um modesto negócio familiar, e ao longo dos anos, crescemos para nos tornar uma referência no universo das flores e da arte floral.</p>
+                    <p>Nosso compromisso é com a qualidade, beleza e satisfação dos nossos clientes. Cada flor que entregamos carrega consigo nosso amor e dedicação pelo que fazemos.</p>
+                    <a href="Contato.html" class="btn btn-success mt-3">Fale Conosco</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-card animate__animated animate__fadeInRight">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="img-fluid rounded" alt="Nossa Loja">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-6 order-lg-2">
+                    <h2 class="section-title">Nossa Loja</h2>
+                    <p>Localizada em um espaço amplo e aconchegante, nossa loja é um oásis de fragrância e cores. Oferecemos uma variedade de produtos que vão além das flores, incluindo vasos decorativos, acessórios para jardinagem e presentes especiais.</p>
+                    <p>Nossa equipe amigável e experiente está sempre à disposição para ajudar os clientes a escolherem o presente perfeito ou criar arranjos personalizados para qualquer ocasião.</p>
+                    <div class="d-flex align-items-center mt-4">
+                    <i class="bi bi-geo-alt-fill fs-4 me-3" style="color: #ff8f00;"></i>
+                        <div>
+                            <h5 class="mb-0">Visite-nos</h5>
+                            <p class="mb-0">Rua Jurandyr de Oliveira, 46, Mogi das Cruzes - SP</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="about-card animate__animated animate__fadeInLeft">
+                        <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" class="img-fluid rounded" alt="Nosso Espaço">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Timeline Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossa Jornada</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-date">2018</div>
+                    <h4>Fundada com Amor</h4>
+                    <p>Começamos como um pequeno negócio familiar em Mogi das Cruzes, com apenas um balcão de flores e muita paixão pelo que fazíamos.</p>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-date">2019</div>
+                    <h4>Primeira Expansão</h4>
+                    <p>Ampliamos nosso espaço físico e contratamos nossa primeira equipe de floristas profissionais para atender a demanda crescente.</p>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-date">2020</div>
+                    <h4>Nascimento da Loja Online</h4>
+                    <p>Diante dos desafios da pandemia, criamos nossa plataforma digital para continuar levando beleza e alegria para nossos clientes.</p>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-date">2022</div>
+                    <h4>Reconhecimento Regional</h4>
+                    <p>Fomos premiados como a melhor floricultura da região pelo segundo ano consecutivo, graças à qualidade de nossos produtos e serviços.</p>
+                </div>
+                
+                <div class="timeline-item animate__animated animate__fadeIn">
+                    <div class="timeline-date">2023</div>
+                    <h4>Atual Expansão</h4>
+                    <p>Inauguramos nosso novo centro de distribuição, permitindo entregas mais rápidas em toda a região metropolitana de São Paulo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Conheça Nossa Equipe</h2>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="team-member animate__animated animate__fadeInUp">
+                        <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Ana Abib">
+                        <h4>Ana Abib</h4>
+                        <p class="text-success">Fundadora e Florista-chefe</p>
+                        <p>Com mais de 15 anos de experiência, Ana é a alma criativa por trás dos nossos arranjos mais exclusivos.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="team-member animate__animated animate__fadeInUp animate__delay-1s">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendes">
+                        <h4>Carlos Mendes</h4>
+                        <p class="text-success">Gerente de Operações</p>
+                        <p>Responsável por garantir que cada pedido seja perfeito e entregue no prazo, com excelência.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="team-member animate__animated animate__fadeInUp animate__delay-2s">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Juliana Costa">
+                        <h4>Juliana Costa</h4>
+                        <p class="text-success">Designer Floral</p>
+                        <p>Especialista em tendências e criação de arranjos personalizados para ocasiões especiais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Values Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Nossos Valores</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card about-card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-flower2 fs-1 text-success mb-3"></i>
+                            <h4>Qualidade</h4>
+                            <p>Trabalhamos apenas com as melhores flores, frescas e duradouras, selecionadas diariamente.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card about-card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-heart fs-1 text-success mb-3"></i>
+                            <h4>Paixão</h4>
+                            <p>Amamos o que fazemos e acreditamos que isso se reflete em cada arranjo que criamos.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card about-card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-people fs-1 text-success mb-3"></i>
+                            <h4>Atendimento</h4>
+                            <p>Nosso foco é a satisfação total do cliente, com atendimento personalizado e cuidadoso.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="fw-bold mb-4">
+                        <i class="bi bi-flower1 me-2"></i>Floricultura Web
+                    </h5>
+                    <p>Transformando ambientes e emocionando pessoas através da beleza das flores e plantas desde 2018.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icons"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icons"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="social-icons"><i class="bi bi-pinterest"></i></a>
+                        <a href="#" class="social-icons"><i class="bi bi-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5 class="fw-bold mb-4">Institucional</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="quemsomos.html">Quem Somos</a></li>
+                        <li class="mb-2"><a href="#">Nossa História</a></li>
+                        <li class="mb-2"><a href="#">Trabalhe Conosco</a></li>
+                        <li class="mb-2"><a href="#">Políticas de Privacidade</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h5 class="fw-bold mb-4">Ajuda</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="Contato.html">Fale Conosco</a></li>
+                        <li class="mb-2"><a href="#">Dúvidas Frequentes</a></li>
+                        <li class="mb-2"><a href="#">Entregas</a></li>
+                        <li class="mb-2"><a href="#">Trocas e Devoluções</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h5 class="fw-bold mb-4">Contato</h5>
+                    <p>
+                        <i class="bi bi-geo-alt-fill me-2"></i> Rua Jurandyr de Oliveira, 46<br>
+                        Mogi das Cruzes - SP
+                    </p>
+                    <p>
+                        <i class="bi bi-telephone-fill me-2"></i> (11) 4799-9999
+                    </p>
+                    <p>
+                        <i class="bi bi-envelope-fill me-2"></i> contato@floriculturaabib.com.br
+                    </p>
+                    <p>
+                        <i class="bi bi-clock-fill me-2"></i> Seg-Sex: 9h às 18h<br>
+                        Sáb: 9h às 13h
+                    </p>
+                </div>
+            </div>
+            <hr class="my-4 bg-white">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0"> 2023 Floricultura Web.</p>
+                    <p class="mb-0">&copy; Por <a href="https://matheus-portifolio.onrender.com" target="_blank">Matheus Abib.</a></p>               
+                 </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">CNPJ: 09.113.064/0001-73</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="src/js/QuemSomos.js"></script>
+
+</body>
+</html>
