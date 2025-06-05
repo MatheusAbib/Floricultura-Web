@@ -1,25 +1,26 @@
-# Usar imagem oficial do PHP com Apache
-FROM php:8.1-apache
+FROM php:8.2-cli
 
-# Instalar dependências e Composer
-RUN apt-get update && apt-get install -y \
-    git unzip zip \
-    && docker-php-ext-install pdo pdo_mysql mysqli
+# Instala dependências do sistema para o Composer funcionar
+RUN apt-get update && apt-get install -y unzip curl git
 
-# Instalar Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Instala o Composer globalmente
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Copiar arquivos do projeto
-COPY . /var/www/html/
+# Cria e define o diretório de trabalho
+WORKDIR /app
 
-# Dar permissões corretas (ajuste se necessário)
-RUN chown -R www-data:www-data /var/www/html/
+# Copia arquivos de definição do Composer primeiro para cache eficiente
+COPY composer.json composer.lock /app/
 
-# Rodar composer install
-RUN composer install --no-dev --optimize-autoloader
+# Instala as dependências do Composer sem rodar scripts (evita falha por falta de .env.example)
+RUN composer install --no-scripts --no-dev --no-interaction --prefer-dist --optimize-autoloader
 
-# Expor porta 80
-EXPOSE 80
+# Agora copia o restante da aplicação
+COPY . /app
 
-# Rodar Apache em foreground
-CMD ["apache2-foreground"]
+# Expõe a porta (Render define a variável $PORT automaticamente)
+EXPOSE 10000
+
+
+# Usa o PHP embutido para rodar o servidor
+CMD ["php", "-S", "0.0.0.0:10000", "-t", "."]
