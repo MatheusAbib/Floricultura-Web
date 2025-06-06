@@ -177,5 +177,5 @@ function setupPaymentEvents() {
         setTimeout(() => {
             loadingOverlay.style.display = 'none';
         }, 200);
-    }, 2000); // 5000ms = 5 segundos
+    }, 1000); // 5000ms = 5 segundos
 });
