@@ -268,3 +268,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    const loadingOverlay = document.getElementById('loading-overlay');
+    
+    // Mostra o loader imediatamente
+    loadingOverlay.style.display = 'flex'; // Garante que está visível
+    
+    // Delay artificial para teste (5 segundos)
+    setTimeout(function() {
+        loadingOverlay.classList.add('hidden');
+        
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+        }, 200);
+    }, 1000); // 5000ms = 5 segundos
+});
