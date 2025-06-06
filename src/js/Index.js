@@ -687,17 +687,14 @@ function goBack() {
     }
 }
 
-    // Mostra o loader quando a página começa a carregar
-    document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
         const loadingOverlay = document.getElementById('loading-overlay');
         
-        // Esconde o loader quando a página estiver totalmente carregada
         window.addEventListener('load', function() {
             loadingOverlay.classList.add('hidden');
             
-            // Remove completamente o loader após a animação
             setTimeout(() => {
                 loadingOverlay.style.display = 'none';
-            }, 300); // Tempo igual ao da transição CSS (0.3s)
+            }, 500); // Tempo combinado com a transição CSS
         });
     });
