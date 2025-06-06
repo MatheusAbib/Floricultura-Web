@@ -184,7 +184,7 @@ document.getElementById('shipping-form').addEventListener('submit', function(e) 
     localStorage.setItem('cart', JSON.stringify(cart));
     
     // Redirecionar para a página de pagamento
-    window.location.href = 'pagamento.html';
+    window.location.href = 'Pagamento.html';
 });
         
         // Salvar carrinho no localStorage

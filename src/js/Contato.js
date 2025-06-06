@@ -83,7 +83,24 @@
       form.reset();
     })
     .catch(() => {
-      alert("Erro ao enviar. Tente novamente.");
     });
   });
+
+document.getElementById('contatoForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio tradicional
+
+    // Aqui você pode adicionar validações extras se quiser
+
+    // Exibe o modal
+    document.getElementById('contactSuccessModal').style.display = 'flex';
+
+    // Limpa o formulário (opcional)
+    this.reset();
+});
+
+// Fecha o modal quando clicar no botão de fechar
+function closeContactModal() {
+    document.getElementById('contactSuccessModal').style.display = 'none';
+}
+
 
