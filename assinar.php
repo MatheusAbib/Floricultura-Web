@@ -103,7 +103,7 @@ $htmlContent = <<<EOT
 <body>
     <div class="email-container">
         <div class="header">
-            <h1>🌻 Bem-vindo à Floricultura Web</h1>
+            <h1><i class="bi bi-flower1 loading-logo"></i> Bem-vindo à Floricultura Web</h1>
         </div>
         <div class="content">
             <h2>Olá, amante da natureza!</h2>
