@@ -54,7 +54,7 @@
                 id: 105,
                 name: "Aperitivos",
                 price: 49.99,
-                image: "./src/image/Presentes/aperitivos.webp",
+                image: "./src/image/Presentes/Aperitivos.webp",
                 description: "Combinação irresistível de petiscos variados e cervejas para acompanhar bons momentos com amigos ou família.",
                 rating: 4.5,
                 outOfStock: false,
@@ -584,3 +584,35 @@ document.getElementById('newsletterForm').addEventListener('submit', async funct
 function closeContactModal() {
   document.getElementById('successModal').style.display = 'none';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Não armazene a página atual se for a página do carrinho
+    if (!window.location.pathname.includes('carrinho.html')) { // substitua pelo nome da sua página de carrinho
+        localStorage.setItem('lastVisitedPage', window.location.href);
+    }
+});
+
+// Função para voltar à última página
+function goBack() {
+    const previous = localStorage.getItem('lastVisitedPage');
+    if (previous && previous !== window.location.href) {
+        window.location.href = previous;
+    } else {
+        window.location.href = 'index.html'; // fallback padrão
+    }
+}
+
+   // Mostra o loader quando a página começa a carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingOverlay = document.getElementById('loading-overlay');
+        
+        // Esconde o loader quando a página estiver totalmente carregada
+        window.addEventListener('load', function() {
+            loadingOverlay.classList.add('hidden');
+            
+            // Remove completamente o loader após a animação
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 300); // Tempo igual ao da transição CSS (0.3s)
+        });
+    });

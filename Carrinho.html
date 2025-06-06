@@ -114,13 +114,13 @@
                     <a href="#" onclick="goBack()" class="btn btn-success">Voltar às Compras</a>
 
                     <script>
-                    function goBack() {
-                    const previous = localStorage.getItem('lastVisitedPage');
-                    if (previous && previous.includes('.html')) {
-                        window.location.href = previous;
-                    } else {
-                        window.location.href = 'Presente.html'; // fallback
-                    }
+                 function goBack() {
+                        const previous = localStorage.getItem('lastVisitedPage');
+                        if (previous && previous.includes('.html')) {
+                            window.location.href = previous;
+                        } else {
+                            window.location.href = 'Presente.html'; // fallback
+                        }
                     }
                     </script>
 
@@ -278,6 +278,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<div id="loading-overlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
 </div>
 
     
