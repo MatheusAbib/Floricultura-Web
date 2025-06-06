@@ -1,14 +1,14 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use Dotenv\Dotenv;
+//use Dotenv\Dotenv;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Carrega variáveis do .env
+/* Carrega variáveis do .env
 $dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+$dotenv->load(); */
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $emailUsuario = $_POST['email'] ?? '';
