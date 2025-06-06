@@ -282,9 +282,70 @@
             position: relative;
             z-index: 3000;
             }
+
             .dropdown-menu {
             z-index: 3000 !important;
+            background-color: #f8f9fa; /* Cor de fundo clara */
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 0.5rem 0;
             }
+
+            .dropdown-item {
+            color: #495057 !important; /* Cor do texto mais escura */
+            padding: 0.5rem 1.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .dropdown-item i {
+            color: #2e7d32; /* Cor dos ícones */
+            transition: all 0.3s ease;
+        }
+
+        /* Item do dropdown quando hover */
+        .dropdown-item:hover, 
+        .dropdown-item:focus {
+            background-color: #e9ecef !important;
+            color: #212529 !important;
+        }
+
+        /* Item do dropdown quando ativo/selecionado */
+        .dropdown-item.active, 
+        .dropdown-item:active {
+            background-color: #2e7d32 !important; /* Verde para itens ativos */
+            color: white !important;
+        }
+
+        /* Ícone quando item ativo */
+        .dropdown-item.active i, 
+        .dropdown-item:active i {
+            color: white !important;
+        }
+
+        /* Divisor do dropdown */
+        .dropdown-divider {
+            border-color: rgba(0,0,0,0.1);
+            margin: 0.5rem 0;
+        }
+
+        /* Toggle do dropdown quando aberto */
+        .nav-link.dropdown-toggle.show {
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+
+        /* Seta do dropdown */
+        .dropdown-toggle::after {
+            border-top-color: white;
+            transition: transform 0.2s ease;
+        }
+
+        /* Efeito quando dropdown aberto */
+        .dropdown-toggle.show::after {
+            transform: rotate(-180deg);
+        }
 
 
 
