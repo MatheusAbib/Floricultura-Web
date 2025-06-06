@@ -1,10 +1,6 @@
 services:
   - type: web
     name: floricultura-web
-    env: docker
-    plan: free
-    buildCommand: ""
-    startCommand: php -S 0.0.0.0:10000 -t public
-    envVars:
-      - key: SENDGRID_API_KEY
-        fromEnv: SENDGRID_API_KEY
+    runtime: php
+    buildCommand: composer install
+    startCommand: php -S 0.0.0.0:$PORT -t public
