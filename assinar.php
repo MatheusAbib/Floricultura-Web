@@ -116,7 +116,7 @@ $htmlContent = <<<EOT
             </ul>
             <p>Estamos felizes em ter você com a gente 🌿</p>
             <p style="text-align: center;">
-              <a href="https://suafloricultura.com" class="cta-button" style="color: #ffffff !important; text-decoration: none !important;">Visite Nosso Site</a>
+              <a href="https://floricultura-web-production.up.railway.app/" class="cta-button" style="color: #ffffff !important; text-decoration: none !important;">Visite Nosso Site</a>
             </p>
         </div>
         <div class="footer">
