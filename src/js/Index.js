@@ -626,46 +626,7 @@ document.addEventListener('DOMContentLoaded', () => {
     handleResponsiveElements();
 });
 
-document.getElementById('newsletterForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
 
-    const form = e.target;
-    const emailInput = form.querySelector('input[name="email"]');
-    const emailError = document.getElementById('emailError');
-    const email = emailInput.value.trim();
-
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-    if (!emailValido) {
-        emailError.style.display = 'block';
-        emailInput.style.borderColor = 'red'; // Apenas muda a borda
-        return;
-    } else {
-        emailError.style.display = 'none';
-        emailInput.style.borderColor = '';
-    }
-
-    const formData = new FormData(form);
-
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData
-        });
-
-        const text = await response.text();
-
-        if (response.ok && text.includes("obrigado")) {
-            document.getElementById('successModal').style.display = 'flex';
-            form.reset();
-        } else {
-            alert("Erro no envio. Verifique o e-mail ou tente novamente.");
-        }
-    } catch (err) {
-        alert("Erro ao enviar o formulário.");
-        console.error(err);
-    }
-});
 function closeContactModal() {
   document.getElementById('successModal').style.display = 'none';
 }
