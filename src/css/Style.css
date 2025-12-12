@@ -423,6 +423,11 @@
             position: relative;
             z-index: 2;
         }
+
+        .form-check .form-check-input{
+            float: none;
+            margin-left: none;
+        }
         
            .newsletter-card {
             background: white;
@@ -499,10 +504,11 @@
             margin: 30px 0;
         }
         
-        .promo-banner {
-            position: relative;
-            overflow: hidden;
-        }
+    .promo-banner {
+        position: relative;
+        overflow: hidden;
+        margin: 30px 0;
+    }
         
         .promo-image {
             width: 100%;
