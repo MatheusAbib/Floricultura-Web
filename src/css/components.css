@@ -1,0 +1,341 @@
+
+        :root {
+            --primary-color: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #81c784;
+            --secondary-color: #ff8f00;
+            --secondary-dark: #e65100;
+            --accent-color: #ffd54f;
+            --light-bg: #f8f9fa;
+            --dark-text: #263238;
+            --light-text: #f5f5f5;
+            --gray-text: #757575;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            --card-hover-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+        
+        body {
+            padding-top: 70px; 
+        }
+
+        .navbar.scrolled + * {
+            margin-top: 60px; 
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .navbar-brand {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: white !important;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: var(--transition);
+            margin-right: 2rem;
+        }
+
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: fixed; 
+            height: 10%;
+            top: 0;
+            width: 100%; 
+            z-index: 1030; 
+        }
+
+        
+        .navbar.scrolled {
+            background: rgba(46, 125, 50, 0.95);
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-toggle::after{
+            border-right: none;
+            border-bottom: none;
+            border-top: none;
+            border-left: none;
+        }
+        
+
+
+            .navbar-nav .nav-item {
+                margin-right: 1rem; /* Espaço entre os itens do menu */
+            }
+
+            .navbar-nav .nav-link {
+                padding: 0.75rem 1rem !important; /* Aumentado o padding */
+                border-radius: 4px;
+                transition: var(--transition);
+            }
+
+            .navbar-nav .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+/* Para telas maiores (xl) */
+            @media (min-width: 1200px) {
+                .navbar-nav .nav-item {
+                    margin-right: 1.5rem; /* Mais espaço em telas grandes */
+                }
+                
+                .navbar-nav .nav-link {
+                    padding: 0.75rem 1.25rem !important;
+                }
+            }
+
+/* Dropdown spacing */
+.dropdown-menu {
+    min-width: 220px;
+    padding: 0.75rem 0; 
+}
+
+.dropdown-item {
+    padding: 0.75rem 1.5rem; 
+    margin: 0.125rem 0; 
+    transition: var(--transition);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(46, 125, 50, 0.1);
+    padding-left: 1.75rem; 
+}
+
+/* Botão do carrinho */
+.btn-outline-light {
+    padding: 0.5rem 1rem; 
+    border-radius: 8px;
+}
+
+.navbar.scrolled .navbar-nav .nav-link {
+    padding: 0.5rem 0.85rem !important;
+}
+
+.navbar.scrolled .navbar-nav .nav-item {
+    margin-right: 0.75rem;
+}
+
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--light-text);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Ajuste do espaçamento dos links do footer */
+.footer .list-unstyled li {
+    margin-bottom: 1rem;
+}
+
+.footer .list-unstyled a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-block;
+    padding: 0.25rem 0;
+}
+
+.footer .list-unstyled a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Ajuste do espaçamento entre as seções de contato */
+.footer .col-lg-4 p {
+    margin-bottom: 1.5rem;
+    padding-left: 0.25rem;
+    padding-right: 3rem;
+}
+
+/* Social icons */
+.social-icons {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: white;
+    transition: var(--transition);
+}
+
+.social-icons:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Footer divider */
+.footer hr {
+    opacity: 0.2;
+    margin: 2.5rem 0;
+}
+
+/* Footer bottom text */
+.footer .row:last-child p {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .row:last-child a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.footer .row:last-child a:hover {
+    text-decoration: underline;
+}
+
+/* WhatsApp Button */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    color: white;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.modal-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-x {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.modal-close-x:hover {
+    transform: rotate(90deg);
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.342);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+.loading-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.loading-logo {
+    font-size: 4rem;
+    color: #ffffff;
+    animation: spin 1.5s linear infinite;
+    display: inline-block;
+}
+
+/* Spinning animation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

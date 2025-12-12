@@ -977,32 +977,93 @@ const css = `
             animation-delay: 2s;
         }
         
-        /* Footer */
-        .footer {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            color: white;
-            padding: 40px 0;
-            margin-top: 50px;
-        }
-        
-        .footer a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer a:hover {
-            color: #ffeb3b;
-            text-decoration: underline;
-        }
-        
-       .social-icons {
-            font-size: 1.5rem;
-            margin-right: 15px;
-        }
-        
-        
-   
+/* Footer Styles */
+.footer {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+    color: var(--light-text);
+    padding: 4rem 0 2rem;
+    margin-top: 4rem;
+}
+
+.footer h5 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.footer p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Ajuste do espaçamento dos links do footer */
+.footer .list-unstyled li {
+    margin-bottom: 1rem; /* Aumentado de mb-2 (0.5rem) para 1rem */
+}
+
+.footer .list-unstyled a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: var(--transition);
+    display: inline-block;
+    padding: 0.25rem 0; /* Adicionado padding vertical */
+}
+
+.footer .list-unstyled a:hover {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* Ajuste do espaçamento entre as seções de contato */
+.footer .col-lg-4 p {
+    margin-bottom: 1.5rem; /* Aumentado o espaçamento entre os itens de contato */
+    padding-left: 0.25rem;
+    padding-right: 3rem /* Pequeno ajuste visual */
+}
+
+/* Social icons */
+.social-icons {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    font-size: 1.5rem;
+    color: white;
+    transition: var(--transition);
+}
+
+.social-icons:hover {
+    background: white;
+    color: var(--primary-color);
+    transform: translateY(-3px);
+}
+
+/* Footer divider */
+.footer hr {
+    opacity: 0.2;
+    margin: 2.5rem 0; /* Aumentado de my-4 (1.5rem) para 2.5rem */
+}
+
+/* Footer bottom text */
+.footer .row:last-child p {
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .row:last-child a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.footer .row:last-child a:hover {
+    text-decoration: underline;
+}
         
         /* Floating animation */
         @keyframes float {
@@ -1757,3 +1818,202 @@ const css = `
 const style = document.createElement('style');
 style.textContent = css;
 document.head.appendChild(style);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchButton = document.getElementById('clearSearchButton');
+    const searchButton = document.getElementById('searchButton');
+    const productGrid = document.getElementById('product-grid');
+    const originalProducts = Array.from(productGrid.children);
+    let searchActive = false;
+    
+    // Mostrar/ocultar botão de limpar
+    searchInput.addEventListener('input', function() {
+        if (this.value.trim() !== '') {
+            clearSearchButton.classList.remove('d-none');
+            document.querySelector('.search-container').classList.add('search-active');
+            searchActive = true;
+        } else {
+            clearSearchButton.classList.add('d-none');
+            document.querySelector('.search-container').classList.remove('search-active');
+            searchActive = false;
+        }
+    });
+    
+    // Função para fazer a busca
+    function performSearch(searchTerm) {
+        if (!searchTerm.trim()) {
+            resetProducts();
+            return;
+        }
+        
+        const term = searchTerm.toLowerCase().trim();
+        let hasResults = false;
+        
+        // Esconder todos os produtos primeiro
+        productGrid.innerHTML = '';
+        
+        // Filtrar e mostrar apenas os produtos correspondentes
+        originalProducts.forEach(productCard => {
+            const titleElement = productCard.querySelector('.product-title');
+            const descriptionElement = productCard.querySelector('.product-description') || 
+                                      productCard.querySelector('.card-text');
+            
+            const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+            const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+            
+            if (title.includes(term) || description.includes(term)) {
+                // Adicionar efeito visual de destaque
+                const clonedCard = productCard.cloneNode(true);
+                
+                // Destacar o texto buscado no título
+                if (titleElement) {
+                    const highlightedTitle = highlightText(titleElement.textContent, term);
+                    clonedCard.querySelector('.product-title').innerHTML = highlightedTitle;
+                }
+                
+                productGrid.appendChild(clonedCard);
+                hasResults = true;
+            }
+        });
+        
+        // Se não houver resultados, mostrar mensagem
+        if (!hasResults) {
+            showNoResultsMessage(term);
+        }
+        
+        // Adicionar classe de animação aos cards resultantes
+        setTimeout(() => {
+            document.querySelectorAll('#product-grid .product-card').forEach(card => {
+                card.classList.add('show');
+                card.classList.add('animate');
+            });
+        }, 50);
+    }
+    
+    // Função para destacar texto
+    function highlightText(text, term) {
+        const regex = new RegExp(`(${term})`, 'gi');
+        return text.replace(regex, '<span class="highlight">$1</span>');
+    }
+    
+    // Função para mostrar mensagem de "nenhum resultado"
+    function showNoResultsMessage(searchTerm) {
+        const noResultsHTML = `
+            <div class="col-12 text-center py-5" data-aos="fade-up">
+                <div class="no-results-message">
+                    <i class="bi bi-search display-1 text-muted mb-4"></i>
+                    <h3 class="text-muted mb-3">Nenhum resultado encontrado</h3>
+                    <p class="text-muted">Não encontramos produtos correspondentes a: <strong>"${searchTerm}"</strong></p>
+                    <button class="btn btn-outline-success mt-3" id="clearSearchBtn">
+                        <i class="bi bi-arrow-left me-2"></i>Ver todos os produtos
+                    </button>
+                </div>
+            </div>
+        `;
+        productGrid.innerHTML = noResultsHTML;
+        
+        // Adicionar evento ao botão de limpar busca
+        document.getElementById('clearSearchBtn')?.addEventListener('click', function() {
+            searchInput.value = '';
+            resetProducts();
+            clearSearchButton.classList.add('d-none');
+            document.querySelector('.search-container').classList.remove('search-active');
+            searchInput.focus();
+        });
+    }
+    
+    // Função para resetar produtos ao estado original
+    function resetProducts() {
+        productGrid.innerHTML = '';
+        originalProducts.forEach(card => {
+            productGrid.appendChild(card.cloneNode(true));
+        });
+        
+        // Reativar animações
+        setTimeout(() => {
+            document.querySelectorAll('#product-grid .product-card').forEach(card => {
+                card.classList.add('show');
+                card.classList.add('animate');
+            });
+        }, 50);
+    }
+    
+    // Evento de busca ao clicar no botão de pesquisa
+    searchButton.addEventListener('click', function() {
+        performSearch(searchInput.value);
+    });
+    
+    // Evento de busca ao pressionar Enter
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch(this.value);
+        }
+    });
+    
+    // Busca em tempo real (opcional - com debounce)
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            if (this.value.trim().length >= 2) {
+                performSearch(this.value);
+            } else if (this.value.trim() === '') {
+                resetProducts();
+            }
+        }, 300);
+    });
+    
+    // Limpar busca COMPLETAMENTE
+    clearSearchButton.addEventListener('click', function() {
+        searchInput.value = '';
+        clearSearchButton.classList.add('d-none');
+        document.querySelector('.search-container').classList.remove('search-active');
+        searchActive = false;
+        searchInput.focus();
+        
+        // Resetar produtos ao estado original
+        resetProducts();
+        
+        // Adicionar efeito visual de limpeza
+        searchInput.style.transform = 'scale(0.98)';
+        setTimeout(() => {
+            searchInput.style.transform = 'scale(1)';
+        }, 150);
+    });
+    
+    // Efeito visual ao focar no campo
+    searchInput.addEventListener('focus', function() {
+        document.querySelector('.search-container').style.boxShadow = '0 4px 15px rgba(46, 125, 50, 0.2)';
+    });
+    
+    searchInput.addEventListener('blur', function() {
+        if (this.value === '' && !searchActive) {
+            document.querySelector('.search-container').style.boxShadow = '0 2px 10px rgba(0,0,0,0.08)';
+        }
+    });
+    
+    // Adicionar estilo para o texto destacado
+    const style = document.createElement('style');
+    style.textContent = `
+        .highlight {
+            background-color: #ffd54f;
+            padding: 0 2px;
+            border-radius: 2px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .no-results-message {
+            padding: 3rem 1rem;
+            background: rgba(248, 249, 250, 0.7);
+            border-radius: 15px;
+            border: 2px dashed #dee2e6;
+        }
+        
+        #product-grid .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+        }
+    `;
+    document.head.appendChild(style);
+});

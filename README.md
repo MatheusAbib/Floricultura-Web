@@ -18,13 +18,6 @@ Bem-vindo ao repositório da **Floricultura Web**, um site moderno, responsivo e
 
 ## 🧰 Tecnologias Utilizadas
 
-| Tecnologia     | Descrição                           |
-|----------------|-------------------------------------|
-| HTML5          | Estrutura semântica das páginas     |
-| CSS3           | Estilização e responsividade        |
-| JavaScript e PHP| Interações e lógica de interface    |
-| Bootstrap 5    | Layout e componentes prontos        |
-| AOS.js         | Animações ao rolar a página         |
-| Icons Bootstrap| Ícones florais e decorativos        |
+<div align="center"><div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 20px 0;"> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" width="60" height="60" title="HTML5"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" width="60" height="60" title="CSS3"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" width="60" height="60" title="JavaScript"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" width="60" height="60" title="PHP"/> <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="Bootstrap" width="60" height="60" title="Bootstrap 5"/> </div></div>
 
 ---
