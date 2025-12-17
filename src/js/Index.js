@@ -1210,7 +1210,7 @@ const css = `
             }
             
             .navbar-brand {
-                font-size: 1.5rem;
+                font-size: 1.7rem;
             }
             .navbar .input-group {
                 max-width: 180px;
