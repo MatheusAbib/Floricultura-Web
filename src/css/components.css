@@ -30,7 +30,7 @@
         
         .navbar-brand {
             font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: white !important;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
             transition: var(--transition);
@@ -88,13 +88,8 @@
         }
         
 
-
-            .navbar-nav .nav-item {
-                margin-right: 1rem; /* Espaço entre os itens do menu */
-            }
-
             .navbar-nav .nav-link {
-                padding: 0.75rem 1rem !important; /* Aumentado o padding */
+                padding: 0.75rem 1rem !important; 
                 border-radius: 4px;
                 transition: var(--transition);
             }
@@ -105,8 +100,7 @@
 
             @media (min-width: 1200px) {
                 .navbar-nav .nav-item {
-                    margin-right: 1rem; /* Mais espaço em telas grandes */
-                    font-size: 1.05rem;
+                    font-size: 0.95rem;
                 }
                 
                 .navbar-nav .nav-link {
