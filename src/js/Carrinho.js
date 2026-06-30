@@ -1,13 +1,15 @@
     // Carrinho de compras
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         
-        // Atualizar contador do carrinho
-        function updateCartCounter() {
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            document.querySelector('.cart-counter').textContent = totalItems;
-        }
+
+function updateCartCounter() {
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    const counterElement = document.querySelector('.cart-counter');
+    if (counterElement) {
+        counterElement.textContent = totalItems;
+    }
+}
         
-        // Formatador de moeda
         function formatCurrency(value) {
             return new Intl.NumberFormat('pt-BR', { 
                 style: 'currency', 
@@ -209,16 +211,17 @@ document.getElementById('shipping-form').addEventListener('submit', function(e) 
             }
         });
         
-    // Inicializar carrinho
 function initCart() {
-    updateCartCounter();
-    renderCartItems();
-    updateOrderSummary();
-    
-    // Inicializar modal (se necessário)
-    if (cart.length > 0) {
-        document.getElementById('clear-cart').style.display = 'block';
-    }
+    setTimeout(() => {
+        updateCartCounter();
+        renderCartItems();
+        updateOrderSummary();
+        
+        if (cart.length > 0) {
+            const clearBtn = document.getElementById('clear-cart');
+            if (clearBtn) clearBtn.style.display = 'block';
+        }
+    }, 100);
 }
         
         // Inicializar
