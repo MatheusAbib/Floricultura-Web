@@ -1,6 +1,6 @@
 # 🌸 Floricultura Web
 
-Bem-vindo ao repositório da **Floricultura Web**, um site moderno front-end, responsivo e encantador criado para representar uma floricultura com elegância e funcionalidade. Desenvolvido com foco na experiência do usuário, o projeto utiliza tecnologias atuais como React, SCSS, Bootstrap e JavaScript, garantindo desempenho, estética e interatividade.
+**Floricultura Web**, um site front-end responsivo desenvolvido com foco na experiência do usuário. O projeto utiliza tecnologias atuais como React, SCSS, Bootstrap e JavaScript, garantindo desempenho, estética e interatividade.
 
 ---
 
