@@ -4,10 +4,10 @@ export const presentesProducts = [
         name: "Vinho",
         price: 80.00,
         oldPrice: 65.00,
-        image: "assets/images/Presentes/Vinho.webp",
+        image: "assets/Presentes/Vinho.webp",
         images: [
-            "assets/images/Presentes/Vinho.webp",
-            "assets/images/Presentes/Vinho.webp"
+            "assets/Presentes/Vinho.webp",
+            "assets/Presentes/Vinho.webp"
         ],
         description: "Vinho Mariana, presente sofisticado para momentos especiais, perfeito para celebrações ou jantares românticos.",
         rating: 4.5,
@@ -27,10 +27,10 @@ export const presentesProducts = [
         id: 102,
         name: "Ursinho de pelúcia",
         price: 30.00,
-        image: "assets/images/Presentes/Ursinho.webp",
+        image: "assets/Presentes/Ursinho.webp",
         images: [
-            "assets/images/Presentes/Ursinho.webp",
-            "assets/images/Presentes/Ursinho-2.webp"
+            "assets/Presentes/Ursinho.webp",
+            "assets/Presentes/Ursinho-2.webp"
         ],
         description: "Fofo e aconchegante, este ursinho é a escolha ideal para demonstrar carinho e afeto.",
         rating: 4,
@@ -51,10 +51,10 @@ export const presentesProducts = [
         name: "Chandon",
         price: 93.99,
         oldPrice: 110.00,
-        image: "assets/images/Presentes/chandon.webp",
+        image: "assets/Presentes/chandon.webp",
         images: [
-            "assets/images/Presentes/chandon.webp",
-            "assets/images/Presentes/chandon-2.webp"
+            "assets/Presentes/chandon.webp",
+            "assets/Presentes/chandon-2.webp"
         ],
         description: "Refinado e elegante, perfeito para brindar conquistas, aniversários e ocasiões inesquecíveis.",
         rating: 4,
@@ -74,10 +74,10 @@ export const presentesProducts = [
         id: 104,
         name: "Caixa de doces",
         price: 130.00,
-        image: "assets/images/Presentes/Caixa-de-Presentes.webp",
+        image: "assets/Presentes/Caixa-de-Presentes.webp",
         images: [
-            "assets/images/Presentes/Caixa-de-Presentes.webp",
-            "assets/images/Presentes/Caixa-de-Presentes-2.webp"
+            "assets/Presentes/Caixa-de-Presentes.webp",
+            "assets/Presentes/Caixa-de-Presentes-2.webp"
         ],
         description: "Uma seleção deliciosa de doces finos, ideal para surpreender alguém com um toque de sabor e carinho.",
         rating: 3.5,
@@ -95,10 +95,10 @@ export const presentesProducts = [
         id: 105,
         name: "Aperitivos",
         price: 49.99,
-        image: "assets/images/Presentes/Aperitivos.webp",
+        image: "assets/Presentes/Aperitivos.webp",
         images: [
-            "assets/images/Presentes/Aperitivos.webp",
-            "assets/images/Presentes/Aperitivos-2.webp"
+            "assets/Presentes/Aperitivos.webp",
+            "assets/Presentes/Aperitivos-2.webp"
         ],
         description: "Combinação irresistível de petiscos variados e cervejas para acompanhar bons momentos com amigos ou família.",
         rating: 4.5,
@@ -117,10 +117,10 @@ export const presentesProducts = [
         id: 106,
         name: "Chocolates",
         price: 35.50,
-        image: "assets/images/Presentes/chocolate.webp",
+        image: "assets/Presentes/chocolate.webp",
         images: [
-            "assets/images/Presentes/chocolate.webp",
-            "assets/images/Presentes/chocolate-2.webp"
+            "assets/Presentes/chocolate.webp",
+            "assets/Presentes/chocolate-2.webp"
         ],
         description: "Clássico presente que agrada a todos, ideal para expressar afeto em qualquer ocasião.",
         rating: 4,
@@ -138,10 +138,10 @@ export const presentesProducts = [
         id: 107,
         name: "Caixa de Nutella",
         price: 105.00,
-        image: "assets/images/Presentes/nutella.webp",
+        image: "assets/Presentes/nutella.webp",
         images: [
-            "assets/images/Presentes/nutella.webp",
-            "assets/images/Presentes/nutella-2.webp"
+            "assets/Presentes/nutella.webp",
+            "assets/Presentes/nutella-2.webp"
         ],
         description: "Kit especial para os amantes de Nutella — cremoso, saboroso e perfeito para surpreender com doçura.",
         rating: 3.5,
@@ -160,10 +160,10 @@ export const presentesProducts = [
         name: "Girassois",
         price: 155.00,
         oldPrice: 170.00,
-        image: "assets/images/Presentes/Buque-Girassol.jpg",
+        image: "assets/Presentes/Buque-Girassol.jpg",
         images: [
-            "assets/images/Presentes/Buque-Girassol.jpg",
-            "assets/images/Presentes/Buque-Girassol-2.jpg"
+            "assets/Presentes/Buque-Girassol.jpg",
+            "assets/Presentes/Buque-Girassol-2.jpg"
         ],
         description: "Um buquê radiante de girassóis para transmitir alegria, positividade e boas energias.",
         rating: 5,
@@ -182,10 +182,10 @@ export const presentesProducts = [
         id: 109,
         name: "Rosas",
         price: 175.00,
-        image: "assets/images/Presentes/Buque-rosas.jpg",
+        image: "assets/Presentes/Buque-rosas.jpg",
         images: [
-            "assets/images/Presentes/Buque-rosas.jpg",
-            "assets/images/Presentes/Buque-rosas-2.jpg"
+            "assets/Presentes/Buque-rosas.jpg",
+            "assets/Presentes/Buque-rosas-2.jpg"
         ],
         description: "Clássicas e atemporais, buquê de rosas são a expressão perfeita do amor e da elegância.",
         rating: 4,
@@ -203,10 +203,10 @@ export const presentesProducts = [
         id: 110,
         name: "Ferrero Rocher",
         price: 48.50,
-        image: "assets/images/Presentes/Ferrero.jpg",
+        image: "assets/Presentes/Ferrero.jpg",
         images: [
-            "assets/images/Presentes/Ferrero.jpg",
-            "assets/images/Presentes/Ferrero-2.jpg"
+            "assets/Presentes/Ferrero.jpg",
+            "assets/Presentes/Ferrero-2.jpg"
         ],
         description: "Bombons finos com sabor inconfundível, perfeitos para presentear com classe e doçura.",
         rating: 4.5,
@@ -224,10 +224,10 @@ export const presentesProducts = [
         id: 111,
         name: "Placas decorativas",
         price: 40.00,
-        image: "assets/images/Presentes/Placa-decorativa.webp",
+        image: "assets/Presentes/Placa-decorativa.webp",
         images: [
-            "assets/images/Presentes/Placa-decorativa.webp",
-            "assets/images/Presentes/Placa-decorativa-2.webp"
+            "assets/Presentes/Placa-decorativa.webp",
+            "assets/Presentes/Placa-decorativa-2.webp"
         ],
         description: "Adicione charme ao ambiente com placas decorativas criativas, ideais para presente criativo e moderno.",
         rating: 4,
@@ -247,10 +247,10 @@ export const presentesProducts = [
         name: "Ursinho duplo",
         price: 70.00,
         oldPrice: 85.00,
-        image: "assets/images/Presentes/Ursinhos.jpg",
+        image: "assets/Presentes/Ursinhos.jpg",
         images: [
-            "assets/images/Presentes/Ursinhos.jpg",
-            "assets/images/Presentes/Ursinhos-2.jpg"
+            "assets/Presentes/Ursinhos.jpg",
+            "assets/Presentes/Ursinhos-2.jpg"
         ],
         description: "Dois adoráveis ursinhos de pelúcia para dobrar o carinho em momentos especiais.",
         rating: 5,
