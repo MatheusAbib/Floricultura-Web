@@ -74,7 +74,7 @@ function Home() {
             <section className="promo-section" id="promocao">
                 <div className="container">
                     <div className="promo-banner">
-                        <img src="/src/assets/images/Carrossel/astromelia.webp" alt="Promoção de Verão" className="img-fluid promo-image" />
+                        <img src="/Floricultura-Web/assets/Carrossel/astromelia.webp" alt="Promoção de Verão" className="img-fluid promo-image" />
                     </div>
                 </div>
             </section>
@@ -141,7 +141,7 @@ function Home() {
             <section className="products-section">
                 <div className="container">
                     <div className="promo-banner">
-                        <img src="/src/assets/images/Carrossel/coleção-de-inverno.jpg" alt="Coleção de Inverno" className="img-fluid promo-image" />
+                        <img src="/Floricultura-Web/assets/Carrossel/coleção-de-inverno.jpg" alt="Coleção de Inverno" className="img-fluid promo-image" />
                     </div>
                     <div className="row py-3" id="inverno-grid">
                         {invernoProducts.map((product) => (

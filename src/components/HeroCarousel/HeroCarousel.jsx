@@ -56,21 +56,21 @@ function HeroCarousel({ page = 'home' }) {
    const slides = {
     home: [
         {
-            image: "/src/assets/images/Carrossel/campo-de-flores.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/campo-de-flores.jpg",
             title: "Bem-vindo à Floricultura Web",
             subtitle: "Transforme sua casa com a beleza das flores. Entregamos em até 24h com todo o cuidado que suas plantas merecem.",
             buttonText: "Conheça Nossa História",
             buttonLink: "/quem-somos"
         },
         {
-            image: "/src/assets/images/Carrossel/Plantas-variadas.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/Plantas-variadas.jpg",
             title: "Coleção Exclusiva de Plantas",
             subtitle: "Descubra espécies únicas selecionadas para trazer mais vida, cor e conforto ao seu espaço.",
             buttonText: "Explorar Coleção",
             buttonLink: "#product-grid"
         },
         {
-            image: "/src/assets/images/Carrossel/Presente.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/Presente.jpg",
             title: "Presentes que Encantam",
             subtitle: "Surpreenda quem você ama com arranjos florais e kits especiais. O presente perfeito para cada ocasião.",
             buttonText: "Ver Presentes",
@@ -79,14 +79,14 @@ function HeroCarousel({ page = 'home' }) {
     ],
     sementes: [
         {
-            image: "/src/assets/images/Carrossel/Sementes.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/Sementes.jpg",
             title: "Sementes de Qualidade",
             subtitle: "Do plantio à floração, encontre sementes selecionadas para cultivar seu jardim dos sonhos.",
             buttonText: "Ver Catálogo",
             buttonLink: "#product-grid"
         },
         {
-            image: "/src/assets/images/Carrossel/Banner-Sementes.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/Banner-Sementes.jpg",
             title: "Tire Suas Dúvidas",
             subtitle: "Não sabe qual semente escolher? Nossas avaliações e descrições detalhadas ajudam você a decidir.",
             buttonText: "Ver Sementes",
@@ -95,14 +95,14 @@ function HeroCarousel({ page = 'home' }) {
     ],
     presentes: [
         {
-            image: "/src/assets/images/Carrossel/Presente-flores.jpg",
+            image: "/Floricultura-Web/assets/Carrossel/Presente-flores.jpg",
             title: "Presentes Especiais",
             subtitle: "Encontre o presente perfeito para celebrar momentos únicos com quem você ama.",
             buttonText: "Ver Coleção",
             buttonLink: "#product-grid"
         },
         {
-            image: "/src/assets/images/Carrossel/Food-gift.png",
+            image: "/Floricultura-Web/assets/Carrossel/Food-gift.png",
             title: "Kits que Encantam",
             subtitle: "Combinações especiais de flores, chocolates e vinhos para surpreender em qualquer ocasião.",
             buttonText: "Ver Presentes",
@@ -111,14 +111,14 @@ function HeroCarousel({ page = 'home' }) {
     ],
     vasos: [
     {
-        image: "/src/assets/images/Carrossel/Vasos-diversos.png",
+        image: "/Floricultura-Web/assets/Carrossel/Vasos-diversos.png",
         title: "Vasos Diversos",
         subtitle: "Aqui você encontra o tipo de vaso que você preferir, decorativo ou para suas plantas",
         buttonText: "Ver Catálogo",
         buttonLink: "#product-grid"
     },
     {
-        image: "/src/assets/images/Carrossel/Vasos-Reciclaveis.jpg",
+        image: "/Floricultura-Web/assets/Carrossel/Vasos-Reciclaveis.jpg",
         title: "Vasos Recicláveis",
         subtitle: "Você também pode optar por reciclar garrafas ou latas para criar vasos para suas plantinhas"
     }

@@ -12,14 +12,14 @@ import './Presentes.scss';
 
 const presentesSlides = [
     {
-        image: "/src/assets/images/Carrossel/Presente-flores.jpg",
+        image: "/Floricultura-Web/assets/Carrossel/Presente-flores.jpg",
         title: "Presentes",
         subtitle: "Encontre o presente perfeito para a sua ocasião",
         buttonText: "Ver Coleção",
         buttonLink: "#product-grid"
     },
     {
-        image: "/src/assets/images/Carrossel/Food-gift.png",
+        image: "/Floricultura-Web/assets/Carrossel/Food-gift.png",
         title: "Presentes que Encantam",
         subtitle: "Surpreenda quem você ama com nossos arranjos exclusivos",
         buttonText: "Ver Presentes",
@@ -57,7 +57,7 @@ function Presentes() {
             <section className="promo-section" id="promocao">
                 <div className="container">
                     <div className="promo-banner">
-                        <img src="/src/assets/images/Carrossel/irmao.webp" alt="Promoção Especial" className="img-fluid promo-image" />
+                        <img src="/Floricultura-Web/assets/Carrossel/irmao.webp" alt="Promoção Especial" className="img-fluid promo-image" />
                     </div>
                 </div>
             </section>
