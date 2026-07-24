@@ -4,10 +4,10 @@ export const vasosProducts = [
         name: "Vaso de vidro",
         price: 160.00,
         oldPrice: 180.99,
-        image: "/src/assets/images/Vasos/Vaso01.jpg",
+        image: "assets/images/Vasos/Vaso01.jpg",
         images: [
-            "/src/assets/images/Vasos/Vaso01.jpg",
-            "/src/assets/images/Vasos/Vaso01.jpg"
+            "assets/images/Vasos/Vaso01.jpg",
+            "assets/images/Vasos/Vaso01.jpg"
         ],
         description: "Vaso de vidro azul elegante ornamental, ideal para ambientes internos que pedem um toque moderno e sofisticado.",
         rating: 4.5,
@@ -26,10 +26,10 @@ export const vasosProducts = [
         id: 10222,
         name: "Vaso de cerâmica",
         price: 175.00,
-        image: "/src/assets/images/Vasos/Vaso02.jpg",
+        image: "assets/images/Vasos/Vaso02.jpg",
         images: [
-            "/src/assets/images/Vasos/Vaso02.jpg",
-            "/src/assets/images/Vasos/Vaso02.jpg"
+            "assets/images/Vasos/Vaso02.jpg",
+            "assets/images/Vasos/Vaso02.jpg"
         ],
         description: "Vaso de cerâmica vermelho rústico, perfeito para trazer vida e naturalidade à decoração do seu lar.",
         rating: 3.5,
@@ -49,10 +49,10 @@ export const vasosProducts = [
         name: "Vaso de barro",
         price: 65.00,
         oldPrice: 80.00,
-        image: "/src/assets/images/Vasos/Vaso03.jpg",
+        image: "assets/images/Vasos/Vaso03.jpg",
         images: [
-            "/src/assets/images/Vasos/Vaso03.jpg",
-            "/src/assets/images/Vasos/Vaso03.jpg"
+            "assets/images/Vasos/Vaso03.jpg",
+            "assets/images/Vasos/Vaso03.jpg"
         ],
         description: "Vaso de barro tradicional com pintura feita à mão, uma escolha prática para quem deseja beleza e facilidade na manutenção.",
         rating: 4,
@@ -71,10 +71,10 @@ export const vasosProducts = [
         id: 10444,
         name: "Vaso simples",
         price: 12.00,
-        image: "/src/assets/images/Vasos/Vaso04.jpg",
+        image: "assets/images/Vasos/Vaso04.jpg",
         images: [
-            "/src/assets/images/Vasos/Vaso04.jpg",
-            "/src/assets/images/Vasos/Vaso04.jpg"
+            "assets/images/Vasos/Vaso04.jpg",
+            "assets/images/Vasos/Vaso04.jpg"
         ],
         description: "Vaso simples preto, perfeito como presente simbólico ou para atrair bons fluídos ao seu ambiente.",
         rating: 5,

@@ -4,10 +4,10 @@ export const sementesProducts = [
         name: "Semente de Girassol",
         price: 9.00,
         oldPrice: 12.99,
-        image: "/src/assets/images/Sementes/Semente-Girassol.jpg",
+        image: "assets/images/Sementes/Semente-Girassol.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-Girassol.jpg",
-            "/src/assets/images/Sementes/Semente-Girassol.jpg"
+            "assets/images/Sementes/Semente-Girassol.jpg",
+            "assets/images/Sementes/Semente-Girassol.jpg"
         ],
         description: "Ideal para quem deseja cultivar girassóis vibrantes e alegres no jardim ou em vasos amplos.",
         rating: 4.5,
@@ -27,10 +27,10 @@ export const sementesProducts = [
         id: 1022,
         name: "Semente de Lavanda",
         price: 7.00,
-        image: "/src/assets/images/Sementes/semente-Lavanda.jpg",
+        image: "assets/images/Sementes/semente-Lavanda.jpg",
         images: [
-            "/src/assets/images/Sementes/semente-Lavanda.jpg",
-            "/src/assets/images/Sementes/semente-Lavanda.jpg"
+            "assets/images/Sementes/semente-Lavanda.jpg",
+            "assets/images/Sementes/semente-Lavanda.jpg"
         ],
         description: "Perfeita para quem busca aroma suave e beleza natural em ambientes internos ou externos.",
         rating: 4,
@@ -50,10 +50,10 @@ export const sementesProducts = [
         id: 1033,
         name: "Semente de Tomates",
         price: 7.00,
-        image: "/src/assets/images/Sementes/Semente-Tomates.jpg",
+        image: "assets/images/Sementes/Semente-Tomates.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-Tomates.jpg",
-            "/src/assets/images/Sementes/Semente-Tomates.jpg"
+            "assets/images/Sementes/Semente-Tomates.jpg",
+            "assets/images/Sementes/Semente-Tomates.jpg"
         ],
         description: "Comece sua própria horta em casa com tomates frescos e saborosos diretamente do seu cultivo.",
         rating: 4,
@@ -73,10 +73,10 @@ export const sementesProducts = [
         id: 1044,
         name: "Semente de Laranjeira",
         price: 20.00,
-        image: "/src/assets/images/Sementes/Semente-Arvore.jpg",
+        image: "assets/images/Sementes/Semente-Arvore.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-Arvore.jpg",
-            "/src/assets/images/Sementes/Semente-Arvore.jpg"
+            "assets/images/Sementes/Semente-Arvore.jpg",
+            "assets/images/Sementes/Semente-Arvore.jpg"
         ],
         description: "Cultive uma árvore frutífera cheia de vida e sabor, ideal para quintais e jardins espaçosos.",
         rating: 3.5,
@@ -95,10 +95,10 @@ export const sementesProducts = [
         id: 1055,
         name: "Semente de Antúrio",
         price: 10.99,
-        image: "/src/assets/images/Sementes/Semente-Anturio.jpg",
+        image: "assets/images/Sementes/Semente-Anturio.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-Anturio.jpg",
-            "/src/assets/images/Sementes/Semente-Anturio.jpg"
+            "assets/images/Sementes/Semente-Anturio.jpg",
+            "assets/images/Sementes/Semente-Anturio.jpg"
         ],
         description: "Sementes perfeitas para quem busca flores com cores intensas e visual exótico em casa ou jardim.",
         rating: 4.5,
@@ -118,10 +118,10 @@ export const sementesProducts = [
         id: 1066,
         name: "Semente de Samambaia",
         price: 22.50,
-        image: "/src/assets/images/Sementes/semente-samambaia.jpg",
+        image: "assets/images/Sementes/semente-samambaia.jpg",
         images: [
-            "/src/assets/images/Sementes/semente-samambaia.jpg",
-            "/src/assets/images/Sementes/semente-samambaia.jpg"
+            "assets/images/Sementes/semente-samambaia.jpg",
+            "assets/images/Sementes/semente-samambaia.jpg"
         ],
         description: "Clássica e ornamental, a samambaia é ideal para quem busca um toque verde em áreas sombreadas.",
         rating: 4,
@@ -140,10 +140,10 @@ export const sementesProducts = [
         id: 1077,
         name: "Semente de Pitaya",
         price: 27.00,
-        image: "/src/assets/images/Sementes/Semente-pitaya.jpg",
+        image: "assets/images/Sementes/Semente-pitaya.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-pitaya.jpg",
-            "/src/assets/images/Sementes/Semente-pitaya.jpg"
+            "assets/images/Sementes/Semente-pitaya.jpg",
+            "assets/images/Sementes/Semente-pitaya.jpg"
         ],
         description: "Plante e cultive sua própria pitaya: exótica, nutritiva e ideal para quem valoriza alimentos naturais.",
         rating: 3.5,
@@ -163,10 +163,10 @@ export const sementesProducts = [
         name: "Semente de Aralia",
         price: 10.00,
         oldPrice: 12.99,
-        image: "/src/assets/images/Sementes/Semente-Aralia.jpg",
+        image: "assets/images/Sementes/Semente-Aralia.jpg",
         images: [
-            "/src/assets/images/Sementes/Semente-Aralia.jpg",
-            "/src/assets/images/Sementes/Semente-Aralia.jpg"
+            "assets/images/Sementes/Semente-Aralia.jpg",
+            "assets/images/Sementes/Semente-Aralia.jpg"
         ],
         description: "Com folhas marcantes e crescimento vigoroso, a aralia é perfeita para composições ornamentais.",
         rating: 5,
