@@ -1,0 +1,39 @@
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    will-change: transform, opacity;
+
+    &.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    &.fade-up {
+        transform: translateY(30px);
+        &.visible {
+            transform: translateY(0);
+        }
+    }
+
+    &.fade-down {
+        transform: translateY(-30px);
+        &.visible {
+            transform: translateY(0);
+        }
+    }
+
+    &.fade-left {
+        transform: translateX(-30px);
+        &.visible {
+            transform: translateX(0);
+        }
+    }
+
+    &.fade-right {
+        transform: translateX(30px);
+        &.visible {
+            transform: translateX(0);
+        }
+    }
+}

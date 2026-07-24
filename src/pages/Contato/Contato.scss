@@ -1,0 +1,234 @@
+@use '../../styles/variables' as *;
+
+.contato-page {
+    .contact-hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/src/assets/images/Logo/Fale_Conosco.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 150px 0;
+    }
+
+    .contact-hero-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 4rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        background: white;
+        padding: 30px;
+
+        &:hover {
+            box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .contact-info-card {
+        text-align: center;
+        padding: 30px;
+        border-radius: 15px;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        height: 100%;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h4 {
+            margin-bottom: 15px;
+            color: $primary-dark;
+        }
+
+        p {
+            color: $gray-text;
+            margin-bottom: 5px;
+        }
+    }
+
+    .contact-icon {
+        font-size: 2rem;
+        color: $primary-color;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 30px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: $primary-color;
+        }
+    }
+
+    .text-center .section-title::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 10px;
+        padding: 15px;
+        border: 2px solid #e0e0e0;
+        transition: all 0.3s ease;
+
+        &:focus {
+            border-color: $primary-color;
+            box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+        }
+    }
+
+    .form-floating {
+        label {
+            color: $gray-text;
+        }
+
+        .form-control:focus ~ label,
+        .form-control:not(:placeholder-shown) ~ label {
+            color: $primary-color;
+        }
+    }
+
+    .btn-success {
+        background-color: $primary-color;
+        border: none;
+        padding: 8px 60px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border-radius: 10px;
+
+        &:hover {
+            background-color: $primary-dark;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .btn-outline-success {
+        border-color: $primary-color;
+        color: $primary-color;
+         padding: 8px 60px;
+         border-radius: 10px;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+
+    .accordion-item {
+        border: none !important;
+
+        .accordion-button {
+            background-color: $light-bg;
+            font-weight: 600;
+
+            &:not(.collapsed) {
+                color: $primary-dark;
+                background-color: $light-bg;
+                box-shadow: none;
+            }
+
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+                border-color: $primary-color;
+            }
+        }
+
+        .accordion-body {
+            background: white;
+            color: $gray-text;
+        }
+    }
+
+    
+
+    .bg-light {
+        background-color: $light-bg !important;
+    }
+
+    .py-5 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 3rem !important;
+    }
+
+    .me-3 {
+        margin-right: 1rem !important;
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 3rem !important;
+    }
+
+    .shadow-sm {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
+    }
+
+    @media (max-width: 768px) {
+        .contact-hero-title {
+            font-size: 2.5rem;
+        }
+
+        .contact-card {
+            padding: 20px;
+        }
+
+        .contact-info-card {
+            padding: 20px;
+        }
+
+        .contact-hero {
+            padding: 60px 0;
+        }
+    }
+
+    @media (min-width: 360px) and (max-width: 900px) {
+        .btn-success {
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn-outline-success {
+            margin-bottom: 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .contact-hero-title {
+            font-size: 2rem;
+        }
+
+        .contact-hero {
+            padding: 40px 0;
+        }
+
+    }
+}

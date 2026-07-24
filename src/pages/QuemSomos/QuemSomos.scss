@@ -1,0 +1,270 @@
+@use '../../styles/variables' as *;
+
+.quem-somos-page {
+    .hero-section {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/src/assets/images/Logo/Quem_Somos.png');
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 150px 0;
+    }
+
+    .hero-title {
+        font-family: 'Dancing Script', cursive;
+        font-size: 4rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .about-card {
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+        background: white;
+
+        &:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    .team-member {
+        text-align: center;
+        margin-bottom: 30px;
+
+        img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid $primary-light;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        .text-success {
+            color: $primary-color !important;
+            font-weight: 600;
+        }
+
+        p {
+            color: $gray-text;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 50px;
+        margin: 50px 0;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: $primary-light;
+        }
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 30px;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: $primary-color;
+            border: 3px solid white;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: $primary-color;
+        }
+
+        h4 {
+            margin-bottom: 5px;
+        }
+
+        p {
+            color: $gray-text;
+        }
+    }
+
+    .btn-success {
+        background-color: $primary-color;
+        border: none;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: $primary-dark;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .section-title {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 30px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: $primary-color;
+        }
+    }
+
+    .bg-jornada {
+        padding: 100px 0;
+        background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)), 
+                    url('https://images.unsplash.com/photo-1526397751294-331021109fbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+
+        .timeline {
+            .timeline-item {
+                background: rgba(255, 255, 255, 0.85);
+                padding: 20px 25px;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+                backdrop-filter: blur(5px);
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateX(5px);
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                    background: rgba(255, 255, 255, 0.95);
+                }
+
+                .timeline-date {
+                    font-weight: bold;
+                    color: $primary-color;
+                    font-size: 1.1rem;
+                }
+
+                h4 {
+                    margin-bottom: 5px;
+                    color: $primary-dark;
+                }
+
+                p {
+                    color: $gray-text;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    .bg-light {
+        background-color: $light-bg !important;
+    }
+
+    .py-5 {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 3rem !important;
+    }
+
+    .mt-3 {
+        margin-top: 1rem !important;
+    }
+
+    .mt-4 {
+        margin-top: 1.5rem !important;
+    }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+
+    .fs-1 {
+        font-size: 2.5rem !important;
+    }
+
+    .fs-4 {
+        font-size: 1.5rem !important;
+    }
+
+    .me-3 {
+        margin-right: 1rem !important;
+    }
+
+    .mb-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .timeline {
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            left: -28px;
+        }
+
+        .hero-section {
+            padding: 60px 0;
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .bg-jornada {
+            padding: 60px 0;
+        }
+        .about-card img{
+display: none !important;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hero-title {
+            font-size: 2rem;
+        }
+
+        .hero-section {
+            padding: 40px 0;
+        }
+
+        .bg-jornada {
+            padding: 40px 0;
+        }
+    }
+}
