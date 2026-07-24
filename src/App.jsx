@@ -17,7 +17,7 @@ import './styles/global.scss';
 
 function App() {
     return (
-        <Router>
+        <Router basename="/Floricultura-Web">
             <CartProvider>
                 <FavoritesProvider>
                     <div className="app">
