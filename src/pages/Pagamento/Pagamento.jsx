@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { formatCurrency } from '../../utils/formatCurrency';
 import FadeIn from '../../components/FadeIn/FadeIn';
@@ -467,9 +467,9 @@ function Pagamento() {
                         <h3>Pagamento Aprovado!</h3>
                         <p className="mb-4">Sua compra foi concluída com sucesso. Obrigado por escolher a Floricultura Web!</p>
                         <p className="small text-muted">Você receberá um e-mail com os detalhes do seu pedido.</p>
-                        <a href="/Floricultura-Web/" className="btn btn-success mt-3">
+                        <Link to="/" className="btn btn-success mt-3">
                             <i className="bi bi-house-door me-2"></i>Voltar à Página Inicial
-                        </a>
+                        </Link>
                     </div>
                 </>
             )}

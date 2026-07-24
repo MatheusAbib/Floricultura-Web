@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import FadeIn from '../../components/FadeIn/FadeIn';
 import './QuemSomos.scss';
 import Footer from '../../components/Footer/Footer';
@@ -51,10 +52,10 @@ function QuemSomos() {
                                 <p>Nosso compromisso é com a qualidade, beleza e satisfação dos nossos clientes. Cada flor que entregamos carrega consigo nosso amor e dedicação pelo que fazemos.</p>
                             </FadeIn>
                             <FadeIn direction="right" delay={400}>
-                                <a href="/Floricultura-Web/contato" className="btn btn-success mt-3">
-  <i className="bi bi-chat-left-text-fill me-2"></i>
-  Fale Conosco
-</a>
+                                <Link to="/contato" className="btn btn-success mt-3">
+                                    <i className="bi bi-chat-left-text-fill me-2"></i>
+                                    Fale Conosco
+                                </Link>
                             </FadeIn>
                         </div>
                         <div className="col-lg-6">

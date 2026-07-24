@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 function Footer() {
@@ -21,9 +22,9 @@ function Footer() {
                     <div className="col-lg-4 mb-4 mb-lg-0">
                         <h5>Links Rápidos</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/Floricultura-Web/">Principal</a></li>
-                            <li><a href="/Floricultura-Web/quem-somos">Quem Somos</a></li>
-                            <li><a href="/Floricultura-Web/contato">Contato</a></li>
+                            <li><Link to="/">Principal</Link></li>
+                            <li><Link to="/quem-somos">Quem Somos</Link></li>
+                            <li><Link to="/contato">Contato</Link></li>
                         </ul>
                     </div>
                     <div className="col-lg-4">
