@@ -1,14 +1,16 @@
+import { IMAGE_PATH } from '../config';
+
 export const products = [
     {
         id: 1,
         name: "Lírio da Paz",
         price: 25.00,
         oldPrice: 35.00,
-        image: "assets/Plantas/Lirio.jpg",
+        image: `${IMAGE_PATH}Plantas/Lirio.jpg`,
         images: [
-            "assets/Plantas/Lirio.jpg",
-            "assets/Plantas/Lirio.jpg",
-            "assets/Plantas/Lirio.jpg"
+            `${IMAGE_PATH}Plantas/Lirio.jpg`,
+            `${IMAGE_PATH}Plantas/Lirio.jpg`,
+            `${IMAGE_PATH}Plantas/Lirio.jpg`
         ],
         description: "O Lírio da Paz é uma planta elegante e resistente, perfeita para ambientes internos. Suas folhas verdes escuras e flores brancas trazem um toque de sofisticação.",
         rating: 4.5,
@@ -28,10 +30,10 @@ export const products = [
         id: 2,
         name: "Asplenio",
         price: 45.00,
-        image: "assets/Plantas/asplenio.jpg",
+        image: `${IMAGE_PATH}Plantas/asplenio.jpg`,
         images: [
-            "assets/Plantas/asplenio.jpg",
-            "assets/Plantas/asplenio.jpg"
+            `${IMAGE_PATH}Plantas/asplenio.jpg`,
+            `${IMAGE_PATH}Plantas/asplenio.jpg`
         ],
         description: "O Asplênio é uma samambaia elegante com folhas delicadas e textura única. Perfeita para decorar interiores com um toque de natureza.",
         rating: 4,
@@ -52,10 +54,10 @@ export const products = [
         name: "Cactos",
         price: 40.00,
         oldPrice: 50.00,
-        image: "assets/Plantas/Cactus.jpg",
+        image: `${IMAGE_PATH}Plantas/Cactus.jpg`,
         images: [
-            "assets/Plantas/Cactus.jpg",
-            "assets/Plantas/Cactus.jpg"
+            `${IMAGE_PATH}Plantas/Cactus.jpg`,
+            `${IMAGE_PATH}Plantas/Cactus.jpg`
         ],
         description: "Os cactos são plantas resistentes que exigem pouca manutenção. Perfeitos para quem tem pouco tempo ou está começando no mundo da jardinagem.",
         rating: 5,
@@ -75,10 +77,10 @@ export const products = [
         id: 4,
         name: "Bonsai",
         price: 50.00,
-        image: "assets/Plantas/Bonsai.png",
+        image: `${IMAGE_PATH}Plantas/Bonsai.png`,
         images: [
-            "assets/Plantas/Bonsai.png",
-            "assets/Plantas/Bonsai.png"
+            `${IMAGE_PATH}Plantas/Bonsai.png`,
+            `${IMAGE_PATH}Plantas/Bonsai.png`
         ],
         description: "O Bonsai é uma árvore em miniatura que simboliza harmonia e equilíbrio. Uma obra de arte viva que requer paciência e dedicação.",
         rating: 3.5,
@@ -97,10 +99,10 @@ export const products = [
         id: 5,
         name: "Girassol",
         price: 74.99,
-        image: "assets/Plantas/Girassol.jpg",
+        image: `${IMAGE_PATH}Plantas/Girassol.jpg`,
         images: [
-            "assets/Plantas/Girassol.jpg",
-            "assets/Plantas/Girassol.jpg"
+            `${IMAGE_PATH}Plantas/Girassol.jpg`,
+            `${IMAGE_PATH}Plantas/Girassol.jpg`
         ],
         description: "Buquê de girassóis vibrantes que trazem alegria e energia positiva para qualquer ambiente. Perfeito para presentear.",
         rating: 4.5,
@@ -120,10 +122,10 @@ export const products = [
         id: 6,
         name: "Bromélia",
         price: 89.50,
-        image: "assets/Plantas/Bromelia.jpeg",
+        image: `${IMAGE_PATH}Plantas/Bromelia.jpeg`,
         images: [
-            "assets/Plantas/Bromelia.jpeg",
-            "assets/Plantas/Bromelia.jpeg"
+            `${IMAGE_PATH}Plantas/Bromelia.jpeg`,
+            `${IMAGE_PATH}Plantas/Bromelia.jpeg`
         ],
         description: "A Bromélia é uma planta tropical exuberante com folhas longas e coloridas. Perfeita para dar vida e cor a qualquer espaço.",
         rating: 4,
@@ -142,10 +144,10 @@ export const products = [
         id: 7,
         name: "Peperomia",
         price: 35.99,
-        image: "assets/Plantas/Peperomia.jpg",
+        image: `${IMAGE_PATH}Plantas/Peperomia.jpg`,
         images: [
-            "assets/Plantas/Peperomia.jpg",
-            "assets/Plantas/Peperomia.jpg"
+            `${IMAGE_PATH}Plantas/Peperomia.jpg`,
+            `${IMAGE_PATH}Plantas/Peperomia.jpg`
         ],
         description: "A Peperomia é uma planta compacta de fácil cultivo, com folhas carnosas e variadas cores. Ideal para prateleiras e espaços pequenos.",
         rating: 3.5,
@@ -165,11 +167,11 @@ export const products = [
         name: "Orquídea",
         price: 105.00,
         oldPrice: 130.00,
-        image: "assets/Plantas/Conjunto-Orquideas.jpg",
+        image: `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`,
         images: [
-            "assets/Plantas/Conjunto-Orquideas.jpg",
-            "assets/Plantas/Conjunto-Orquideas.jpg",
-            "assets/Plantas/Conjunto-Orquideas.jpg"
+            `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`,
+            `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`,
+            `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`
         ],
         description: "Orquídeas são flores sofisticadas e elegantes que encantam pela beleza e durabilidade. O presente perfeito para ocasiões especiais.",
         rating: 5,
@@ -189,10 +191,10 @@ export const products = [
         id: 9,
         name: "Antúrio",
         price: 65.00,
-        image: "assets/Plantas/Anturio.jpg",
+        image: `${IMAGE_PATH}Plantas/Anturio.jpg`,
         images: [
-            "assets/Plantas/Anturio.jpg",
-            "assets/Plantas/Anturio.jpg"
+            `${IMAGE_PATH}Plantas/Anturio.jpg`,
+            `${IMAGE_PATH}Plantas/Anturio.jpg`
         ],
         description: "O Antúrio é uma planta tropical com flores em formato de coração e folhas brilhantes. Traz paixão e elegância para decoração.",
         rating: 4,
@@ -211,10 +213,10 @@ export const products = [
         id: 10,
         name: "Espada de São Jorge",
         price: 38.50,
-        image: "assets/Plantas/Espada-Sao-Jorge.jpg",
+        image: `${IMAGE_PATH}Plantas/Espada-Sao-Jorge.jpg`,
         images: [
-            "assets/Plantas/Espada-Sao-Jorge.jpg",
-            "assets/Plantas/Espada-Sao-Jorge.jpg"
+            `${IMAGE_PATH}Plantas/Espada-Sao-Jorge.jpg`,
+            `${IMAGE_PATH}Plantas/Espada-Sao-Jorge.jpg`
         ],
         description: "Planta resistente e de fácil manutenção. A Espada de São Jorge é famosa por sua durabilidade e capacidade de purificar o ar.",
         rating: 4.5,
@@ -233,10 +235,10 @@ export const products = [
         id: 11,
         name: "Begônia",
         price: 42.00,
-        image: "assets/Plantas/Begomia.jpg",
+        image: `${IMAGE_PATH}Plantas/Begomia.jpg`,
         images: [
-            "assets/Plantas/Begomia.jpg",
-            "assets/Plantas/Begomia.jpg"
+            `${IMAGE_PATH}Plantas/Begomia.jpg`,
+            `${IMAGE_PATH}Plantas/Begomia.jpg`
         ],
         description: "As Begônias são plantas encantadoras com flores coloridas e folhagem ornamental. Perfeitas para alegrar ambientes internos.",
         rating: 4,
@@ -256,10 +258,10 @@ export const products = [
         name: "Bamboo",
         price: 70.00,
         oldPrice: 90.00,
-        image: "assets/Plantas/bamboo.webp",
+        image: `${IMAGE_PATH}Plantas/bamboo.webp`,
         images: [
-            "assets/Plantas/bamboo.webp",
-            "assets/Plantas/bamboo.webp"
+            `${IMAGE_PATH}Plantas/bamboo.webp`,
+            `${IMAGE_PATH}Plantas/bamboo.webp`
         ],
         description: "O Bambu é símbolo de sorte e prosperidade. Uma planta elegante e versátil que traz equilíbrio e boa energia.",
         rating: 5,
@@ -279,10 +281,10 @@ export const products = [
         id: 13,
         name: "Jiboia",
         price: 42.00,
-        image: "assets/Plantas/Jiboia.jpeg",
+        image: `${IMAGE_PATH}Plantas/Jiboia.jpeg`,
         images: [
-            "assets/Plantas/Jiboia.jpeg",
-            "assets/Plantas/Jiboia.jpeg"
+            `${IMAGE_PATH}Plantas/Jiboia.jpeg`,
+            `${IMAGE_PATH}Plantas/Jiboia.jpeg`
         ],
         description: "A Jiboia é uma planta trepadeira de folhagem exuberante. Perfeita para decorar paredes e prateleiras com um toque verde.",
         rating: 3.5,
@@ -301,10 +303,10 @@ export const products = [
         id: 14,
         name: "Lavanda",
         price: 92.00,
-        image: "assets/Plantas/Lavanda.jpg",
+        image: `${IMAGE_PATH}Plantas/Lavanda.jpg`,
         images: [
-            "assets/Plantas/Lavanda.jpg",
-            "assets/Plantas/Lavanda.jpg"
+            `${IMAGE_PATH}Plantas/Lavanda.jpg`,
+            `${IMAGE_PATH}Plantas/Lavanda.jpg`
         ],
         description: "A Lavanda é uma planta aromática que proporciona calma e bem-estar. Perfeita para perfumar ambientes e relaxar.",
         rating: 4,
@@ -324,10 +326,10 @@ export const products = [
         id: 15,
         name: "Zamioculca",
         price: 162.00,
-        image: "assets/Plantas/Zamioculca.jpg",
+        image: `${IMAGE_PATH}Plantas/Zamioculca.jpg`,
         images: [
-            "assets/Plantas/Zamioculca.jpg",
-            "assets/Plantas/Zamioculca.jpg"
+            `${IMAGE_PATH}Plantas/Zamioculca.jpg`,
+            `${IMAGE_PATH}Plantas/Zamioculca.jpg`
         ],
         description: "A Zamioculca é uma planta moderna e elegante, famosa por sua resistência e beleza. Perfeita para ambientes com pouca luz.",
         rating: 5,
@@ -346,10 +348,10 @@ export const products = [
         id: 16,
         name: "Costela de Adão",
         price: 190.00,
-        image: "assets/Plantas/Costela-Adao.jpg",
+        image: `${IMAGE_PATH}Plantas/Costela-Adao.jpg`,
         images: [
-            "assets/Plantas/Costela-Adao.jpg",
-            "assets/Plantas/Costela-Adao.jpg"
+            `${IMAGE_PATH}Plantas/Costela-Adao.jpg`,
+            `${IMAGE_PATH}Plantas/Costela-Adao.jpg`
         ],
         description: "A Costela de Adão é uma planta tropical imponente com folhas grandes e recortadas. Traz um toque sofisticado e exuberante.",
         rating: 4,
@@ -373,10 +375,10 @@ export const invernoProducts = [
         description: 'Flores vibrantes que iluminam seu jardim mesmo nos dias mais frios. Perfeita para trazer cor durante o inverno.',
         price: 129.90,
         oldPrice: 169.90,
-        image: 'assets/Plantas/Azaleia.jpg',
+        image: `${IMAGE_PATH}Plantas/Azaleia.jpg`,
         images: [
-            'assets/Plantas/Azaleia.jpg',
-            'assets/Plantas/Azaleia.jpg'
+            `${IMAGE_PATH}Plantas/Azaleia.jpg`,
+            `${IMAGE_PATH}Plantas/Azaleia.jpg`
         ],
         rating: 4,
         category: 'inverno',
@@ -397,9 +399,9 @@ export const invernoProducts = [
         name: 'Buxinho',
         description: 'Folhagem densa e elegante que mantém seu espaço verde no inverno. Ideal para formar cercas vivas ou decorar vasos.',
         price: 29.90,
-        image: 'assets/Plantas/Buxinho.jpg',
+        image: `${IMAGE_PATH}Plantas/Buxinho.jpg`,
         images: [
-            'assets/Plantas/Buxinho.jpg'
+            `${IMAGE_PATH}Plantas/Buxinho.jpg`
         ],
         rating: 5,
         category: 'inverno',
@@ -421,10 +423,10 @@ export const invernoProducts = [
         description: 'Pequenas flores delicadas que trazem cor e charme aos dias frios. Perfeita para decorar janelas e espaços internos.',
         price: 15.90,
         oldPrice: 29.90,
-        image: 'assets/Plantas/Violeta.jpg',
+        image: `${IMAGE_PATH}Plantas/Violeta.jpg`,
         images: [
-            'assets/Plantas/Violeta.jpg',
-            'assets/Plantas/Violeta.jpg'
+            `${IMAGE_PATH}Plantas/Violeta.jpg`,
+            `${IMAGE_PATH}Plantas/Violeta.jpg`
         ],
         rating: 4,
         category: 'inverno',
@@ -446,10 +448,10 @@ export const invernoProducts = [
         description: 'Folha suculenta e resistente que traz frescor e cuidados naturais para o inverno. Propriedades medicinais e decorativas.',
         price: 13.50,
         oldPrice: 39.50,
-        image: 'assets/Plantas/Babosa.jpg',
+        image: `${IMAGE_PATH}Plantas/Babosa.jpg`,
         images: [
-            'assets/Plantas/Babosa.jpg',
-            'assets/Plantas/Babosa.jpg'
+            `${IMAGE_PATH}Plantas/Babosa.jpg`,
+            `${IMAGE_PATH}Plantas/Babosa.jpg`
         ],
         rating: 3.5,
         category: 'inverno',
@@ -466,7 +468,6 @@ export const invernoProducts = [
         }
     }
 ];
-
 
 export const testimonials = [
     {
