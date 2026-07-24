@@ -1,0 +1,146 @@
+
+.contact-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../image/Logo/Fale_Conosco.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+}
+
+.contact-hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.contact-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    background: white;
+    padding: 30px;
+}
+
+.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.contact-info-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.section-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+}
+
+.form-control, .form-select {
+    border-radius: 10px;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+}
+
+.btn-success {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 8px 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.btn-success:hover {
+    background-color: #1b5e20;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-outline-success {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.accordion-item {
+    border: none !important;
+}
+
+.accordion-button {
+    background-color: var(--light-bg);
+    font-weight: 600;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--primary-dark);
+}
+
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(46, 125, 50, 0.25);
+    border-color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .contact-hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .contact-card {
+        padding: 20px;
+    }
+    
+    .contact-info-card {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 900px) {
+    .btn-success {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .btn-outline-success {
+        margin-bottom: 10px;
+    }
+}
