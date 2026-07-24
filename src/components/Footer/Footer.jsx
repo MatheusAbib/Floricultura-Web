@@ -21,10 +21,9 @@ function Footer() {
                     <div className="col-lg-4 mb-4 mb-lg-0">
                         <h5>Links Rápidos</h5>
                         <ul className="list-unstyled">
-                            <li><a href="/">Principal</a></li>
-                            <li><a href="/produtos">Produtos</a></li>
-                            <li><a href="/quem-somos">Quem Somos</a></li>
-                            <li><a href="/contato">Contato</a></li>
+                            <li><a href="/Floricultura-Web/">Principal</a></li>
+                            <li><a href="/Floricultura-Web/quem-somos">Quem Somos</a></li>
+                            <li><a href="/Floricultura-Web/contato">Contato</a></li>
                         </ul>
                     </div>
                     <div className="col-lg-4">

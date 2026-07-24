@@ -467,7 +467,7 @@ function Pagamento() {
                         <h3>Pagamento Aprovado!</h3>
                         <p className="mb-4">Sua compra foi concluída com sucesso. Obrigado por escolher a Floricultura Web!</p>
                         <p className="small text-muted">Você receberá um e-mail com os detalhes do seu pedido.</p>
-                        <a href="/" className="btn btn-success mt-3">
+                        <a href="/Floricultura-Web/" className="btn btn-success mt-3">
                             <i className="bi bi-house-door me-2"></i>Voltar à Página Inicial
                         </a>
                     </div>

@@ -51,7 +51,7 @@ function QuemSomos() {
                                 <p>Nosso compromisso é com a qualidade, beleza e satisfação dos nossos clientes. Cada flor que entregamos carrega consigo nosso amor e dedicação pelo que fazemos.</p>
                             </FadeIn>
                             <FadeIn direction="right" delay={400}>
-                                <a href="/contato" className="btn btn-success mt-3">
+                                <a href="/Floricultura-Web/contato" className="btn btn-success mt-3">
   <i className="bi bi-chat-left-text-fill me-2"></i>
   Fale Conosco
 </a>
