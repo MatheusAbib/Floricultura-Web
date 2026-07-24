@@ -18,7 +18,23 @@ function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [addedProductId, setAddedProductId] = useState(null);
     const { addToCart, addMultipleToCart, showNotification } = useCart();
-    
+
+    useEffect(() => {
+        const handleVisibilityChange = () => {
+            if (document.visibilityState === 'visible') {
+                const images = document.querySelectorAll('.product-image');
+                images.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src) {
+                        img.src = src;
+                    }
+                });
+            }
+        };
+
+        document.addEventListener('visibilitychange', handleVisibilityChange);
+        return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+    }, []);
 
     const copyCoupon = (code) => {
         navigator.clipboard.writeText(code);
@@ -163,13 +179,14 @@ function Home() {
             <Testimonials testimonials={testimonials} />
             <Newsletter />
 
-<ProductModal 
-    product={selectedProduct}
-    isOpen={isModalOpen}
-    onClose={closeModal}
-    onAddToCart={addToCart}
-    onAddMultiple={addMultipleToCart}
-/>
+            <ProductModal 
+                product={selectedProduct}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onAddToCart={addToCart}
+                onAddMultiple={addMultipleToCart}
+            />
+            
             <Footer />
         </div>
     );

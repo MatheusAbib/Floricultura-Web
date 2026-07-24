@@ -76,7 +76,6 @@ function ProductCard({
                         src={product.image} 
                         alt={product.name} 
                         className="product-image"
-                        loading="lazy"
                     />
                     {showBadge && product.badge && (
                         <span className={`product-badge ${getBadgeClass(product.badge)}`}>
