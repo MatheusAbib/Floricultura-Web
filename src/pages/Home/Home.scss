@@ -8,10 +8,10 @@
 
     .feature-box {
         text-align: center;
-        padding: 40px 20px;
+        padding: 20px 20px;
         border-radius: 15px;
         background: white;
-        box-shadow: $card-shadow;
+        border: 1px solid #e8f0e8 !important;
         transition: $transition;
         height: 100%;
         position: relative;
@@ -89,7 +89,6 @@
         background: white;
         border-radius: 10px;
         overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         position: relative;
         transition: all 0.3s ease;
         border: 2px dashed $primary-color;
@@ -289,7 +288,7 @@
 
 @media (max-width: 992px) {
     .features-section .feature-box {
-        padding: 30px 15px;
+        padding: 25px 15px;
     }
 
     .features-section .feature-icon {

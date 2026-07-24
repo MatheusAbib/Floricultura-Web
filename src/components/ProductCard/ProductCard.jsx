@@ -116,9 +116,13 @@ function ProductCard({
                             <button 
                                 className={`btn btn-success btn-sm flex-grow-1 ${isAdded || addedProductId === product.id ? 'btn-added' : ''}`}
                                 onClick={handleAddToCart}
-                                disabled={isAdded || addedProductId === product.id}
+                                disabled={isAdded || addedProductId === product.id || product.outOfStock || product.stock === 0}
                             >
-                                {isAdded || addedProductId === product.id ? (
+                                {product.outOfStock || product.stock === 0 ? (
+                                    <>
+                                        <i className="bi bi-exclamation-triangle me-1"></i>Esgotado
+                                    </>
+                                ) : isAdded || addedProductId === product.id ? (
                                     <>
                                         <i className="bi bi-check-circle me-1"></i>Adicionado!
                                     </>
