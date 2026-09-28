@@ -31,9 +31,6 @@
         }
 
         &:hover {
-            transform: translateY(-10px);
-            box-shadow: $card-hover-shadow;
-
             &::before {
                 height: 100%;
             }
@@ -93,11 +90,6 @@
         transition: all 0.3s ease;
         border: 2px dashed $primary-color;
         height: 100%;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-        }
 
         &.coupon-used {
             opacity: 0.7;
@@ -172,7 +164,6 @@
 
         &:hover:not(:disabled) {
             background-color: $primary-dark;
-            transform: translateY(-2px);
         }
 
         &:disabled {
@@ -212,67 +203,6 @@
     }
 }
 
-.testimonials-section {
-    padding: 100px 0;
-    background-color: $light-bg;
-    position: relative;
-
-    .testimonial-card {
-        border: none;
-        border-radius: 15px;
-        box-shadow: $card-shadow;
-        padding: 30px;
-        height: 100%;
-        transition: $transition;
-        background: white;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: $card-hover-shadow;
-        }
-    }
-
-    .testimonial-text {
-        font-style: italic;
-        margin-bottom: 20px;
-        position: relative;
-
-        &::before {
-            content: '"';
-            font-size: 4rem;
-            position: absolute;
-            top: -20px;
-            left: -15px;
-            color: rgba(46, 125, 50, 0.1);
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-    }
-
-    .testimonial-author {
-        display: flex;
-        align-items: center;
-    }
-
-    .author-img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-right: 15px;
-        border: 3px solid $primary-light;
-    }
-
-    .author-name {
-        font-weight: 700;
-        margin-bottom: 0;
-    }
-
-    .author-location {
-        color: $gray-text;
-        font-size: 0.9rem;
-    }
-}
 
 @keyframes float {
     0% {

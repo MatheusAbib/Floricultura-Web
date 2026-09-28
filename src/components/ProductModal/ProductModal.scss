@@ -319,8 +319,6 @@
 
         &:hover:not(:disabled) {
             background: $primary-dark;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
         }
 
         &:disabled {

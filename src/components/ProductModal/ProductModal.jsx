@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { renderRating } from '../../utils/renderRating';
 import { useFavorites } from '../../context/FavoritesContext';
@@ -8,13 +8,7 @@ import './ProductModal.scss';
 function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) {
     const [quantity, setQuantity] = useState(1);
     const { toggleFavorite, isFavorite } = useFavorites();
-    const [isFav, setIsFav] = useState(false);
-
-    useEffect(() => {
-        if (product) {
-            setIsFav(isFavorite(product.id));
-        }
-    }, [product, isFavorite]);
+    const isFav = product ? isFavorite(product.id) : false;
 
     useEffect(() => {
         if (isOpen) {
@@ -52,8 +46,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
     };
 
     const handleToggleFavorite = () => {
-        const wasFavorited = toggleFavorite(product);
-        setIsFav(wasFavorited);
+        toggleFavorite(product);
     };
 
     const stockText = product.stock > 0 ? `${product.stock} unidades disponíveis` : 'Produto esgotado';
@@ -166,7 +159,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                 <button className="modal-close" onClick={onClose}>✕</button>
 
                 <div className="modal-content">
-                    <ProductImageGallery 
+                    <ProductImageGallery
                         images={images}
                         alt={product.name}
                         productName={product.name}
@@ -175,7 +168,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                     <div className="modal-info">
                         <div className="modal-header-info">
                             <h2 className="modal-title">{product.name}</h2>
-                            <button 
+                            <button
                                 className={`modal-favorite-btn ${isFav ? 'active' : ''}`}
                                 onClick={handleToggleFavorite}
                                 title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
@@ -224,7 +217,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
 
                         <div className="modal-actions">
                             <div className="quantity-control">
-                                <button 
+                                <button
                                     className="qty-btn"
                                     onClick={() => handleQuantityChange(-1)}
                                     disabled={quantity <= 1}
@@ -232,7 +225,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                                     <i className="bi bi-dash"></i>
                                 </button>
                                 <span className="qty-value">{quantity}</span>
-                                <button 
+                                <button
                                     className="qty-btn"
                                     onClick={() => handleQuantityChange(1)}
                                     disabled={quantity >= (product.stock || 99)}
@@ -241,7 +234,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                                 </button>
                             </div>
 
-                            <button 
+                            <button
                                 className="add-to-cart-modal"
                                 onClick={handleAddToCart}
                                 disabled={product.outOfStock || product.stock === 0}

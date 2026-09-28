@@ -14,18 +14,13 @@
         height: 100%;
         transition: $transition;
         background: white;
-
-        &:hover {
-            transform: translateY(-5px);
-        }
     }
 
     .testimonial-text {
-        font-style: italic;
         margin-bottom: 20px;
         position: relative;
         color: $dark-text;
-        line-height: 1.6;
+        line-height: 1.5;
 
         &::before {
             content: '"';

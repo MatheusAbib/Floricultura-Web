@@ -2,7 +2,7 @@
 
 .newsletter-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, $primary-color, $primary-dark);
+    background: $primary-color;
     color: white;
     position: relative;
     overflow: hidden;
@@ -16,7 +16,6 @@
         background: white;
         border-radius: 15px;
         padding: 50px;
-        box-shadow: $card-hover-shadow;
         color: $dark-text;
         position: relative;
         overflow: hidden;
@@ -68,8 +67,7 @@
 
         &:hover {
             background-color: $secondary-dark;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(230, 81, 0, 0.3);
+            color: white;
         }
     }
 

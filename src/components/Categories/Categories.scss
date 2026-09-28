@@ -14,7 +14,6 @@
         border-radius: 15px;
         overflow: hidden;
         transition: $transition;
-        margin-bottom: 15px;
         background: white;
             border: 1px solid #e8f0e8;
         text-align: center;
@@ -37,9 +36,6 @@
         }
 
         &:hover {
-            transform: translateY(-10px);
-            box-shadow: $card-hover-shadow;
-
             &::before {
                 height: 100%;
             }
@@ -61,7 +57,7 @@
     }
 
     .category-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: $primary-dark;
         margin-bottom: 10px;

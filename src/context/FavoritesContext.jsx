@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+﻿import React, { createContext, useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import { useCart } from './CartContext';
 
 const FavoritesContext = createContext();
@@ -26,38 +26,36 @@ export const FavoritesProvider = ({ children }) => {
         }
     }, []);
 
-    const saveFavorites = (newFavorites) => {
-        localStorage.setItem('favorites', JSON.stringify(newFavorites));
-        setFavorites(newFavorites);
-    };
-
-    const toggleFavorite = (product) => {
-        const exists = favorites.find(item => item.id === product.id);
-        let newFavorites;
+    const toggleFavorite = useCallback((product) => {
         let wasFavorited;
-        if (exists) {
-            newFavorites = favorites.filter(item => item.id !== product.id);
-            wasFavorited = false;
-            showNotification(`${product.name} removido dos favoritos!`, 'info');
-        } else {
-            newFavorites = [...favorites, product];
-            wasFavorited = true;
-            showNotification(`${product.name} adicionado aos favoritos!`, 'success');
-        }
-        saveFavorites(newFavorites);
+        setFavorites(prev => {
+            const exists = prev.find(item => item.id === product.id);
+            let newFavorites;
+            if (exists) {
+                newFavorites = prev.filter(item => item.id !== product.id);
+                wasFavorited = false;
+                showNotification(`${product.name} removido dos favoritos!`, 'info');
+            } else {
+                newFavorites = [...prev, product];
+                wasFavorited = true;
+                showNotification(`${product.name} adicionado aos favoritos!`, 'success');
+            }
+            localStorage.setItem('favorites', JSON.stringify(newFavorites));
+            return newFavorites;
+        });
         return wasFavorited;
-    };
+    }, [showNotification]);
 
-    const isFavorite = (productId) => {
+    const isFavorite = useCallback((productId) => {
         return favorites.some(item => item.id === productId);
-    };
+    }, [favorites]);
 
-    const value = {
+    const value = useMemo(() => ({
         favorites,
         toggleFavorite,
         isFavorite,
         favoritesCount: favorites.length
-    };
+    }), [favorites, toggleFavorite, isFavorite]);
 
     return (
         <FavoritesContext.Provider value={value}>

@@ -20,11 +20,7 @@
         display: flex;
         flex-direction: column;
         
-        &:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 25px rgba(46, 125, 50, 0.15);
-            border-color: #a5d6a7;
-        }
+
 
         .card-body {
             padding: 16px;
@@ -119,7 +115,6 @@
                     &:hover {
                         background-color: $secondary-color;
                         color: white;
-                        transform: scale(1.05);
                     }
                 }
 
@@ -131,8 +126,6 @@
                     &:hover:not(:disabled) {
                         background-color: $primary-dark;
                         border-color: $primary-dark;
-                        transform: scale(1.02);
-                        box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
                     }
 
                     &:disabled {
@@ -222,7 +215,6 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             z-index: 1;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
             &.badge-new {
                 background-color: $primary-color;

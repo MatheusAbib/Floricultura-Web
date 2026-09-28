@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { renderRating } from '../../utils/renderRating';
 import { useFavorites } from '../../context/FavoritesContext';
 import './ProductCard.scss';
 
-function ProductCard({ 
-    product, 
-    searchTerm = '', 
-    onAddToCart, 
+function ProductCard({
+    product,
+    searchTerm = '',
+    onAddToCart,
     onOpenModal,
     addedProductId = null,
     showBadge = true,
@@ -15,14 +15,8 @@ function ProductCard({
     showActions = true
 }) {
     const [isAdded, setIsAdded] = useState(false);
-    const { toggleFavorite, isFavorite, favorites } = useFavorites();
-    const [isFav, setIsFav] = useState(false);
-
-    useEffect(() => {
-        if (product) {
-            setIsFav(isFavorite(product.id));
-        }
-    }, [product, isFavorite, favorites]);
+    const { toggleFavorite, isFavorite } = useFavorites();
+    const isFav = product ? isFavorite(product.id) : false;
 
     const handleAddToCart = () => {
         onAddToCart(product);
@@ -31,14 +25,13 @@ function ProductCard({
     };
 
     const handleToggleFavorite = () => {
-        const wasFavorited = toggleFavorite(product);
-        setIsFav(wasFavorited);
+        toggleFavorite(product);
     };
 
     const highlightText = (text, term) => {
         if (!term || !term.trim()) return text;
         const regex = new RegExp(`(${term.trim()})`, 'gi');
-        return text.split(regex).map((part, i) => 
+        return text.split(regex).map((part, i) =>
             regex.test(part) ? <mark key={i} className="search-highlight">{part}</mark> : part
         );
     };
@@ -65,16 +58,16 @@ function ProductCard({
         <div className="product-card-item">
             <div className="card h-100">
                 <div className="product-image-wrapper">
-                    <button 
+                    <button
                         className={`favorite-btn ${isFav ? 'active' : ''}`}
                         onClick={handleToggleFavorite}
                         title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
                     >
                         <i className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`}></i>
                     </button>
-                    <img 
-                        src={product.image} 
-                        alt={product.name} 
+                    <img
+                        src={product.image}
+                        alt={product.name}
                         className="product-image"
                     />
                     {showBadge && product.badge && (
@@ -106,14 +99,14 @@ function ProductCard({
                     </div>
                     {showActions && (
                         <div className="d-flex gap-1 mt-2">
-                            <button 
+                            <button
                                 className="btn btn-outline-orange btn-sm flex-grow-1"
                                 onClick={() => onOpenModal(product)}
                                 title="Visualizar detalhes"
                             >
                                 <i className="bi bi-eye"></i>
                             </button>
-                            <button 
+                            <button
                                 className={`btn btn-success btn-sm flex-grow-1 ${isAdded || addedProductId === product.id ? 'btn-added' : ''}`}
                                 onClick={handleAddToCart}
                                 disabled={isAdded || addedProductId === product.id || product.outOfStock || product.stock === 0}
