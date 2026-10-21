@@ -2,6 +2,8 @@
 
 **Floricultura Web**, um site front-end responsivo desenvolvido com foco na experiência do usuário. O projeto utiliza tecnologias atuais como React, SCSS, Bootstrap e JavaScript, garantindo desempenho, estética e interatividade.
 
+> 🔗 **Acesse online:** (https://matheusabib.github.io/Floricultura-Web/)
+
 ---
 
 ## ✨ Funcionalidades
