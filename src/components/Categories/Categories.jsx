@@ -8,22 +8,39 @@ function Categories({ categories }) {
             <div className="container">
                 <div className="row text-center mb-5">
                     <div className="col-12">
-                        <h2 className="section-title">Outras Categorias</h2>
                     </div>
                 </div>
                 <div className="row g-4">
-                    {categories.map((category, index) => (
-                        <div className="col-6 col-md-4 col-lg-2" key={category.id}>
-                            <Link to={category.link} className="text-decoration-none">
-                                <div className="category-card">
-                                    <div className="category-icon">
-                                        <i className={`bi ${category.icon}`}></i>
-                                    </div>
-                                    <h3 className="category-title">{category.name}</h3>
+                    {categories.map((category) => {
+                        const isAnchor = category.link.includes('#');
+
+                        const content = (
+                            <div className="category-card">
+                                <div className="category-icon">
+                                    <i className={`bi ${category.icon}`}></i>
                                 </div>
-                            </Link>
-                        </div>
-                    ))}
+                                <h3 className="category-title">{category.name}</h3>
+                            </div>
+                        );
+
+                        if (isAnchor) {
+                            return (
+                                <div className="col-6 col-md-4 col-lg-2" key={category.id}>
+                                    <a href={category.link} className="text-decoration-none">
+                                        {content}
+                                    </a>
+                                </div>
+                            );
+                        }
+
+                        return (
+                            <div className="col-6 col-md-4 col-lg-2" key={category.id}>
+                                <Link to={category.link} className="text-decoration-none">
+                                    {content}
+                                </Link>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </section>

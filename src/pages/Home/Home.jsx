@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { products, invernoProducts, testimonials, coupons, features } from '../../data/products';
+import { useLocation } from 'react-router-dom';
+import { products, invernoProducts, testimonials } from '../../data/products';
 import { categories } from '../../data/categories';
 import { useCart } from '../../context/CartContext';
 import HeroCarousel from '../../components/HeroCarousel/HeroCarousel';
@@ -18,6 +19,24 @@ function Home() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [addedProductId, setAddedProductId] = useState(null);
     const { addToCart, addMultipleToCart, showNotification } = useCart();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (!location.hash) return;
+
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+
+        if (!element) return;
+
+        const offset = 100;
+        const top = element.getBoundingClientRect().top + window.scrollY - offset;
+
+        window.scrollTo({
+            top: Math.max(0, top),
+            behavior: 'smooth',
+        });
+    }, [location.hash]);
 
     useEffect(() => {
         const handleVisibilityChange = () => {
@@ -64,28 +83,7 @@ function Home() {
         <div className="home-page">
             <HeroCarousel />
 
-            <section className="features-section">
-                <div className="container">
-                    <div className="row text-center mb-5">
-                        <div className="col-12">
-                            <h2 className="section-title">Por que escolher a Floricultura Web?</h2>
-                        </div>
-                    </div>
-                    <div className="row g-4">
-                        {features.map((feature, index) => (
-                            <div className="col-md-4" key={feature.id}>
-                                <div className="feature-box">
-                                    <div className="feature-icon">
-                                        <i className={`bi ${feature.icon}`}></i>
-                                    </div>
-                                    <h3 className="feature-title">{feature.title}</h3>
-                                    <p>{feature.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Categories categories={categories} />
 
             <section className="promo-section" id="promocao">
                 <div className="container">
@@ -95,58 +93,9 @@ function Home() {
                 </div>
             </section>
 
-            <section className="coupons-section py-5">
-                <div className="container">
-                    <div className="row text-center mb-5">
-                        <div className="col-12">
-                            <h2 className="section-title">Cupons de Desconto</h2>
-                        </div>
-                    </div>
-                    <div className="row g-4">
-                        {coupons.map((coupon, index) => (
-                            <div className="col-md-4" key={coupon.id}>
-                                <div className={`coupon-card ${coupon.used ? 'coupon-used' : ''}`}>
-                                    <div className="coupon-header">
-                                        <span className="coupon-percent">{coupon.discount}</span>
-                                        <span className="coupon-code">{coupon.code}</span>
-                                    </div>
-                                    <div className="coupon-body">
-                                        <h4>{coupon.title}</h4>
-                                        <p>{coupon.description}</p>
-                                        {coupon.used ? (
-                                            <button className="btn btn-secondary copy-coupon" disabled>
-                                                <i className="bi bi-check-circle me-2"></i>Usado
-                                            </button>
-                                        ) : (
-                                            <button 
-                                                className={`btn ${copiedCoupon === coupon.code ? 'btn-success' : 'btn-success'} copy-coupon`}
-                                                onClick={() => copyCoupon(coupon.code)}
-                                                disabled={copiedCoupon === coupon.code}
-                                            >
-                                                {copiedCoupon === coupon.code ? (
-                                                    <>
-                                                        <i className="bi bi-check-circle me-2"></i>Cupom Copiado!
-                                                    </>
-                                                ) : (
-                                                    'Copiar Código'
-                                                )}
-                                            </button>
-                                        )}
-                                    </div>
-                                    <div className="coupon-corner">
-                                        <i className="bi bi-scissors"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <div className="container py-4">
-                <ProductList 
+            <div className="container py-4" id="lista-plantas">
+                <ProductList
                     products={products}
-                    title="Acervo de Plantas"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -162,7 +111,7 @@ function Home() {
                     <div className="row py-3" id="inverno-grid">
                         {invernoProducts.map((product) => (
                             <div className="col-md-6 col-lg-3" key={product.id}>
-                                <ProductCard 
+                                <ProductCard
                                     product={product}
                                     searchTerm={''}
                                     onAddToCart={handleAddToCart}
@@ -175,18 +124,17 @@ function Home() {
                 </div>
             </section>
 
-            <Categories categories={categories} />
             <Testimonials testimonials={testimonials} />
             <Newsletter />
 
-            <ProductModal 
+            <ProductModal
                 product={selectedProduct}
                 isOpen={isModalOpen}
                 onClose={closeModal}
                 onAddToCart={addToCart}
                 onAddMultiple={addMultipleToCart}
             />
-            
+
             <Footer />
         </div>
     );

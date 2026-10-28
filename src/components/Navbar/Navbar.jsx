@@ -201,7 +201,7 @@ function Navbar() {
     return (
         <>
             <nav className={`navbar navbar-expand-xl navbar-dark sticky-top ${scrolled ? 'scrolled' : ''}`}>
-                <div className="container">
+                <div className="container" id="navbarcontainer">
                     <Link className="navbar-brand" to="/" onClick={closeMobileMenu}>
                         <i className="bi bi-flower1 me-2"></i>Floricultura Web
                     </Link>

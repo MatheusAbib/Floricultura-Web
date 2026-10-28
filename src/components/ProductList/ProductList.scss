@@ -1,23 +1,6 @@
 @use '../../styles/variables' as *;
 
 .product-list {
-    .section-title {
-        position: relative;
-        display: inline-block;
-        color: $primary-dark;
-
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(to right, $primary-color, $primary-light);
-            border-radius: 2px;
-        }
-    }
 
     .input-group {
         .form-control {

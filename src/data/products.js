@@ -520,23 +520,3 @@ export const coupons = [
     }
 ];
 
-export const features = [
-    {
-        id: 1,
-        icon: 'bi-truck',
-        title: 'Entrega Rápida',
-        description: 'Entregamos em até 24h na região metropolitana, com todo o cuidado que suas plantas merecem.'
-    },
-    {
-        id: 2,
-        icon: 'bi-credit-card',
-        title: 'Pagamento Seguro',
-        description: 'Diversas opções de pagamento com processamento seguro para sua tranquilidade.'
-    },
-    {
-        id: 3,
-        icon: 'bi-shield-check',
-        title: 'Garantia de Qualidade',
-        description: 'Todos os nossos produtos possuem garantia de satisfação. Se não gostar, devolvemos seu dinheiro.'
-    }
-];

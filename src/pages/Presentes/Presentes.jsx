@@ -53,6 +53,7 @@ function Presentes() {
     return (
         <div className="presentes-page">
             <HeroCarousel page="presentes" slides={presentesSlides} />
+            <Categories categories={categories} />
 
             <section className="promo-section" id="promocao">
                 <div className="container">
@@ -65,7 +66,6 @@ function Presentes() {
             <div className="container py-4">
                 <ProductList 
                     products={presentesProducts}
-                    title="Acervo de Presentes"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -73,7 +73,6 @@ function Presentes() {
                 />
             </div>
 
-            <Categories categories={categories} />
             <Newsletter />
 
 <ProductModal 

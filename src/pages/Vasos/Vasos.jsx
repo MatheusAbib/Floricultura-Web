@@ -36,11 +36,11 @@ function Vasos() {
     return (
         <div className="vasos-page">
             <HeroCarousel page="vasos" />
+            <Categories categories={categories} />
 
             <div className="container py-4">
                 <ProductList 
                     products={vasosProducts}
-                    title="Acervo de Vasos"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -48,7 +48,6 @@ function Vasos() {
                 />
             </div>
 
-            <Categories categories={categories} />
             <Newsletter />
 
 <ProductModal 

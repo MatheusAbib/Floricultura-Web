@@ -36,11 +36,11 @@ function Sementes() {
     return (
         <div className="sementes-page">
             <HeroCarousel page="sementes" />
+            <Categories categories={categories} />
 
             <div className="container py-4">
                 <ProductList 
                     products={sementesProducts}
-                    title="Acervo de Sementes"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -48,7 +48,6 @@ function Sementes() {
                 />
             </div>
 
-            <Categories categories={categories} />
             <Newsletter />
 
 <ProductModal 
