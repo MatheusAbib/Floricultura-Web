@@ -1,29 +1,79 @@
-:root {
-    --primary-color: #2e7d32;
-    --primary-dark: #1b5e20;
-    --primary-light: #81c784;
-    --secondary-color: #ff8f00;
-    --secondary-dark: #e65100;
-    --accent-color: #ffd54f;
-    --light-bg: #f8f9fa;
-    --dark-text: #263238;
-    --light-text: #f5f5f5;
-    --gray-text: #757575;
-    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-    --card-hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-}
+$primary-color: #B85C38;
+$primary-dark: #8F3D2E;
+$primary-light: #D98B55;
+$secondary-color: #D97736;
+$secondary-dark: #AD4F24;
+$accent-color: #E8B65A;
+$light-bg: #FFFFFF;
+$dark-text: #382D27;
+$light-text: #FDF9F4;
+$gray-text: #80736B;
+$cream: #F5EFE6;
+$cream-dark: #EDE4D3;
+$terracotta: #C97B63;
 
-$primary-color: #2e7d32;
-$primary-dark: #1b5e20;
-$primary-light: #81c784;
-$secondary-color: #ff8f00;
-$secondary-dark: #e65100;
-$accent-color: #ffd54f;
-$light-bg: #f8f9fa;
-$dark-text: #263238;
-$light-text: #f5f5f5;
-$gray-text: #757575;
-$card-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
-$card-hover-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+$sand: #F2E9DC;
+$sand-dark: #E8DAC8;
+
+$whatsapp: #3A9E5F;
+$whatsapp-dark: #2E7D4A;
+
+$primary-soft: rgba(184, 92, 56, 0.12);
+$primary-glow: rgba(184, 92, 56, 0.28);
+$terracotta-soft: rgba(201, 123, 99, 0.12);
+$terracotta-glow: rgba(201, 123, 99, 0.32);
+$cream-soft: rgba(245, 239, 230, 0.55);
+$danger-color: #A8382F;
+$danger-soft: rgba(168, 56, 47, 0.1);
+$dark-fade: rgba(56, 45, 39, 0.18);
+$light-text-soft: rgba(253, 249, 244, 0.4);
+
+$overlay-dark: rgba(56, 45, 39, 0.2);
+$overlay-dark-soft: rgba(56, 45, 39, 0.12);
+$overlay-dark-faint: rgba(56, 45, 39, 0.06);
+$focus-ring: rgba(184, 92, 56, 0.25);
+
+$card-shadow: 0 5px 10px rgba(56, 45, 39, 0.08);
+$card-hover-shadow: 0 15px 30px rgba(56, 45, 39, 0.15);
+$shadow-soft: 0 10px 30px rgba(56, 45, 39, 0.06);
+$shadow-elevated: 0 24px 60px rgba(56, 45, 39, 0.12);
+
+$radius-sm: 8px;
+$radius-md: 14px;
+$radius-lg: 24px;
+$radius-pill: 999px;
+
 $transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+$ease-lux: cubic-bezier(0.19, 1, 0.22, 1);
+
+$gold-line: linear-gradient(90deg, transparent, rgba(232, 182, 90, 0.6), transparent);
+
+$display: 'Poiret One', sans-serif;
+$body: 'Montserrat', sans-serif;
+$script: 'Dancing Script', cursive;
+
+:root {
+    --primary-color: #{$primary-color};
+    --primary-dark: #{$primary-dark};
+    --primary-light: #{$primary-light};
+    --secondary-color: #{$secondary-color};
+    --secondary-dark: #{$secondary-dark};
+    --accent-color: #{$accent-color};
+    --light-bg: #{$light-bg};
+    --dark-text: #{$dark-text};
+    --light-text: #{$light-text};
+    --gray-text: #{$gray-text};
+    --cream: #{$cream};
+    --cream-dark: #{$cream-dark};
+    --terracotta: #{$terracotta};
+    --card-shadow: #{$card-shadow};
+    --card-hover-shadow: #{$card-hover-shadow};
+    --transition: #{$transition};
+    --display: #{$display};
+    --body: #{$body};
+    --script: #{$script};
+    --sand: #{$sand};
+    --sand-dark: #{$sand-dark};
+    --whatsapp: #{$whatsapp};
+    --whatsapp-dark: #{$whatsapp-dark};
+}

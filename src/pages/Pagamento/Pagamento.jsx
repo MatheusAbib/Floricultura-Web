@@ -52,7 +52,8 @@ function Pagamento() {
         setCustomerData(customerInfo);
         setTempCustomerData(customerInfo);
 
-        setTimeout(() => setLoading(false), 1500);
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
     }, [navigate]);
 
     const calculateTotals = () => {
@@ -163,331 +164,336 @@ function Pagamento() {
 
     return (
         <div className="pagamento-page">
+            <header className="pagamento-header">
+                <FadeIn direction="up">
+                    <p className="pg-eyebrow">
+                        <span className="pg-eyebrow-line" />
+                        Etapa 2 de 3
+                    </p>
+                </FadeIn>
+                <FadeIn direction="up" delay={100}>
+                    <h1 className="pg-title">
+                        Finalizar <em className="pg-hand">pagamento.</em>
+                    </h1>
+                </FadeIn>
+            </header>
+
             <div className="payment-container">
-                <div className="row g-4">
-                    <div className="col-lg-8">
-                        <FadeIn direction="left">
-                            <div className="payment-card">
-                                <div className="payment-header">
-                                    <h1 className="payment-title text-center">Finalizar Pagamento</h1>
+                <div className="payment-grid">
+                    <div className="payment-main">
+                        <FadeIn direction="up">
+                            <section className="payment-card">
+                                <h2 className="payment-card-title">Informações de pagamento</h2>
+
+                                <div className="payment-methods">
+                                    <h3 className="payment-block-title">Método</h3>
+
+                                    <button
+                                        type="button"
+                                        className={`payment-method ${paymentMethod === 'credit' ? 'is-active' : ''}`}
+                                        onClick={() => setPaymentMethod('credit')}
+                                    >
+                                        <i className="bi bi-credit-card-2-front payment-method-icon" aria-hidden="true" />
+                                        <span className="payment-method-text">
+                                            <span className="payment-method-name">Cartão de crédito</span>
+                                            <span className="payment-method-desc">Pague com cartão de crédito</span>
+                                        </span>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        className={`payment-method ${paymentMethod === 'pix' ? 'is-active' : ''}`}
+                                        onClick={() => setPaymentMethod('pix')}
+                                    >
+                                        <i className="bi bi-qr-code payment-method-icon" aria-hidden="true" />
+                                        <span className="payment-method-text">
+                                            <span className="payment-method-name">PIX</span>
+                                            <span className="payment-method-desc">Pagamento instantâneo</span>
+                                        </span>
+                                    </button>
                                 </div>
-                                <div className="card-body p-4">
-                                    <form onSubmit={handleSubmit} id="payment-form">
-                                        <h4 className="mb-4">
-                                            <i className="bi bi-credit-card me-2"></i>Informações de Pagamento
-                                        </h4>
 
-                                        <div className="mb-4">
-                                            <h5>Método de Pagamento</h5>
-                                            <div 
-                                                className={`payment-method ${paymentMethod === 'credit' ? 'active' : ''}`}
-                                                onClick={() => setPaymentMethod('credit')}
-                                            >
-                                                <i className="bi bi-credit-card-2-front payment-icon"></i>
-                                                <div>
-                                                    <h6 className="mb-1">Cartão de Crédito</h6>
-                                                    <p className="small text-muted mb-0">Pague com seu cartão de crédito</p>
-                                                </div>
+                                <form onSubmit={handleSubmit} id="payment-form">
+                                    {paymentMethod === 'credit' && (
+                                        <div className="payment-fields">
+                                            <div className="pg-field">
+                                                <label htmlFor="name" className="pg-label">Nome no cartão</label>
+                                                <input
+                                                    type="text"
+                                                    className="pg-input"
+                                                    id="name"
+                                                    placeholder="Como está impresso no cartão"
+                                                    value={cardData.name}
+                                                    onChange={handleCardInputChange}
+                                                />
                                             </div>
-                                            <div 
-                                                className={`payment-method ${paymentMethod === 'pix' ? 'active' : ''}`}
-                                                onClick={() => setPaymentMethod('pix')}
-                                            >
-                                                <i className="bi bi-qr-code payment-icon"></i>
-                                                <div>
-                                                    <h6 className="mb-1">PIX</h6>
-                                                    <p className="small text-muted mb-0">Pagamento instantâneo via PIX</p>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        {paymentMethod === 'credit' && (
-                                            <div id="credit-card-form">
-                                                <div className="mb-3">
-                                                    <label htmlFor="name" className="form-label">Nome no Cartão</label>
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        id="name" 
-                                                        placeholder="Nome como impresso no cartão"
-                                                        value={cardData.name}
+                                            <div className="pg-field">
+                                                <label htmlFor="number" className="pg-label">Número do cartão</label>
+                                                <input
+                                                    type="text"
+                                                    className="pg-input"
+                                                    id="number"
+                                                    placeholder="1234 5678 9012 3456"
+                                                    value={cardData.number}
+                                                    onChange={handleCardNumber}
+                                                    maxLength="19"
+                                                />
+                                            </div>
+
+                                            <div className="pg-field-row">
+                                                <div className="pg-field">
+                                                    <label htmlFor="expiry" className="pg-label">Validade</label>
+                                                    <input
+                                                        type="text"
+                                                        className="pg-input"
+                                                        id="expiry"
+                                                        placeholder="MM/AA"
+                                                        value={cardData.expiry}
+                                                        onChange={handleExpiry}
+                                                        maxLength="5"
+                                                    />
+                                                </div>
+                                                <div className="pg-field">
+                                                    <label htmlFor="cvv" className="pg-label">CVV</label>
+                                                    <input
+                                                        type="text"
+                                                        className="pg-input"
+                                                        id="cvv"
+                                                        placeholder="123"
+                                                        value={cardData.cvv}
                                                         onChange={handleCardInputChange}
+                                                        maxLength="4"
                                                     />
-                                                </div>
-
-                                                <div className="mb-3">
-                                                    <label htmlFor="number" className="form-label">Número do Cartão</label>
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control" 
-                                                        id="number" 
-                                                        placeholder="1234 5678 9012 3456"
-                                                        value={cardData.number}
-                                                        onChange={handleCardNumber}
-                                                        maxLength="19"
-                                                    />
-                                                </div>
-
-                                                <div className="row g-3">
-                                                    <div className="col-md-6">
-                                                        <label htmlFor="expiry" className="form-label">Data de Expiração</label>
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control" 
-                                                            id="expiry" 
-                                                            placeholder="MM/AA"
-                                                            value={cardData.expiry}
-                                                            onChange={handleExpiry}
-                                                            maxLength="5"
-                                                        />
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <label htmlFor="cvv" className="form-label">CVV</label>
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control" 
-                                                            id="cvv" 
-                                                            placeholder="123"
-                                                            value={cardData.cvv}
-                                                            onChange={handleCardInputChange}
-                                                            maxLength="4"
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div className="form-check mt-4">
-                                                    <input 
-                                                        className="form-check-input" 
-                                                        type="checkbox" 
-                                                        id="save-card"
-                                                        checked={saveCard}
-                                                        onChange={(e) => setSaveCard(e.target.checked)}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="save-card">
-                                                        Salvar informações do cartão para compras futuras
-                                                    </label>
                                                 </div>
                                             </div>
-                                        )}
 
-                                        {paymentMethod === 'pix' && (
-                                            <div id="pix-form">
-                                                <div className="alert alert-success">
-                                                    <i className="bi bi-info-circle-fill me-2"></i> 
+                                            <label className="pg-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="pg-checkbox"
+                                                    checked={saveCard}
+                                                    onChange={(e) => setSaveCard(e.target.checked)}
+                                                />
+                                                <span className="pg-check-label">
+                                                    Salvar informações do cartão para compras futuras
+                                                </span>
+                                            </label>
+                                        </div>
+                                    )}
+
+                                    {paymentMethod === 'pix' && (
+                                        <div className="payment-pix">
+                                            <div className="pg-alert">
+                                                <i className="bi bi-info-circle pg-alert-icon" aria-hidden="true" />
+                                                <p className="pg-alert-text">
                                                     Ao confirmar o pedido, geraremos um QR Code para pagamento via PIX.
-                                                </div>
-                                                <div className="form-check">
-                                                    <input 
-                                                        className="form-check-input" 
-                                                        type="checkbox" 
-                                                        id="pix-confirm"
-                                                        checked={pixConfirmed}
-                                                        onChange={(e) => setPixConfirmed(e.target.checked)}
-                                                    />
-                                                    <label className="form-check-label" htmlFor="pix-confirm">
-                                                        Confirmo que realizarei o pagamento via PIX em até 30 minutos
-                                                    </label>
-                                                </div>
+                                                </p>
                                             </div>
-                                        )}
+                                            <label className="pg-check">
+                                                <input
+                                                    type="checkbox"
+                                                    className="pg-checkbox"
+                                                    checked={pixConfirmed}
+                                                    onChange={(e) => setPixConfirmed(e.target.checked)}
+                                                />
+                                                <span className="pg-check-label">
+                                                    Confirmo que realizarei o pagamento via PIX em até 30 minutos
+                                                </span>
+                                            </label>
+                                        </div>
+                                    )}
 
-                                        <button type="submit" className="btn btn-success mt-4" id="pay-button">
-                                            <i className="bi bi-lock-fill me-2"></i>Finalizar Compra
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+                                    <button type="submit" className="pg-btn pg-btn-primary pg-btn-block" id="pay-button">
+                                        <i className="bi bi-lock pg-btn-icon" aria-hidden="true" />
+                                        Finalizar compra
+                                    </button>
+                                </form>
+                            </section>
                         </FadeIn>
                     </div>
 
-                    <div className="col-lg-4">
-                        <FadeIn direction="right">
-                            <div className="payment-card">
-                                <div className="payment-header">
-                                    <h4 className="mb-0 text-center">
-                                        <i className="bi bi-receipt me-2"></i>Resumo do Pedido
-                                    </h4>
-                                </div>
-                                <div className="card-body p-4">
-                                    <div className="order-summary" id="order-summary">
-                                        {cart.map((item) => (
-                                            <div key={item.id} className="order-item">
-                                                <span>{item.name} ({item.quantity}x)</span>
-                                                <span>{formatCurrency(item.price * item.quantity)}</span>
-                                            </div>
-                                        ))}
-                                        <div className="order-item">
-                                            <span>Frete</span>
-                                            <span>{formatCurrency(totals.shipping)}</span>
-                                        </div>
-                                        {totals.discount > 0 && (
-                                            <div className="order-item text-success">
-                                                <span>Desconto</span>
-                                                <span>-{formatCurrency(totals.discount)}</span>
-                                            </div>
-                                        )}
-                                        <hr />
-                                        <div className="order-item order-total">
-                                            <span>Total</span>
-                                            <span>{formatCurrency(totals.total)}</span>
-                                        </div>
-                                    </div>
+                    <aside className="payment-aside">
+                        <FadeIn direction="up" delay={100}>
+                            <section className="payment-card">
+                                <h2 className="payment-card-title">Resumo do pedido</h2>
 
-                                    <div className="mt-4">
-                                        <div className="d-flex justify-content-between align-items-center mb-3">
-                                            <h5 className="mb-0"><i className="bi bi-truck me-2"></i>Entrega</h5>
-                                            <button 
-                                                type="button" 
-                                                className="btn btn-sm btn-outline-success"
+                                <div className="order-summary">
+                                    {cart.map((item) => (
+                                        <div key={item.id} className="order-item">
+                                            <span className="order-item-label">{item.name} ({item.quantity}x)</span>
+                                            <span className="order-item-value">{formatCurrency(item.price * item.quantity)}</span>
+                                        </div>
+                                    ))}
+                                    <div className="order-item">
+                                        <span className="order-item-label">Frete</span>
+                                        <span className="order-item-value">
+                                            {totals.shipping === 0 ? 'Grátis' : formatCurrency(totals.shipping)}
+                                        </span>
+                                    </div>
+                                    {totals.discount > 0 && (
+                                        <div className="order-item order-item-discount">
+                                            <span className="order-item-label">Desconto</span>
+                                            <span className="order-item-value">- {formatCurrency(totals.discount)}</span>
+                                        </div>
+                                    )}
+                                    <div className="order-item order-total">
+                                        <span className="order-item-label">Total</span>
+                                        <span className="order-item-value">{formatCurrency(totals.total)}</span>
+                                    </div>
+                                </div>
+
+                                <div className="payment-delivery">
+                                    <div className="payment-delivery-head">
+                                        <h3 className="payment-block-title">Entrega</h3>
+                                        {!isEditingShipping && (
+                                            <button
+                                                type="button"
+                                                className="pg-btn pg-btn-ghost pg-btn-sm"
                                                 onClick={() => setIsEditingShipping(true)}
                                             >
-                                                <i className="bi bi-pencil me-1"></i>Editar
+                                                Editar
                                             </button>
-                                        </div>
-                                        
-                                        {!isEditingShipping ? (
-                                            <address>
-                                                <strong>{customerData.name}</strong><br />
-                                                {customerData.address}<br />
-                                                {customerData.city} - {customerData.state}<br />
-                                                CEP: {customerData.zip || 'Não informado'}
-                                            </address>
-                                        ) : (
-                                            <div className="shipping-edit-form">
-                                                <div className="mb-2">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control form-control-sm" 
-                                                        id="name" 
-                                                        placeholder="Nome Completo"
-                                                        value={tempCustomerData.name}
-                                                        onChange={handleShippingChange}
-                                                    />
-                                                </div>
-                                                <div className="mb-2">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control form-control-sm" 
-                                                        id="address" 
-                                                        placeholder="Endereço"
-                                                        value={tempCustomerData.address}
-                                                        onChange={handleShippingChange}
-                                                    />
-                                                </div>
-                                                <div className="row g-2 mb-2">
-                                                    <div className="col-7">
-                                                        <input 
-                                                            type="text" 
-                                                            className="form-control form-control-sm" 
-                                                            id="city" 
-                                                            placeholder="Cidade"
-                                                            value={tempCustomerData.city}
-                                                            onChange={handleShippingChange}
-                                                        />
-                                                    </div>
-                                                    <div className="col-5">
-                                                        <select 
-                                                            className="form-control form-control-sm" 
-                                                            id="state"
-                                                            value={tempCustomerData.state || ''}
-                                                            onChange={handleShippingChange}
-                                                        >
-                                                            <option value="">UF</option>
-                                                            <option value="SP">SP</option>
-                                                            <option value="RJ">RJ</option>
-                                                            <option value="MG">MG</option>
-                                                            <option value="ES">ES</option>
-                                                            <option value="PR">PR</option>
-                                                            <option value="SC">SC</option>
-                                                            <option value="RS">RS</option>
-                                                            <option value="BA">BA</option>
-                                                            <option value="PE">PE</option>
-                                                            <option value="CE">CE</option>
-                                                            <option value="DF">DF</option>
-                                                            <option value="GO">GO</option>
-                                                            <option value="AM">AM</option>
-                                                            <option value="PA">PA</option>
-                                                            <option value="MT">MT</option>
-                                                            <option value="MS">MS</option>
-                                                            <option value="AC">AC</option>
-                                                            <option value="AL">AL</option>
-                                                            <option value="AP">AP</option>
-                                                            <option value="MA">MA</option>
-                                                            <option value="PB">PB</option>
-                                                            <option value="PI">PI</option>
-                                                            <option value="RN">RN</option>
-                                                            <option value="RO">RO</option>
-                                                            <option value="RR">RR</option>
-                                                            <option value="SE">SE</option>
-                                                            <option value="TO">TO</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div className="mb-2">
-                                                    <input 
-                                                        type="text" 
-                                                        className="form-control form-control-sm" 
-                                                        id="zip" 
-                                                        placeholder="CEP"
-                                                        value={tempCustomerData.zip}
-                                                        onChange={handleShippingChange}
-                                                    />
-                                                </div>
-                                                <div className="d-flex gap-2 mt-2">
-                                                    <button 
-                                                        type="button" 
-                                                        className="btn btn-sm btn-success flex-grow-1"
-                                                        onClick={saveShippingData}
-                                                    >
-                                                        <i className="bi bi-check me-1"></i>Salvar
-                                                    </button>
-                                                    <button 
-                                                        type="button" 
-                                                        className="btn btn-sm btn-secondary"
-                                                        onClick={cancelShippingEdit}
-                                                    >
-                                                        Cancelar
-                                                    </button>
-                                                </div>
-                                            </div>
                                         )}
                                     </div>
+
+                                    {!isEditingShipping ? (
+                                        <address className="payment-address">
+                                            <strong className="payment-address-name">{customerData.name || '—'}</strong>
+                                            <span className="payment-address-line">{customerData.address || '—'}</span>
+                                            <span className="payment-address-line">
+                                                {customerData.city || '—'} {customerData.state ? `— ${customerData.state}` : ''}
+                                            </span>
+                                            <span className="payment-address-line">CEP {customerData.zip || '—'}</span>
+                                        </address>
+                                    ) : (
+                                        <div className="payment-shipping-edit">
+                                            <div className="pg-field">
+                                                <input
+                                                    type="text"
+                                                    className="pg-input pg-input-sm"
+                                                    id="name"
+                                                    placeholder="Nome completo"
+                                                    value={tempCustomerData.name}
+                                                    onChange={handleShippingChange}
+                                                />
+                                            </div>
+                                            <div className="pg-field">
+                                                <input
+                                                    type="text"
+                                                    className="pg-input pg-input-sm"
+                                                    id="address"
+                                                    placeholder="Endereço"
+                                                    value={tempCustomerData.address}
+                                                    onChange={handleShippingChange}
+                                                />
+                                            </div>
+                                            <div className="pg-field-row pg-field-row-sm">
+                                                <input
+                                                    type="text"
+                                                    className="pg-input pg-input-sm"
+                                                    id="city"
+                                                    placeholder="Cidade"
+                                                    value={tempCustomerData.city}
+                                                    onChange={handleShippingChange}
+                                                />
+                                                <select
+                                                    className="pg-input pg-input-sm pg-select"
+                                                    id="state"
+                                                    value={tempCustomerData.state || ''}
+                                                    onChange={handleShippingChange}
+                                                >
+                                                    <option value="">UF</option>
+                                                    <option value="SP">SP</option>
+                                                    <option value="RJ">RJ</option>
+                                                    <option value="MG">MG</option>
+                                                    <option value="ES">ES</option>
+                                                    <option value="PR">PR</option>
+                                                    <option value="SC">SC</option>
+                                                    <option value="RS">RS</option>
+                                                    <option value="BA">BA</option>
+                                                    <option value="PE">PE</option>
+                                                    <option value="CE">CE</option>
+                                                    <option value="DF">DF</option>
+                                                    <option value="GO">GO</option>
+                                                    <option value="AM">AM</option>
+                                                    <option value="PA">PA</option>
+                                                    <option value="MT">MT</option>
+                                                    <option value="MS">MS</option>
+                                                    <option value="AC">AC</option>
+                                                    <option value="AL">AL</option>
+                                                    <option value="AP">AP</option>
+                                                    <option value="MA">MA</option>
+                                                    <option value="PB">PB</option>
+                                                    <option value="PI">PI</option>
+                                                    <option value="RN">RN</option>
+                                                    <option value="RO">RO</option>
+                                                    <option value="RR">RR</option>
+                                                    <option value="SE">SE</option>
+                                                    <option value="TO">TO</option>
+                                                </select>
+                                            </div>
+                                            <div className="pg-field">
+                                                <input
+                                                    type="text"
+                                                    className="pg-input pg-input-sm"
+                                                    id="zip"
+                                                    placeholder="CEP"
+                                                    value={tempCustomerData.zip}
+                                                    onChange={handleShippingChange}
+                                                />
+                                            </div>
+                                            <div className="payment-shipping-actions">
+                                                <button
+                                                    type="button"
+                                                    className="pg-btn pg-btn-primary pg-btn-sm"
+                                                    onClick={saveShippingData}
+                                                >
+                                                    Salvar
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    className="pg-btn pg-btn-ghost pg-btn-sm"
+                                                    onClick={cancelShippingEdit}
+                                                >
+                                                    Cancelar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
-                            </div>
+                            </section>
                         </FadeIn>
-                    </div>
+                    </aside>
                 </div>
             </div>
 
             {showSuccess && (
-                <>
-                    <div className="overlay show"></div>
-                    <div className="success-message show">
-                        <i className="bi bi-check-circle-fill success-icon"></i>
-                        <h3>Pagamento Aprovado!</h3>
-                        <p className="mb-4">Sua compra foi concluída com sucesso. Obrigado por escolher a Floricultura Web!</p>
-                        <p className="small text-muted">Você receberá um e-mail com os detalhes do seu pedido.</p>
-                        <Link to="/" className="btn btn-success mt-3">
-                            <i className="bi bi-house-door me-2"></i>Voltar à Página Inicial
+                <div className="payment-success-overlay">
+                    <div className="payment-success" role="status">
+                        <i className="bi bi-check-circle payment-success-icon" aria-hidden="true" />
+                        <h2 className="payment-success-title">Pagamento aprovado</h2>
+                        <p className="payment-success-text">
+                            Sua compra foi concluída. Você receberá um e-mail com os detalhes do pedido.
+                        </p>
+                        <Link to="/" className="pg-btn pg-btn-primary">
+                            Voltar à página inicial
                         </Link>
                     </div>
-                </>
+                </div>
             )}
 
             {showErrorModal && (
                 <div className="modal-overlay" onClick={() => setShowErrorModal(false)}>
-                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close-x" onClick={() => setShowErrorModal(false)}>✕</button>
-                        <div className="text-center">
-                            <i className="bi bi-exclamation-triangle text-danger display-4 mb-3"></i>
-                            <h5>Ops! Algo deu errado</h5>
-                            <p>{errorMessage}</p>
+                    <div className="modal-box modal-small" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close-x" onClick={() => setShowErrorModal(false)} aria-label="Fechar">✕</button>
+                        <div className="modal-confirm">
+                            <i className="bi bi-exclamation-circle modal-confirm-icon" aria-hidden="true" />
+                            <h3 className="modal-title">Não foi possível continuar</h3>
+                            <p className="modal-text">{errorMessage}</p>
                         </div>
-                        <div className="d-flex justify-content-center mt-3">
-                            <button 
-                                className="btn btn-success" 
-                                onClick={() => setShowErrorModal(false)}
-                            >
+                        <div className="modal-actions">
+                            <button className="pg-btn pg-btn-primary" onClick={() => setShowErrorModal(false)}>
                                 Entendi
                             </button>
                         </div>

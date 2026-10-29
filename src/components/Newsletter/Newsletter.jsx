@@ -9,14 +9,14 @@ function Newsletter() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        
+
         if (!emailValido) {
             setError(true);
             return;
         }
-        
+
         setError(false);
         showNotification('Inscrição realizada com sucesso! Você receberá nossas novidades.', 'success');
         setEmail('');
@@ -24,44 +24,67 @@ function Newsletter() {
 
     return (
         <section className="newsletter-section">
-            <div className="container newsletter-container">
-                <div className="row justify-content-center">
-                    <div className="col-lg-9">
-                        <i className="bi bi-flower1 newsletter-flower newsletter-flower-1"></i>
-                        <i className="bi bi-flower2 newsletter-flower newsletter-flower-2"></i>
-                        <div className="newsletter-card">
-                            <h2 className="newsletter-title text-center">Assine Nossa Newsletter</h2>
-                            <p className="newsletter-text text-center">Receba ofertas exclusivas, dicas com plantas e novidades diretamente no seu e-mail.</p>
-                            <form className="newsletter-form" onSubmit={handleSubmit}>
-                                <div className="input-group mb-3">
-                                    <input 
-                                        type="email" 
-                                        className={`form-control ${error ? 'is-invalid' : ''}`} 
-                                        placeholder="Seu melhor e-mail" 
-                                        value={email}
-                                        onChange={(e) => {
-                                            setEmail(e.target.value);
-                                            setError(false);
-                                        }}
-                                        required 
-                                    />
-                                    <button className="btn newsletter-btn" type="submit">
-                                        <i className="bi bi-envelope-check me-2"></i>Assinar
-                                    </button>
-                                </div>
-                                {error && (
-                                    <small className="text-danger ms-1">Por favor, insira um e-mail válido.</small>
-                                )}
-                                <div className="form-check text-center mt-2 d-flex align-items-center justify-content-center gap-2">
-                                    <input className="form-check-input" type="checkbox" id="newsletterCheck" required />
-                                    <label className="form-check-label small" htmlFor="newsletterCheck">
-                                        Concordo em receber comunicações da Floricultura Web
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+            <div className="newsletter-content">
+                <div className="newsletter-text-column">
+                    <p className="newsletter-eyebrow">
+                        <span className="newsletter-eyebrow-line" />
+                        Fique por dentro
+                    </p>
+
+                    <h2 className="newsletter-title">
+                        Receba novidades da{' '}
+                        <em className="newsletter-hand">floricultura.</em>
+                    </h2>
+
+                    <p className="newsletter-text">
+                        Ofertas exclusivas, dicas de cuidado com plantas e novidades
+                        da Floricultura Dama da Noite diretamente no seu e-mail.
+                    </p>
                 </div>
+
+                <form className="newsletter-form" onSubmit={handleSubmit}>
+                    <div className="newsletter-field">
+                        <label htmlFor="newsletter-email" className="newsletter-label">
+                            Seu melhor e-mail
+                        </label>
+
+                        <div className="newsletter-input-group">
+                            <input
+                                id="newsletter-email"
+                                type="email"
+                                className={`newsletter-input ${error ? 'is-invalid' : ''}`}
+                                placeholder="voce@email.com"
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    setError(false);
+                                }}
+                                required
+                            />
+
+                            <button className="newsletter-btn" type="submit">
+                                <i className="bi bi-arrow-right" aria-hidden="true" />
+                            </button>
+                        </div>
+
+                        {error && (
+                            <p className="newsletter-error">
+                                Por favor, insira um e-mail válido.
+                            </p>
+                        )}
+                    </div>
+
+                    <label className="newsletter-check">
+                        <input
+                            type="checkbox"
+                            className="newsletter-checkbox"
+                            required
+                        />
+                        <span className="newsletter-check-label">
+                            Concordo em receber comunicações da Floricultura Dama da Noite
+                        </span>
+                    </label>
+                </form>
             </div>
         </section>
     );

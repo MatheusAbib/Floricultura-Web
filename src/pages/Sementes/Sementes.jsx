@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import HeroCarousel from '../../components/HeroCarousel/HeroCarousel';
 import ProductList from '../../components/ProductList/ProductList';
@@ -8,13 +8,18 @@ import Categories from '../../components/Categories/Categories';
 import Footer from '../../components/Footer/Footer';
 import { sementesProducts } from '../../data/sementesData';
 import { categories } from '../../data/categories';
-import './Sementes.scss';
 
 function Sementes() {
+    const [loading, setLoading] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [addedProductId, setAddedProductId] = useState(null);
-  const { addToCart, addMultipleToCart, showNotification } = useCart();
+    const { addToCart, addMultipleToCart } = useCart();
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const openModal = (product) => {
         setSelectedProduct(product);
@@ -29,9 +34,16 @@ function Sementes() {
     const handleAddToCart = (product) => {
         addToCart(product);
         setAddedProductId(product.id);
-        showNotification(`${product.name} adicionado ao carrinho!`, 'success');
         setTimeout(() => setAddedProductId(null), 2000);
     };
+
+    if (loading) {
+        return (
+            <div className="loading-overlay">
+                <i className="bi bi-flower1 loading-logo"></i>
+            </div>
+        );
+    }
 
     return (
         <div className="sementes-page">
@@ -39,8 +51,9 @@ function Sementes() {
             <Categories categories={categories} />
 
             <div className="container py-4">
-                <ProductList 
+                <ProductList
                     products={sementesProducts}
+                    title="Acervo de sementes"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -50,13 +63,13 @@ function Sementes() {
 
             <Newsletter />
 
-<ProductModal 
-    product={selectedProduct}
-    isOpen={isModalOpen}
-    onClose={closeModal}
-    onAddToCart={addToCart}
-    onAddMultiple={addMultipleToCart}
-/>
+            <ProductModal
+                product={selectedProduct}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onAddToCart={addToCart}
+                onAddMultiple={addMultipleToCart}
+            />
 
             <Footer />
         </div>

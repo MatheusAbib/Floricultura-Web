@@ -12,7 +12,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Lirio.jpg`,
             `${IMAGE_PATH}Plantas/Lirio.jpg`
         ],
-        description: "O Lírio da Paz é uma planta elegante e resistente, perfeita para ambientes internos. Suas folhas verdes escuras e flores brancas trazem um toque de sofisticação.",
         rating: 4.5,
         badge: "new",
         category: "plantas",
@@ -35,7 +34,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/asplenio.jpg`,
             `${IMAGE_PATH}Plantas/asplenio.jpg`
         ],
-        description: "O Asplênio é uma samambaia elegante com folhas delicadas e textura única. Perfeita para decorar interiores com um toque de natureza.",
         rating: 4,
         badge: "bestseller",
         category: "plantas",
@@ -59,7 +57,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Cactus.jpg`,
             `${IMAGE_PATH}Plantas/Cactus.jpg`
         ],
-        description: "Os cactos são plantas resistentes que exigem pouca manutenção. Perfeitos para quem tem pouco tempo ou está começando no mundo da jardinagem.",
         rating: 5,
         badge: "sale",
         category: "plantas",
@@ -82,7 +79,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Bonsai.png`,
             `${IMAGE_PATH}Plantas/Bonsai.png`
         ],
-        description: "O Bonsai é uma árvore em miniatura que simboliza harmonia e equilíbrio. Uma obra de arte viva que requer paciência e dedicação.",
         rating: 3.5,
         category: "plantas",
         stock: 5,
@@ -104,7 +100,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Girassol.jpg`,
             `${IMAGE_PATH}Plantas/Girassol.jpg`
         ],
-        description: "Buquê de girassóis vibrantes que trazem alegria e energia positiva para qualquer ambiente. Perfeito para presentear.",
         rating: 4.5,
         outOfStock: true,
         category: "flores",
@@ -127,7 +122,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Bromelia.jpeg`,
             `${IMAGE_PATH}Plantas/Bromelia.jpeg`
         ],
-        description: "A Bromélia é uma planta tropical exuberante com folhas longas e coloridas. Perfeita para dar vida e cor a qualquer espaço.",
         rating: 4,
         category: "plantas",
         stock: 7,
@@ -149,7 +143,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Peperomia.jpg`,
             `${IMAGE_PATH}Plantas/Peperomia.jpg`
         ],
-        description: "A Peperomia é uma planta compacta de fácil cultivo, com folhas carnosas e variadas cores. Ideal para prateleiras e espaços pequenos.",
         rating: 3.5,
         category: "plantas",
         stock: 12,
@@ -173,7 +166,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`,
             `${IMAGE_PATH}Plantas/Conjunto-Orquideas.jpg`
         ],
-        description: "Orquídeas são flores sofisticadas e elegantes que encantam pela beleza e durabilidade. O presente perfeito para ocasiões especiais.",
         rating: 5,
         badge: "bestseller",
         category: "flores",
@@ -196,7 +188,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Anturio.jpg`,
             `${IMAGE_PATH}Plantas/Anturio.jpg`
         ],
-        description: "O Antúrio é uma planta tropical com flores em formato de coração e folhas brilhantes. Traz paixão e elegância para decoração.",
         rating: 4,
         category: "flores",
         stock: 9,
@@ -218,7 +209,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Espada-Sao-Jorge.jpg`,
             `${IMAGE_PATH}Plantas/Espada-Sao-Jorge.jpg`
         ],
-        description: "Planta resistente e de fácil manutenção. A Espada de São Jorge é famosa por sua durabilidade e capacidade de purificar o ar.",
         rating: 4.5,
         category: "plantas",
         stock: 25,
@@ -240,7 +230,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Begomia.jpg`,
             `${IMAGE_PATH}Plantas/Begomia.jpg`
         ],
-        description: "As Begônias são plantas encantadoras com flores coloridas e folhagem ornamental. Perfeitas para alegrar ambientes internos.",
         rating: 4,
         category: "flores",
         stock: 10,
@@ -263,7 +252,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/bamboo.webp`,
             `${IMAGE_PATH}Plantas/bamboo.webp`
         ],
-        description: "O Bambu é símbolo de sorte e prosperidade. Uma planta elegante e versátil que traz equilíbrio e boa energia.",
         rating: 5,
         badge: "sale",
         category: "plantas",
@@ -286,7 +274,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Jiboia.jpeg`,
             `${IMAGE_PATH}Plantas/Jiboia.jpeg`
         ],
-        description: "A Jiboia é uma planta trepadeira de folhagem exuberante. Perfeita para decorar paredes e prateleiras com um toque verde.",
         rating: 3.5,
         category: "plantas",
         stock: 8,
@@ -308,7 +295,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Lavanda.jpg`,
             `${IMAGE_PATH}Plantas/Lavanda.jpg`
         ],
-        description: "A Lavanda é uma planta aromática que proporciona calma e bem-estar. Perfeita para perfumar ambientes e relaxar.",
         rating: 4,
         badge: "bestseller",
         category: "plantas",
@@ -331,7 +317,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Zamioculca.jpg`,
             `${IMAGE_PATH}Plantas/Zamioculca.jpg`
         ],
-        description: "A Zamioculca é uma planta moderna e elegante, famosa por sua resistência e beleza. Perfeita para ambientes com pouca luz.",
         rating: 5,
         category: "plantas",
         stock: 5,
@@ -353,7 +338,6 @@ export const products = [
             `${IMAGE_PATH}Plantas/Costela-Adao.jpg`,
             `${IMAGE_PATH}Plantas/Costela-Adao.jpg`
         ],
-        description: "A Costela de Adão é uma planta tropical imponente com folhas grandes e recortadas. Traz um toque sofisticado e exuberante.",
         rating: 4,
         category: "plantas",
         stock: 3,
@@ -372,7 +356,6 @@ export const invernoProducts = [
     {
         id: 'i01',
         name: 'Azaleia',
-        description: 'Flores vibrantes que iluminam seu jardim mesmo nos dias mais frios. Perfeita para trazer cor durante o inverno.',
         price: 129.90,
         oldPrice: 169.90,
         image: `${IMAGE_PATH}Plantas/Azaleia.jpg`,
@@ -397,7 +380,6 @@ export const invernoProducts = [
     {
         id: 'i02',
         name: 'Buxinho',
-        description: 'Folhagem densa e elegante que mantém seu espaço verde no inverno. Ideal para formar cercas vivas ou decorar vasos.',
         price: 29.90,
         image: `${IMAGE_PATH}Plantas/Buxinho.jpg`,
         images: [
@@ -420,7 +402,6 @@ export const invernoProducts = [
     {
         id: 'i03',
         name: 'Violeta',
-        description: 'Pequenas flores delicadas que trazem cor e charme aos dias frios. Perfeita para decorar janelas e espaços internos.',
         price: 15.90,
         oldPrice: 29.90,
         image: `${IMAGE_PATH}Plantas/Violeta.jpg`,
@@ -445,7 +426,6 @@ export const invernoProducts = [
     {
         id: 'i04',
         name: 'Babosa',
-        description: 'Folha suculenta e resistente que traz frescor e cuidados naturais para o inverno. Propriedades medicinais e decorativas.',
         price: 13.50,
         oldPrice: 39.50,
         image: `${IMAGE_PATH}Plantas/Babosa.jpg`,
@@ -490,33 +470,6 @@ export const testimonials = [
         author: "Marcos Silva",
         location: "Belo Horizonte",
         image: "https://randomuser.me/api/portraits/men/68.jpg"
-    }
-];
-
-export const coupons = [
-    {
-        id: 1,
-        code: 'PRIMAVERA20',
-        discount: '20%',
-        title: 'Desconto de Primavera',
-        description: '20% de desconto em toda a loja. Válido até 30/09.',
-        used: false
-    },
-    {
-        id: 2,
-        code: 'FLOR15',
-        discount: '15%',
-        title: 'Presente Especial',
-        description: '15% de desconto em buquês e arranjos florais no dia 14/02/2026.',
-        used: true
-    },
-    {
-        id: 3,
-        code: 'PLANTA30',
-        discount: '30%',
-        title: 'Plantas em Oferta',
-        description: '30% de desconto em plantas selecionadas da loja.',
-        used: false
     }
 ];
 

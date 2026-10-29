@@ -3,96 +3,41 @@
 .hero-carousel {
     position: relative;
     overflow: hidden;
-    background: #fcfcfc;
-    padding: clamp(7rem, 12vh, 9rem) 1.5rem 6rem;
-    min-height: min(900px, 100vh);
+    background: $cream;
+    border-radius: 0 0 50% 50% / 0 0 90px 90px;
+    margin-bottom: -90px;
+    padding-bottom: 90px;
 
     .carousel-inner {
         overflow: visible;
     }
 
     .carousel-item {
-        transition: opacity 0.8s ease-in-out;
+        transition: opacity 1s $ease-lux;
     }
 
     .hero-slide {
         display: grid;
-        grid-template-columns: 1fr 0.85fr;
-        align-items: center;
-        gap: clamp(2rem, 5vw, 5rem);
-        max-width: 1400px;
-        margin: 0 auto;
+        grid-template-columns: 1.05fr 1fr;
+        align-items: stretch;
+        height: clamp(640px, 94vh, 840px);
         width: 100%;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-        max-width: 680px;
-        text-align: left;
-    }
-
-    .hero-eyebrow {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin: 0 0 1.75rem;
-        color: $primary-color;
-        font-size: 0.75rem;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-    }
-
-    .hero-eyebrow-line {
-        display: block;
-        width: 2rem;
-        height: 1px;
-        background: $primary-color;
-    }
-
-    .hero-title {
-        display: block;
-        margin: 0;
-        color: $primary-dark;
-        font-family: Georgia, 'Times New Roman', serif;
-        font-size: clamp(3rem, 6.5vw, 6rem);
-        font-weight: 400;
-        letter-spacing: -0.055em;
-        line-height: 1;
-    }
-
-    .hero-hand {
-        color: $primary-color;
-        font-family: 'Brush Script MT', 'Segoe Script', cursive;
-        font-style: normal;
-        font-weight: 400;
-        letter-spacing: -0.02em;
-    }
-
-    .hero-subtitle {
-        max-width: 490px;
-        margin: 2rem 0 0;
-        color: #091f0a;
-        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-        line-height: 1.9;
-        opacity: 0.75;
     }
 
     .hero-visual {
         position: relative;
-        width: 100%;
-        max-width: 570px;
-        justify-self: end;
-    }
-
-    .hero-image-frame {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 0.82;
         overflow: hidden;
-        border-radius: 0.35rem 4rem 0.35rem 4rem;
-        background: #ede5d9;
+        background: $cream-dark;
+        margin-bottom: -90px;
+        height: calc(100% + 90px);
+        z-index: 1;
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
     }
 
     .hero-image {
@@ -101,224 +46,357 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        transform: scale(1.02);
+        transition: transform 8s $ease-lux;
     }
 
-    .hero-counter {
+    .carousel-item.active .hero-image {
+        transform: scale(1.08);
+    }
+
+    .hero-image-overlay {
         position: absolute;
-        bottom: 1rem;
-        right: -1.25rem;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
         display: flex;
-        align-items: baseline;
-        gap: 0.25rem;
-        padding: 0.65rem 1rem;
-        border-radius: 999px;
-        background: #fcfcfc;
-        box-shadow: 0 8px 24px rgba(41, 44, 38, 0.12);
-        font-family: Georgia, 'Times New Roman', serif;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: clamp(3.5rem, 5vw, 7rem) 0;
+        background: $cream;
+    }
+
+    .hero-content-inner {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 5vw, 5rem);
+    }
+
+    .hero-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: clamp(2rem, 2vw, 3rem);
+    }
+
+    .hero-index {
+        font-family: $display;
+        font-size: clamp(2.6rem, 4vw, 3.8rem);
+        font-weight: 400;
+        color: $primary-color;
         line-height: 1;
-        z-index: 3;
+        letter-spacing: -0.03em;
     }
 
-    .hero-counter-current {
-        color: $primary-dark;
-        font-size: 1.1rem;
+    .hero-meta-line {
+        display: block;
+        flex: 1;
+        max-width: 3.5rem;
+        height: 1px;
+        background: $overlay-dark;
+    }
+
+    .hero-total {
+        font-family: $body;
+        font-size: 0.72rem;
         font-weight: 600;
+        color: $gray-text;
+        letter-spacing: 0.14em;
     }
 
-    .hero-counter-divider {
-        color: $primary-color;
-        font-size: 0.75rem;
-    }
-
-    .hero-counter-total {
-        color: $primary-color;
-        font-size: 0.75rem;
+    .hero-eyebrow {
+        margin: 0 0 1.75rem;
+        color: $terracotta;
+        font-family: $body;
+        font-size: 0.72rem;
         font-weight: 600;
-    }
-}
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        position: relative;
+        padding-left: 2rem;
 
-.carousel-indicators {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0;
-    opacity: 1 !important;
-    visibility: visible !important;
-    z-index: 10;
-
-    button,
-    [data-bs-target] {
-        width: 32px;
-        height: 4px;
-        margin: 0;
-        padding: 0;
-        border: none;
-        border-radius: 2px;
-        background: rgba(0, 0, 0, 0.2) !important;
-        cursor: pointer;
-        opacity: 1 !important;
-        transition: background 0.3s ease, width 0.3s ease;
-
-        &.active {
-            background: $primary-color !important;
-            width: 48px;
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 1.4rem;
+            height: 1px;
+            background: $terracotta;
+            transform: translateY(-50%);
         }
     }
-}
-.carousel-control-prev,
-.carousel-control-next {
-    width: 50px;
-    height: 50px;
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    margin: 0;
-    z-index: 20;
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 1;
+    .hero-title {
+        margin: 0;
+        color: $dark-text;
+        font-family: $display;
+        font-size: clamp(2.9rem, 5.8vw, 5.8rem);
+        font-weight: 400;
+        letter-spacing: 0.005em;
+        line-height: 1.02;
+        max-width: 720px;
     }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        width: 1.5rem;
-        height: 1.5rem;
+    .hero-hand {
+        color: $terracotta;
+        font-family: $script;
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        position: relative;
+        display: inline-block;
     }
-}
 
-.carousel-control-prev {
-    left: 20px;
-}
+    .hero-subtitle {
+        max-width: 460px;
+        margin: clamp(1.75rem, 2.5vw, 1.7rem) 0 0;
+        color: $gray-text;
+        font-family: $body;
+        font-size: 0.96rem;
+        font-weight: 400;
+        line-height: 1.9;
+        letter-spacing: 0.005em;
+    }
 
-.carousel-control-next {
-    right: 20px;
-}
+    .hero-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        align-self: flex-start;
+        margin-top: clamp(2.25rem, 3.5vw, 2rem);
+        color: $dark-text;
+        font-family: $body;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
 
-.carousel-item.active:hover ~ .carousel-control-prev,
-.carousel-item.active:hover ~ .carousel-control-next,
-.carousel-item.active:hover .hero-visual ~ .carousel-control-prev,
-.carousel-item.active:hover .hero-visual ~ .carousel-control-next {
-    opacity: 1  !important;
+    .hero-cta-icon {
+        display: grid;
+        width: 46px;
+        height: 46px;
+        place-items: center;
+        border-radius: 50%;
+        background: $primary-color;
+        color: $light-text;
+        font-size: 1rem;
+        transition: background $transition, transform $transition;
+    }
+
+    .hero-cta-label {
+        position: relative;
+        padding-bottom: 4px;
+        transition: color $transition;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s $ease-lux;
+        }
+    }
+
+    .hero-cta:hover .hero-cta-icon {
+        background: $terracotta;
+        transform: rotate(-45deg);
+    }
+
+    .hero-cta:hover .hero-cta-label {
+        color: $terracotta;
+
+        &::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+
+    .hero-cta:focus-visible {
+        outline: 2px solid $primary-color;
+        outline-offset: 6px;
+        border-radius: 4px;
+    }
+
+    .hero-indicators {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: clamp(2.5rem, 4vw, 3rem);
+    }
+
+    .hero-indicator {
+        width: 28px;
+        height: 2px;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: $overlay-dark;
+        cursor: pointer;
+        transition: background $transition, width $transition;
+
+        &.is-active {
+            width: 56px;
+            background: $primary-color;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $primary-color;
+            outline-offset: 3px;
+        }
+    }
 }
 
 @media (max-width: 1024px) {
     .hero-carousel {
         .hero-slide {
-            grid-template-columns: 1fr 0.8fr;
-            gap: 2.5rem;
+            grid-template-columns: 1fr 1fr;
+            height: clamp(600px, 92vh, 720px);
+        }
+
+        .hero-visual {
+            margin-bottom: -90px;
+            height: calc(100% + 90px);
         }
 
         .hero-title {
-            font-size: clamp(3.2rem, 6.2vw, 5rem);
-        }
-
-        .hero-image-frame {
-            border-radius: 0.3rem 3rem 0.3rem 3rem;
+            font-size: clamp(2.5rem, 5vw, 4rem);
         }
     }
 }
 
 @media (max-width: 768px) {
     .hero-carousel {
-        padding: 6rem 1rem 4rem;
-        min-height: auto;
+        border-radius: 0 0 50% 50% / 0 0 60px 60px;
+        margin-bottom: -60px;
+        padding-bottom: 60px;
 
         .hero-slide {
             grid-template-columns: 1fr;
-            gap: 2.5rem;
-        }
-
-        .hero-content {
-            max-width: 620px;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 11vw, 4rem);
-        }
-
-        .hero-subtitle {
-            max-width: 540px;
+            height: auto;
         }
 
         .hero-visual {
-            width: min(100%, 480px);
-            justify-self: center;
-            margin-top: 0.5rem;
+            order: -1;
+            height: clamp(300px, 46vh, 400px);
+            margin-bottom: 0;
         }
 
-        .hero-image-frame {
-            aspect-ratio: 0.95;
-            border-radius: 0.3rem 3rem 0.3rem 3rem;
+        .hero-image-overlay {
+            background: linear-gradient(
+                180deg,
+                rgba(245, 239, 230, 0) 60%,
+                $cream 100%
+            );
         }
 
-        .hero-counter {
-            right: 0.75rem;
+        .hero-content {
+            padding: 2.75rem 0 3.25rem;
         }
-    }
 
-    .carousel-indicators {
-        bottom: 1rem;
-    }
+        .hero-content-inner {
+            padding: 0 clamp(1.25rem, 5vw, 2rem);
+        }
 
-    .carousel-control-prev,
-    .carousel-control-next {
-        display: none;
+        .hero-meta {
+            margin-bottom: 1.75rem;
+        }
+
+        .hero-index {
+            font-size: 2.2rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 9vw, 3.2rem);
+            max-width: 100%;
+        }
+
+        .hero-subtitle {
+            max-width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .hero-cta {
+            margin-top: 2.25rem;
+        }
+
+        .hero-indicators {
+            margin-top: 2.25rem;
+        }
     }
 }
 
 @media (max-width: 480px) {
     .hero-carousel {
-        padding: 5rem 0.75rem 3rem;
+        border-radius: 0 0 50% 50% / 0 0 40px 40px;
+        margin-bottom: -40px;
+        padding-bottom: 40px;
+
+        .hero-visual {
+            display: none;
+        }
+
+        .hero-content {
+            padding: 2.25rem 0 2.75rem;
+        }
+
+        .hero-content-inner {
+            padding: 0 clamp(1rem, 5vw, 1.5rem);
+        }
+
+        .hero-index {
+            font-size: 1.85rem;
+        }
 
         .hero-title {
-            font-size: clamp(2rem, 13vw, 3rem);
+            font-size: clamp(1.95rem, 10vw, 2.85rem);
         }
 
         .hero-subtitle {
-            margin-top: 1.5rem;
-            font-size: 0.92rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.85;
         }
 
-        .hero-visual {
-            width: 100%;
+        .hero-cta {
+            gap: 0.7rem;
+            font-size: 0.72rem;
         }
 
-        .hero-image-frame {
-            aspect-ratio: 0.88;
-            border-radius: 0.25rem 2.25rem 0.25rem 2.25rem;
-        }
-
-        .hero-counter {
-            bottom: 0.75rem;
-            right: 0.75rem;
-            padding: 0.5rem 0.85rem;
-        }
-
-        .hero-counter-current {
-            font-size: 1rem;
+        .hero-cta-icon {
+            width: 38px;
+            height: 38px;
         }
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
     .hero-carousel {
-        .carousel-item {
+        .carousel-item,
+        .hero-image,
+        .hero-cta,
+        .hero-cta-icon,
+        .hero-cta-label,
+        .hero-indicator {
             transition: none;
+        }
+
+        .carousel-item.active .hero-image {
+            transform: none;
         }
     }
 }

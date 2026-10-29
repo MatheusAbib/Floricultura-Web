@@ -22,14 +22,27 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
         };
     }, [isOpen]);
 
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleKey = (e) => {
+            if (e.key === 'Escape') onClose();
+        };
+        document.addEventListener('keydown', handleKey);
+        return () => document.removeEventListener('keydown', handleKey);
+    }, [isOpen, onClose]);
+
     if (!isOpen || !product) return null;
 
     const images = product.images || [product.image];
-    const isPlanta = product.category === 'plantas' || product.category === 'flores' || product.category === 'inverno' || product.category === 'sementes';
+    const isPlanta = product.category === 'plantas'
+        || product.category === 'flores'
+        || product.category === 'inverno'
+        || product.category === 'sementes';
 
     const handleQuantityChange = (value) => {
         const newQuantity = quantity + value;
-        if (newQuantity >= 1 && newQuantity <= (product.stock || 99)) {
+        const stockLimit = product.stock || 99;
+        if (newQuantity >= 1 && newQuantity <= stockLimit) {
             setQuantity(newQuantity);
         }
     };
@@ -49,8 +62,71 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
         toggleFavorite(product);
     };
 
-    const stockText = product.stock > 0 ? `${product.stock} unidades disponíveis` : 'Produto esgotado';
+    const isOutOfStock = !!(product.outOfStock || product.stock === 0);
+    const stockText = isOutOfStock ? 'Produto esgotado' : `${product.stock} unidades disponíveis`;
     const stockClass = product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-of-stock';
+
+    const iconMap = {
+        tipo: 'bi bi-tag',
+        uva: 'bi bi-cup-straw',
+        safra: 'bi bi-calendar-event',
+        teorAlcoolico: 'bi bi-percent',
+        volume: 'bi bi-cup-straw',
+        harmonizacao: 'bi bi-egg-fried',
+        tamanho: 'bi bi-rulers',
+        material: 'bi bi-box',
+        cores: 'bi bi-palette',
+        inclui: 'bi bi-gift',
+        recomendacao: 'bi bi-info-circle',
+        variedades: 'bi bi-grid-3x3-gap',
+        tipos: 'bi bi-list-ul',
+        peso: 'bi bi-arrow-down-up',
+        embalagem: 'bi bi-box-seam',
+        validade: 'bi bi-clock-history',
+        itens: 'bi bi-list-check',
+        petiscos: 'bi bi-cup-straw',
+        cervejas: 'bi bi-cup-straw',
+        flores: 'bi bi-flower1',
+        altura: 'bi bi-rulers',
+        embrulho: 'bi bi-gift',
+        acompanha: 'bi bi-envelope-paper',
+        durabilidade: 'bi bi-clock',
+        quantidade: 'bi bi-hash',
+        formato: 'bi bi-grid-3x3-gap',
+        origem: 'bi bi-globe-americas',
+        frase: 'bi bi-chat-quote'
+    };
+
+    const labelMap = {
+        tipo: 'Tipo',
+        uva: 'Uva',
+        safra: 'Safra',
+        teorAlcoolico: 'Teor alcoólico',
+        volume: 'Volume',
+        harmonizacao: 'Harmonização',
+        tamanho: 'Tamanho',
+        material: 'Material',
+        cores: 'Cores',
+        inclui: 'Inclui',
+        recomendacao: 'Recomendação',
+        variedades: 'Variedades',
+        tipos: 'Tipos',
+        peso: 'Peso',
+        embalagem: 'Embalagem',
+        validade: 'Validade',
+        itens: 'Itens',
+        petiscos: 'Petiscos',
+        cervejas: 'Cervejas',
+        flores: 'Flores',
+        altura: 'Altura',
+        embrulho: 'Embrulho',
+        acompanha: 'Acompanha',
+        durabilidade: 'Durabilidade',
+        quantidade: 'Quantidade',
+        formato: 'Formato',
+        origem: 'Origem',
+        frase: 'Frase'
+    };
 
     const getDetailsConfig = (details) => {
         if (!details) return { title: '', items: [] };
@@ -65,150 +141,112 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                     { icon: 'bi bi-thermometer-half', label: 'Temperatura', value: details.temperature },
                     { icon: 'bi bi-heart', label: 'Cuidados', value: details.care },
                     { icon: 'bi bi-exclamation-triangle', label: 'Toxicidade', value: details.toxicity }
-                ]
+                ].filter(item => item.value)
             };
         }
 
-        const iconMap = {
-            tipo: 'bi bi-tag',
-            uva: 'fa fa-wine-bottle',
-            safra: 'bi bi-calendar-event',
-            teorAlcoolico: 'bi bi-percent',
-            volume: 'bi bi-cup-straw',
-            harmonizacao: 'bi bi-egg-fried',
-            tamanho: 'bi bi-rulers',
-            material: 'bi bi-box',
-            cores: 'bi bi-palette',
-            inclui: 'bi bi-gift',
-            recomendacao: 'bi bi-info-circle',
-            variedades: 'bi bi-grid-3x3-gap',
-            tipos: 'bi bi-list-ul',
-            peso: 'bi bi-arrow-down-up',
-            embalagem: 'bi bi-box-seam',
-            validade: 'bi bi-clock-history',
-            itens: 'bi bi-list-check',
-            petiscos: 'bi bi-cup-straw',
-            cervejas: 'bi bi-cup-straw',
-            flores: 'bi bi-flower1',
-            altura: 'bi bi-rulers',
-            embrulho: 'bi bi-gift',
-            acompanha: 'bi bi-envelope-paper',
-            durabilidade: 'bi bi-clock',
-            quantidade: 'bi bi-hash',
-            formato: 'bi bi-grid-3x3-gap',
-            origem: 'bi bi-globe-americas',
-            frase: 'bi bi-chat-quote'
-        };
-
-        const labelMap = {
-            tipo: 'Tipo',
-            uva: 'Uva',
-            safra: 'Safra',
-            teorAlcoolico: 'Teor Alcoólico',
-            volume: 'Volume',
-            harmonizacao: 'Harmonização',
-            tamanho: 'Tamanho',
-            material: 'Material',
-            cores: 'Cores',
-            inclui: 'Inclui',
-            recomendacao: 'Recomendação',
-            variedades: 'Variedades',
-            tipos: 'Tipos',
-            peso: 'Peso',
-            embalagem: 'Embalagem',
-            validade: 'Validade',
-            itens: 'Itens',
-            petiscos: 'Petiscos',
-            cervejas: 'Cervejas',
-            flores: 'Flores',
-            altura: 'Altura',
-            embrulho: 'Embrulho',
-            acompanha: 'Acompanha',
-            durabilidade: 'Durabilidade',
-            quantidade: 'Quantidade',
-            formato: 'Formato',
-            origem: 'Origem',
-            frase: 'Frase'
-        };
-
         const items = Object.entries(details)
             .filter(([key, value]) => value && value !== '')
-            .map(([key, value]) => {
-                let icon = iconMap[key] || 'bi bi-info-circle';
-                if (key === 'uva') {
-                    icon = 'fa fa-wine-bottle';
-                }
-                return {
-                    icon: icon,
-                    label: labelMap[key] || key.charAt(0).toUpperCase() + key.slice(1),
-                    value: value
-                };
-            });
+            .map(([key, value]) => ({
+                icon: iconMap[key] || 'bi bi-info-circle',
+                label: labelMap[key] || key.charAt(0).toUpperCase() + key.slice(1),
+                value: value
+            }));
 
         return {
-            title: 'Detalhes do Produto',
+            title: 'Detalhes do produto',
             items: items
         };
     };
 
     const detailsConfig = getDetailsConfig(product.details);
 
+    const favoriteButton = (
+        <button
+            type="button"
+            className={`modal-fav ${isFav ? 'is-active' : ''}`}
+            onClick={handleToggleFavorite}
+            title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+            aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+            aria-pressed={isFav}
+        >
+            <i className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`} aria-hidden="true" />
+        </button>
+    );
+
     return (
         <div className="modal-overlay" onClick={onClose}>
-            <div className="product-modal" onClick={(e) => e.stopPropagation()}>
-                <button className="modal-close" onClick={onClose}>✕</button>
+            <div
+                className="product-modal"
+                onClick={(e) => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label={product.name}
+            >
+                <button
+                    type="button"
+                    className="modal-close"
+                    onClick={onClose}
+                    aria-label="Fechar"
+                >
+                    ✕
+                </button>
 
                 <div className="modal-content">
                     <ProductImageGallery
                         images={images}
                         alt={product.name}
                         productName={product.name}
+                        actionSlot={favoriteButton}
                     />
 
                     <div className="modal-info">
-                        <div className="modal-header-info">
+                        <header className="modal-header">
                             <h2 className="modal-title">{product.name}</h2>
-                            <button
-                                className={`modal-favorite-btn ${isFav ? 'active' : ''}`}
-                                onClick={handleToggleFavorite}
-                                title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-                            >
-                                <i className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`}></i>
-                            </button>
-                        </div>
-
-                        <div className="modal-rating">
-                            {renderRating(product.rating).map((star, i) => (
-                                <i key={i} className={`bi ${star}`}></i>
-                            ))}
-                            <span className="rating-text">({product.rating})</span>
-                        </div>
+                            {product.rating > 0 && (
+                                <div className="modal-rating" aria-hidden="true">
+                                    {renderRating(product.rating).map((star, i) => (
+                                        <i key={i} className={`bi ${star}`} />
+                                    ))}
+                                    <span className="modal-rating-text">({product.rating})</span>
+                                </div>
+                            )}
+                        </header>
 
                         <div className="modal-prices">
                             {product.oldPrice && (
-                                <span className="old-price">{formatCurrency(product.oldPrice)}</span>
+                                <span className="modal-old-price">{formatCurrency(product.oldPrice)}</span>
                             )}
-                            <span className="current-price">{formatCurrency(product.price)}</span>
+                            <span className="modal-price">{formatCurrency(product.price)}</span>
                         </div>
 
                         <div className={`modal-stock ${stockClass}`}>
-                            <i className={`bi ${product.stock > 0 ? 'bi-check-circle-fill' : 'bi-x-circle-fill'}`}></i>
-                            {stockText}
+                            <i
+                                className={`bi ${isOutOfStock ? 'bi-x-circle' : 'bi-check-circle'}`}
+                                aria-hidden="true"
+                            />
+                            <span>{stockText}</span>
                         </div>
 
-                        <div className="modal-description">
-                            <h4>{isPlanta ? 'Sobre a planta' : 'Sobre o produto'}</h4>
-                            <p>{product.description}</p>
-                        </div>
+                        {product.description && (
+                            <div className="modal-block">
+                                <h3 className="modal-block-title">
+                                    {isPlanta ? 'Sobre a planta' : 'Sobre o produto'}
+                                </h3>
+                                <p className="modal-block-text">{product.description}</p>
+                            </div>
+                        )}
 
                         {product.details && detailsConfig.items.length > 0 && (
-                            <div className="modal-details">
-                                <h4>{detailsConfig.title}</h4>
-                                <ul>
+                            <div className="modal-block">
+                                <h3 className="modal-block-title">{detailsConfig.title}</h3>
+                                <ul className="modal-details">
                                     {detailsConfig.items.map((item, index) => (
-                                        <li key={index}>
-                                            <i className={item.icon}></i>
-                                            <span><strong>{item.label}:</strong> {item.value}</span>
+                                        <li key={index} className="modal-details-item">
+                                            <i className={item.icon} aria-hidden="true" />
+                                            <span>
+                                                <strong>{item.label}:</strong> {item.value}
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
@@ -216,31 +254,36 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                         )}
 
                         <div className="modal-actions">
-                            <div className="quantity-control">
+                            <div className="modal-quantity">
                                 <button
-                                    className="qty-btn"
+                                    type="button"
+                                    className="modal-quantity-btn"
                                     onClick={() => handleQuantityChange(-1)}
                                     disabled={quantity <= 1}
+                                    aria-label="Diminuir quantidade"
                                 >
-                                    <i className="bi bi-dash"></i>
+                                    <i className="bi bi-dash" aria-hidden="true" />
                                 </button>
-                                <span className="qty-value">{quantity}</span>
+                                <span className="modal-quantity-value" aria-live="polite">{quantity}</span>
                                 <button
-                                    className="qty-btn"
+                                    type="button"
+                                    className="modal-quantity-btn"
                                     onClick={() => handleQuantityChange(1)}
                                     disabled={quantity >= (product.stock || 99)}
+                                    aria-label="Aumentar quantidade"
                                 >
-                                    <i className="bi bi-plus"></i>
+                                    <i className="bi bi-plus" aria-hidden="true" />
                                 </button>
                             </div>
 
                             <button
-                                className="add-to-cart-modal"
+                                type="button"
+                                className="modal-add"
                                 onClick={handleAddToCart}
-                                disabled={product.outOfStock || product.stock === 0}
+                                disabled={isOutOfStock}
                             >
-                                <i className="bi bi-cart-plus me-2"></i>
-                                Adicionar ao Carrinho
+                                <i className="bi bi-cart-plus" aria-hidden="true" />
+                                {isOutOfStock ? 'Indisponível' : 'Adicionar ao carrinho'}
                             </button>
                         </div>
                     </div>

@@ -29,18 +29,17 @@ function Carrinho() {
     });
 
     useEffect(() => {
-        // Tentar carregar dados salvos, se não houver, manter os estáticos
         const savedShipping = localStorage.getItem('shippingFormData');
         if (savedShipping) {
             try {
                 const parsed = JSON.parse(savedShipping);
-                // Só sobrescreve se tiver dados salvos
                 if (parsed.name || parsed.address) {
                     setFormData(parsed);
                 }
             } catch (e) {}
         }
-        setTimeout(() => setLoading(false), 1500);
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
     }, []);
 
     useEffect(() => {
@@ -96,7 +95,7 @@ function Carrinho() {
     const handleCheckout = (e) => {
         e.preventDefault();
         if (cart.length === 0) return;
-        
+
         localStorage.setItem('customerData', JSON.stringify(formData));
         localStorage.setItem('cart', JSON.stringify(cart));
         navigate('/pagamento');
@@ -142,32 +141,42 @@ function Carrinho() {
             <div className="carrinho-page">
                 <div className="cart-container">
                     <FadeIn direction="up">
-                        <div className="cart-header">
-                            <h1>Meu Carrinho</h1>
-                            <p>Revise seus itens antes de finalizar a compra</p>
-                        </div>
+                        <header className="cart-header">
+                            <p className="cart-eyebrow">
+                                <span className="cart-eyebrow-line" />
+                                Etapa 1 de 3
+                            </p>
+                            <h1 className="cart-title">
+                                Meu <em className="cart-hand">carrinho.</em>
+                            </h1>
+                        </header>
                     </FadeIn>
 
-                    <div className="cart-steps">
-                        <div className="step completed">
-                            <div className="step-number">1</div>
-                            <div className="step-title">Carrinho</div>
+                    <nav className="cart-steps" aria-label="Etapas do pedido">
+                        <div className="cart-step is-active">
+                            <span className="cart-step-number">1</span>
+                            <span className="cart-step-label">Carrinho</span>
                         </div>
-                        <div className="step">
-                            <div className="step-number">2</div>
-                            <div className="step-title">Pagamento</div>
+                        <div className="cart-step">
+                            <span className="cart-step-number">2</span>
+                            <span className="cart-step-label">Pagamento</span>
                         </div>
-                        <div className="step">
-                            <div className="step-number">3</div>
-                            <div className="step-title">Confirmação</div>
+                        <div className="cart-step">
+                            <span className="cart-step-number">3</span>
+                            <span className="cart-step-label">Confirmação</span>
                         </div>
-                    </div>
+                    </nav>
 
-                    <div className="empty-cart-full">
-                        <i className="bi bi-cart-x"></i>
-                        <h3>Seu carrinho está vazio</h3>
-                        <p>Adicione produtos para continuar com sua compra</p>
-                        <Link to="/" className="btn btn-success">Voltar às Compras</Link>
+                    <div className="cart-empty">
+                        <i className="bi bi-cart-x cart-empty-icon" aria-hidden="true" />
+                        <h2 className="cart-empty-title">Seu carrinho está vazio.</h2>
+                        <p className="cart-empty-text">
+                            Adicione produtos para continuar com a compra.
+                        </p>
+                        <Link to="/" className="cart-btn cart-btn-primary">
+                            <span className="cart-btn-icon" aria-hidden="true">↗</span>
+                            Voltar às compras
+                        </Link>
                     </div>
                 </div>
                 <Footer />
@@ -179,30 +188,35 @@ function Carrinho() {
         <div className="carrinho-page">
             <div className="cart-container">
                 <FadeIn direction="up">
-                    <div className="cart-header">
-                        <h1>Meu Carrinho</h1>
-                        <p>Revise seus itens antes de finalizar a compra</p>
-                    </div>
+                    <header className="cart-header">
+                        <p className="cart-eyebrow">
+                            <span className="cart-eyebrow-line" />
+                            Etapa 1 de 3
+                        </p>
+                        <h1 className="cart-title">
+                            Meu <em className="cart-hand">carrinho.</em>
+                        </h1>
+                    </header>
                 </FadeIn>
 
-                <div className="cart-steps">
-                    <div className="step completed">
-                        <div className="step-number">1</div>
-                        <div className="step-title">Carrinho</div>
+                <nav className="cart-steps" aria-label="Etapas do pedido">
+                    <div className="cart-step is-active">
+                        <span className="cart-step-number">1</span>
+                        <span className="cart-step-label">Carrinho</span>
                     </div>
-                    <div className="step">
-                        <div className="step-number">2</div>
-                        <div className="step-title">Pagamento</div>
+                    <div className="cart-step">
+                        <span className="cart-step-number">2</span>
+                        <span className="cart-step-label">Pagamento</span>
                     </div>
-                    <div className="step">
-                        <div className="step-number">3</div>
-                        <div className="step-title">Confirmação</div>
+                    <div className="cart-step">
+                        <span className="cart-step-number">3</span>
+                        <span className="cart-step-label">Confirmação</span>
                     </div>
-                </div>
+                </nav>
 
-                <div className="row">
-                    <div className="col-lg-8">
-                        <div className="table-responsive">
+                <div className="cart-grid">
+                    <div className="cart-main">
+                        <div className="cart-table-wrap">
                             <table className="cart-table">
                                 <thead>
                                     <tr>
@@ -210,37 +224,45 @@ function Carrinho() {
                                         <th>Preço</th>
                                         <th>Quantidade</th>
                                         <th>Subtotal</th>
-                                        <th>Ações</th>
+                                        <th aria-label="Ações" />
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {cart.map((item) => (
                                         <tr key={item.id}>
                                             <td data-label="Produto">
-                                                <div className="d-flex align-items-center">
-                                                    <img src={item.image} className="cart-item-img me-3" alt={item.name} />
-                                                    <div>
-                                                        <h5 className="mb-1">{item.name}</h5>
-                                                        <small className="text-muted">Código: {item.id}</small>
+                                                <div className="cart-item-info">
+                                                    <img
+                                                        src={item.image}
+                                                        className="cart-item-img"
+                                                        alt={item.name}
+                                                    />
+                                                    <div className="cart-item-meta">
+                                                        <p className="cart-item-name">{item.name}</p>
+                                                        <p className="cart-item-code">Código: {item.id}</p>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td data-label="Preço">{formatCurrency(item.price)}</td>
+                                            <td data-label="Preço" className="cart-cell-price">
+                                                {formatCurrency(item.price)}
+                                            </td>
                                             <td data-label="Quantidade">
-                                                <div className="quantity-control">
-                                                    <button 
-                                                        className="quantity-btn minus"
+                                                <div className="cart-quantity">
+                                                    <button
+                                                        className="cart-quantity-btn"
                                                         onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
                                                         disabled={item.quantity <= 1}
+                                                        aria-label="Diminuir quantidade"
                                                     >
-                                                        <i className="bi bi-dash"></i>
+                                                        <i className="bi bi-dash" aria-hidden="true" />
                                                     </button>
-                                                    <input 
-                                                        type="number" 
-                                                        className="quantity-input" 
+                                                    <input
+                                                        type="number"
+                                                        className="cart-quantity-input"
                                                         value={item.quantity}
                                                         min="1"
                                                         max="10"
+                                                        aria-label="Quantidade"
                                                         onChange={(e) => {
                                                             const val = parseInt(e.target.value);
                                                             if (!isNaN(val) && val >= 1 && val <= 10) {
@@ -249,29 +271,37 @@ function Carrinho() {
                                                             }
                                                         }}
                                                     />
-                                                    <button 
-                                                        className="quantity-btn plus"
+                                                    <button
+                                                        className="cart-quantity-btn"
                                                         onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
                                                         disabled={item.quantity >= 10}
+                                                        aria-label="Aumentar quantidade"
                                                     >
-                                                        <i className="bi bi-plus"></i>
+                                                        <i className="bi bi-plus" aria-hidden="true" />
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td data-label="Subtotal">{formatCurrency(item.price * item.quantity)}</td>
+                                            <td data-label="Subtotal" className="cart-cell-subtotal">
+                                                {formatCurrency(item.price * item.quantity)}
+                                            </td>
                                             <td>
-                                                <div className="d-flex gap-1 align-items-center">
-                                                    <button 
-                                                        className="btn btn-view-cart btn-sm"
+                                                <div className="cart-item-actions">
+                                                    <button
+                                                        className="cart-item-action"
                                                         onClick={() => openModal(item)}
-                                                        title="Visualizar detalhes"
+                                                        aria-label="Ver detalhes"
+                                                        title="Ver detalhes"
                                                     >
-                                                        <i className="bi bi-eye"></i>
+                                                        <i className="bi bi-eye" aria-hidden="true" />
                                                     </button>
-                                                    <i 
-                                                        className="bi bi-trash remove-item" 
+                                                    <button
+                                                        className="cart-item-action cart-item-action-danger"
                                                         onClick={() => handleRemoveClick(item)}
-                                                    ></i>
+                                                        aria-label="Remover item"
+                                                        title="Remover item"
+                                                    >
+                                                        <i className="bi bi-trash" aria-hidden="true" />
+                                                    </button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -281,50 +311,50 @@ function Carrinho() {
                         </div>
 
                         <div className="cart-actions">
-                            <button onClick={goBack} className="btn btn-outline-secondary">
-                                <i className="bi bi-arrow-left me-2"></i>Continuar Comprando
+                            <button onClick={goBack} className="cart-btn cart-btn-ghost">
+                                Continuar comprando
                             </button>
-                            <button 
-                                className="btn btn-outline-danger" 
+                            <button
+                                className="cart-btn cart-btn-ghost cart-btn-danger"
                                 onClick={() => setShowClearModal(true)}
                             >
-                                <i className="bi bi-trash me-2"></i>Limpar Carrinho
+                                Limpar carrinho
                             </button>
                         </div>
                     </div>
 
-                    <div className="col-lg-4">
+                    <aside className="cart-aside">
                         <div className="cart-summary">
-                            <h4>Resumo do Pedido</h4>
+                            <h2 className="cart-summary-title">Resumo do pedido</h2>
 
-                            <div className="summary-row">
+                            <div className="cart-summary-row">
                                 <span>Subtotal</span>
                                 <span>{formatCurrency(totals.subtotal)}</span>
                             </div>
-                            <div className="summary-row">
+                            <div className="cart-summary-row">
                                 <span>Frete</span>
-                                <span>{formatCurrency(totals.shipping)}</span>
+                                <span>{totals.shipping === 0 ? 'Grátis' : formatCurrency(totals.shipping)}</span>
                             </div>
-                            <div className="summary-row">
+                            <div className="cart-summary-row">
                                 <span>Desconto</span>
-                                <span className="text-success">
-                                    {totals.discount > 0 ? `-${formatCurrency(totals.discount)}` : formatCurrency(0)}
+                                <span className="cart-summary-discount">
+                                    {totals.discount > 0 ? `- ${formatCurrency(totals.discount)}` : '—'}
                                 </span>
                             </div>
-                            <div className="summary-row total">
+                            <div className="cart-summary-row cart-summary-total">
                                 <span>Total</span>
                                 <span>{formatCurrency(totals.total)}</span>
                             </div>
 
-                            <form onSubmit={handleCheckout} className="shipping-form">
-                                <h5 className="mt-4 mb-3">Dados de Entrega</h5>
+                            <form onSubmit={handleCheckout} className="cart-shipping">
+                                <h3 className="cart-shipping-title">Dados de entrega</h3>
 
-                                <div className="mb-3">
-                                    <label htmlFor="customer-name" className="form-label">Nome Completo *</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="customer-name" 
+                                <div className="cart-field">
+                                    <label htmlFor="customer-name" className="cart-label">Nome completo *</label>
+                                    <input
+                                        type="text"
+                                        className="cart-input"
+                                        id="customer-name"
                                         placeholder="Digite seu nome completo"
                                         value={formData.name}
                                         onChange={handleInputChange}
@@ -332,12 +362,12 @@ function Carrinho() {
                                     />
                                 </div>
 
-                                <div className="mb-3">
-                                    <label htmlFor="customer-address" className="form-label">Endereço *</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="customer-address" 
+                                <div className="cart-field">
+                                    <label htmlFor="customer-address" className="cart-label">Endereço *</label>
+                                    <input
+                                        type="text"
+                                        className="cart-input"
+                                        id="customer-address"
                                         placeholder="Rua, número, complemento"
                                         value={formData.address}
                                         onChange={handleInputChange}
@@ -345,29 +375,29 @@ function Carrinho() {
                                     />
                                 </div>
 
-                                <div className="row g-2 mb-3">
-                                    <div className="col-md-6">
-                                        <label htmlFor="customer-city" className="form-label">Cidade *</label>
-                                        <input 
-                                            type="text" 
-                                            className="form-control" 
-                                            id="customer-city" 
+                                <div className="cart-field-row">
+                                    <div className="cart-field">
+                                        <label htmlFor="customer-city" className="cart-label">Cidade *</label>
+                                        <input
+                                            type="text"
+                                            className="cart-input"
+                                            id="customer-city"
                                             placeholder="Digite sua cidade"
                                             value={formData.city}
                                             onChange={handleInputChange}
                                             required
                                         />
                                     </div>
-                                    <div className="col-md-6">
-                                        <label htmlFor="customer-state" className="form-label">Estado *</label>
-                                        <select 
-                                            className="form-control" 
-                                            id="customer-state" 
+                                    <div className="cart-field">
+                                        <label htmlFor="customer-state" className="cart-label">Estado *</label>
+                                        <select
+                                            className="cart-input cart-select"
+                                            id="customer-state"
                                             value={formData.state}
                                             onChange={handleInputChange}
                                             required
                                         >
-                                            <option value="">Selecione...</option>
+                                            <option value="">UF</option>
                                             <option value="SP">SP</option>
                                             <option value="RJ">RJ</option>
                                             <option value="MG">MG</option>
@@ -399,12 +429,12 @@ function Carrinho() {
                                     </div>
                                 </div>
 
-                                <div className="mb-3">
-                                    <label htmlFor="customer-zip" className="form-label">CEP *</label>
-                                    <input 
-                                        type="text" 
-                                        className="form-control" 
-                                        id="customer-zip" 
+                                <div className="cart-field">
+                                    <label htmlFor="customer-zip" className="cart-label">CEP *</label>
+                                    <input
+                                        type="text"
+                                        className="cart-input"
+                                        id="customer-zip"
                                         placeholder="00000-000"
                                         value={formData.zip}
                                         onChange={handleInputChange}
@@ -412,16 +442,16 @@ function Carrinho() {
                                     />
                                 </div>
 
-                                <button type="submit" className="btn btn-success">
-                                    <i className="bi bi-credit-card me-2"></i>Finalizar Compra
+                                <button type="submit" className="cart-btn cart-btn-primary cart-btn-block">
+                                    Finalizar compra
                                 </button>
                             </form>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
 
-            <ProductModal 
+            <ProductModal
                 product={selectedProduct}
                 isOpen={isModalOpen}
                 onClose={closeModal}
@@ -431,24 +461,20 @@ function Carrinho() {
 
             {showRemoveModal && (
                 <div className="modal-overlay" onClick={() => setShowRemoveModal(false)}>
-                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close-x" onClick={() => setShowRemoveModal(false)}>✕</button>
-                        <div className="text-center">
-                            <i className="bi bi-exclamation-triangle text-warning display-4 mb-3"></i>
-                            <h5>Remover item do carrinho?</h5>
-                            <p>Tem certeza que deseja remover <strong>{itemToRemove?.name}</strong> do carrinho?</p>
+                    <div className="modal-box modal-small" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close-x" onClick={() => setShowRemoveModal(false)} aria-label="Fechar">✕</button>
+                        <div className="modal-confirm">
+                            <i className="bi bi-exclamation-circle modal-confirm-icon" aria-hidden="true" />
+                            <h3 className="modal-title">Remover item do carrinho?</h3>
+                            <p className="modal-text">
+                                Tem certeza que deseja remover <strong>{itemToRemove?.name}</strong> do carrinho?
+                            </p>
                         </div>
-                        <div className="d-flex justify-content-center gap-3 mt-3">
-                            <button 
-                                className="btn btn-secondary" 
-                                onClick={() => setShowRemoveModal(false)}
-                            >
+                        <div className="modal-actions">
+                            <button className="cart-btn cart-btn-ghost" onClick={() => setShowRemoveModal(false)}>
                                 Cancelar
                             </button>
-                            <button 
-                                className="btn btn-danger" 
-                                onClick={confirmRemove}
-                            >
+                            <button className="cart-btn cart-btn-primary" onClick={confirmRemove}>
                                 Remover
                             </button>
                         </div>
@@ -458,25 +484,19 @@ function Carrinho() {
 
             {showClearModal && (
                 <div className="modal-overlay" onClick={() => setShowClearModal(false)}>
-                    <div className="modal-box" onClick={(e) => e.stopPropagation()}>
-                        <button className="modal-close-x" onClick={() => setShowClearModal(false)}>✕</button>
-                        <div className="text-center">
-                            <i className="bi bi-exclamation-triangle text-warning display-4 mb-3"></i>
-                            <h5>Tem certeza que deseja limpar seu carrinho?</h5>
-                            <p>Todos os itens serão removidos.</p>
+                    <div className="modal-box modal-small" onClick={(e) => e.stopPropagation()}>
+                        <button className="modal-close-x" onClick={() => setShowClearModal(false)} aria-label="Fechar">✕</button>
+                        <div className="modal-confirm">
+                            <i className="bi bi-exclamation-circle modal-confirm-icon" aria-hidden="true" />
+                            <h3 className="modal-title">Limpar carrinho?</h3>
+                            <p className="modal-text">Todos os itens serão removidos.</p>
                         </div>
-                        <div className="d-flex justify-content-center gap-3 mt-3">
-                            <button 
-                                className="btn btn-secondary" 
-                                onClick={() => setShowClearModal(false)}
-                            >
+                        <div className="modal-actions">
+                            <button className="cart-btn cart-btn-ghost" onClick={() => setShowClearModal(false)}>
                                 Cancelar
                             </button>
-                            <button 
-                                className="btn btn-danger" 
-                                onClick={handleClearCart}
-                            >
-                                Limpar Carrinho
+                            <button className="cart-btn cart-btn-primary" onClick={handleClearCart}>
+                                Limpar carrinho
                             </button>
                         </div>
                     </div>

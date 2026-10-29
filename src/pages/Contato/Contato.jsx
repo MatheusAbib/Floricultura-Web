@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useCart } from '../../context/CartContext';
 import FadeIn from '../../components/FadeIn/FadeIn';
-import './Contato.scss';
 import Footer from '../../components/Footer/Footer';
+import './Contato.scss';
 
 function Contato() {
     const [loading, setLoading] = useState(true);
-    const [notification, setNotification] = useState(null);
+    const { showNotification } = useCart();
     const [formData, setFormData] = useState({
         nome: '',
         email: '',
@@ -16,7 +17,8 @@ function Contato() {
     const formRef = useRef(null);
 
     useEffect(() => {
-        setTimeout(() => setLoading(false), 1500);
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
     }, []);
 
     const handleChange = (e) => {
@@ -28,14 +30,9 @@ function Contato() {
         }));
     };
 
-    const showNotification = (message, type = 'success') => {
-        setNotification({ message, type });
-        setTimeout(() => setNotification(null), 3000);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        showNotification('Mensagem enviada com sucesso! Entraremos em contato em breve.', 'success');
+        showNotification('Mensagem enviada. Respondemos em até 24h úteis.', 'success');
         formRef.current?.reset();
         setFormData({
             nome: '',
@@ -56,7 +53,7 @@ function Contato() {
             assunto: 'Dúvida',
             mensagem: ''
         });
-        showNotification('Formulário limpo com sucesso!', 'info');
+        showNotification('Formulário limpo.', 'info');
     };
 
     if (loading) {
@@ -69,239 +66,241 @@ function Contato() {
 
     return (
         <div className="contato-page">
-            <section className="contact-hero">
-                <div className="container text-center">
-                    <FadeIn direction="down">
-                        <h1 className="contact-hero-title">Fale Conosco</h1>
+            <section className="ct-hero">
+                <FadeIn direction="down">
+                    <p className="ct-eyebrow">
+                        <span className="ct-eyebrow-line" />
+                        Atendimento
+                    </p>
+                </FadeIn>
+                <FadeIn direction="down" delay={100}>
+                    <h1 className="ct-hero-title">
+                        Fale <em className="ct-hand">conosco.</em>
+                    </h1>
+                </FadeIn>
+                <FadeIn direction="up" delay={200}>
+                    <p className="ct-hero-text">
+                        Dúvidas sobre pedidos, entrega ou produtos: mande uma mensagem.
+                        Respondemos em até 24h úteis. Para urgências, ligue para a loja.
+                    </p>
+                </FadeIn>
+            </section>
+
+            <section className="ct-form-section">
+                <div className="ct-form-inner">
+                    <div className="ct-form-header">
+                        <FadeIn direction="up">
+                            <p className="ct-eyebrow">
+                                <span className="ct-eyebrow-line" />
+                                Formulário
+                            </p>
+                        </FadeIn>
+                        <FadeIn direction="up" delay={100}>
+                            <h2 className="ct-section-title">
+                                Envie sua <em className="ct-hand">mensagem.</em>
+                            </h2>
+                        </FadeIn>
+                    </div>
+
+                    <FadeIn direction="up" delay={150}>
+                        <form ref={formRef} onSubmit={handleSubmit} id="contatoForm" className="ct-form">
+                            <div className="ct-form-row">
+                                <div className="ct-field">
+                                    <label htmlFor="txtNome" className="ct-label">Nome completo</label>
+                                    <input
+                                        type="text"
+                                        id="txtNome"
+                                        name="nome"
+                                        className="ct-input"
+                                        placeholder="Como podemos te chamar"
+                                        value={formData.nome}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="ct-field">
+                                    <label htmlFor="txtEmail" className="ct-label">E-mail</label>
+                                    <input
+                                        type="email"
+                                        id="txtEmail"
+                                        name="email"
+                                        className="ct-input"
+                                        placeholder="voce@email.com"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="ct-form-row">
+                                <div className="ct-field">
+                                    <label htmlFor="txtTelefone" className="ct-label">Telefone (opcional)</label>
+                                    <input
+                                        type="tel"
+                                        id="txtTelefone"
+                                        name="telefone"
+                                        className="ct-input"
+                                        placeholder="(11) 90000-0000"
+                                        value={formData.telefone}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <div className="ct-field">
+                                    <label htmlFor="txtAssunto" className="ct-label">Assunto</label>
+                                    <select
+                                        id="txtAssunto"
+                                        name="assunto"
+                                        className="ct-input ct-select"
+                                        value={formData.assunto}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="Dúvida">Dúvida</option>
+                                        <option value="Sugestão">Sugestão</option>
+                                        <option value="Reclamação">Reclamação</option>
+                                        <option value="Elogio">Elogio</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="ct-field">
+                                <label htmlFor="txtMensagem" className="ct-label">Mensagem</label>
+                                <textarea
+                                    id="txtMensagem"
+                                    name="mensagem"
+                                    className="ct-input ct-textarea"
+                                    placeholder="Detalhe sua dúvida ou pedido"
+                                    value={formData.mensagem}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="ct-actions">
+                                <button type="submit" className="ct-btn ct-btn-primary">
+                                    <span className="ct-btn-icon" aria-hidden="true">↗</span>
+                                    Enviar
+                                </button>
+                                <button type="button" className="ct-btn ct-btn-ghost" onClick={handleReset}>
+                                    Limpar
+                                </button>
+                            </div>
+                        </form>
+                    </FadeIn>
+                </div>
+            </section>
+
+            <section className="ct-info-section">
+                <div className="ct-info-inner">
+                    <FadeIn direction="up">
+                        <p className="ct-eyebrow">
+                            <span className="ct-eyebrow-line" />
+                            Outros canais
+                        </p>
                     </FadeIn>
                     <FadeIn direction="up" delay={100}>
-                        <p className="lead">Estamos aqui para ajudar e responder todas as suas dúvidas</p>
+                        <h2 className="ct-section-title">
+                            Também dá para <em className="ct-hand">falar.</em>
+                        </h2>
                     </FadeIn>
-                </div>
-            </section>
 
-            <section className="py-5">
-                <div className="container">
-                    <div className="row justify-content-center">
-                        <div className="col-lg-8">
-                            <FadeIn direction="up">
-                                <div className="contact-card">
-                                    <h2 className="section-title text-center mb-4">Envie sua Mensagem</h2>
-                                    <p className="text-center mb-5">Preencha o formulário abaixo e entraremos em contato o mais breve possível.</p>
+                    <div className="ct-info-grid">
+                        <FadeIn direction="up" delay={150}>
+                            <div className="ct-info-card">
+                                <i className="bi bi-telephone ct-info-icon" aria-hidden="true" />
+                                <h3 className="ct-info-title">Telefone</h3>
+                                <p className="ct-info-line">(11) 4799-9999</p>
+                                <p className="ct-info-line ct-info-line-muted">Segunda a sexta, 9h às 18h</p>
+                                <p className="ct-info-line ct-info-line-muted">Sábado, 9h às 13h</p>
+                            </div>
+                        </FadeIn>
 
-                                    <form ref={formRef} onSubmit={handleSubmit} id="contatoForm">
-                                        <div className="row g-3">
-                                            <div className="col-md-6">
-                                                <div className="form-floating mb-3">
-                                                    <input 
-                                                        type="text" 
-                                                        id="txtNome" 
-                                                        name="nome" 
-                                                        className="form-control" 
-                                                        placeholder=" "
-                                                        value={formData.nome}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                    <label htmlFor="txtNome">Nome Completo</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-floating mb-3">
-                                                    <input 
-                                                        type="email" 
-                                                        id="txtEmail" 
-                                                        name="email" 
-                                                        className="form-control" 
-                                                        placeholder=" "
-                                                        value={formData.email}
-                                                        onChange={handleChange}
-                                                        required
-                                                    />
-                                                    <label htmlFor="txtEmail">E-mail</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-floating mb-3">
-                                                    <input 
-                                                        type="tel" 
-                                                        id="txtTelefone" 
-                                                        name="telefone" 
-                                                        className="form-control" 
-                                                        placeholder=" "
-                                                        value={formData.telefone}
-                                                        onChange={handleChange}
-                                                    />
-                                                    <label htmlFor="txtTelefone">Telefone (opcional)</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-md-6">
-                                                <div className="form-floating mb-3">
-                                                    <select 
-                                                        className="form-select" 
-                                                        id="txtAssunto" 
-                                                        name="assunto"
-                                                        value={formData.assunto}
-                                                        onChange={handleChange}
-                                                    >
-                                                        <option value="Dúvida">Dúvida</option>
-                                                        <option value="Sugestão">Sugestão</option>
-                                                        <option value="Reclamação">Reclamação</option>
-                                                        <option value="Elogio">Elogio</option>
-                                                        <option value="Outro">Outro</option>
-                                                    </select>
-                                                    <label htmlFor="txtAssunto">Assunto</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-12">
-                                                <div className="form-floating mb-4">
-                                                    <textarea 
-                                                        id="txtMensagem" 
-                                                        name="mensagem" 
-                                                        className="form-control" 
-                                                        placeholder=" " 
-                                                        style={{ height: '150px' }}
-                                                        value={formData.mensagem}
-                                                        onChange={handleChange}
-                                                        required
-                                                    ></textarea>
-                                                    <label htmlFor="txtMensagem">Mensagem</label>
-                                                </div>
-                                            </div>
-                                            <div className="col-12 text-center">
-                                                <button type="submit" className="btn btn-success me-3">
-                                                    <i className="bi bi-send-fill me-2"></i>Enviar
-                                                </button>
-                                                <button type="button" className="btn btn-outline-success" onClick={handleReset}>
-                                                    <i className="bi bi-eraser-fill me-2"></i>Limpar
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </FadeIn>
-                        </div>
+                        <FadeIn direction="up" delay={250}>
+                            <div className="ct-info-card">
+                                <i className="bi bi-envelope ct-info-icon" aria-hidden="true" />
+                                <h3 className="ct-info-title">E-mail</h3>
+                                <p className="ct-info-line">contato@damadanoite.com.br</p>
+                                <p className="ct-info-line">suporte@damadanoite.com.br</p>
+                                <p className="ct-info-line ct-info-line-muted">Resposta em até 24h úteis</p>
+                            </div>
+                        </FadeIn>
+
+                        <FadeIn direction="up" delay={350}>
+                            <div className="ct-info-card">
+                                <i className="bi bi-geo-alt ct-info-icon" aria-hidden="true" />
+                                <h3 className="ct-info-title">Endereço</h3>
+                                <p className="ct-info-line">Rua Jurandyr de Oliveira, 46</p>
+                                <p className="ct-info-line">Mogi das Cruzes — SP</p>
+                                <p className="ct-info-line ct-info-line-muted">CEP 08773-000</p>
+                            </div>
+                        </FadeIn>
                     </div>
                 </div>
             </section>
 
-            {notification && (
-                <div className={`notification notification-${notification.type}`}>
-                    <i className={`bi ${notification.type === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'}`}></i>
-                    {notification.message}
-                </div>
-            )}
-
-            <section className="py-5 bg-light">
-                <div className="container">
+            <section className="ct-faq-section">
+                <div className="ct-faq-inner">
                     <FadeIn direction="up">
-                        <h2 className="text-center mb-5">Outras Formas de Contato</h2>
+                        <p className="ct-eyebrow">
+                            <span className="ct-eyebrow-line" />
+                            Dúvidas comuns
+                        </p>
+                    </FadeIn>
+                    <FadeIn direction="up" delay={100}>
+                        <h2 className="ct-section-title">
+                            Perguntas <em className="ct-hand">frequentes.</em>
+                        </h2>
                     </FadeIn>
 
-                    <div className="row g-4">
-                        <div className="col-md-4">
-                            <FadeIn direction="up" delay={0}>
-                                <div className="contact-info-card">
-                                    <div className="contact-icon">
-                                        <i className="bi bi-telephone-fill"></i>
-                                    </div>
-                                    <h4>Telefone</h4>
-                                    <p>(11) 4799-9999</p>
-                                    <p>Segunda a Sexta: 9h às 18h</p>
-                                    <p>Sábado: 9h às 13h</p>
+                    <div className="ct-faq-list">
+                        <FadeIn direction="up" delay={150}>
+                            <details className="ct-faq-item">
+                                <summary className="ct-faq-question">
+                                    Qual o prazo de resposta?
+                                    <span className="ct-faq-icon" aria-hidden="true">+</span>
+                                </summary>
+                                <div className="ct-faq-answer">
+                                    <p>Respondemos todas as mensagens em até 24h úteis. Para urgências, ligue para a loja.</p>
                                 </div>
-                            </FadeIn>
-                        </div>
+                            </details>
+                        </FadeIn>
 
-                        <div className="col-md-4">
-                            <FadeIn direction="up" delay={100}>
-                                <div className="contact-info-card">
-                                    <div className="contact-icon">
-                                        <i className="bi bi-envelope-fill"></i>
-                                    </div>
-                                    <h4>E-mail</h4>
-                                    <p>contato@floriculturaweb.com.br</p>
-                                    <p>suporte@floriculturaweb.com.br</p>
-                                    <p>Respondemos em até 24h</p>
+                        <FadeIn direction="up" delay={200}>
+                            <details className="ct-faq-item">
+                                <summary className="ct-faq-question">
+                                    Quais os horários de atendimento?
+                                    <span className="ct-faq-icon" aria-hidden="true">+</span>
+                                </summary>
+                                <div className="ct-faq-answer">
+                                    <p>De segunda a sexta, das 9h às 18h. Aos sábados, das 9h às 13h. Fechado aos domingos e feriados.</p>
                                 </div>
-                            </FadeIn>
-                        </div>
+                            </details>
+                        </FadeIn>
 
-                        <div className="col-md-4">
-                            <FadeIn direction="up" delay={200}>
-                                <div className="contact-info-card">
-                                    <div className="contact-icon">
-                                        <i className="bi bi-geo-alt-fill"></i>
-                                    </div>
-                                    <h4>Endereço</h4>
-                                    <p>Rua Jurandyr de Oliveira, 46</p>
-                                    <p>Mogi das Cruzes - SP</p>
-                                    <p>CEP: 08773-000</p>
-                                </div>
-                            </FadeIn>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section className="py-5">
-                <div className="container">
-                    <FadeIn direction="up">
-                        <h2 className="text-center mb-5">Perguntas Frequentes</h2>
-                    </FadeIn>
-
-                    <div className="accordion" id="faqAccordion">
-                        <div className="accordion-item mb-3 border-0 shadow-sm">
-                            <h2 className="accordion-header" id="headingOne">
-                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
-                                    Qual o prazo para resposta das mensagens?
-                                </button>
-                            </h2>
-                            <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                                <div className="accordion-body">
-                                    Nossa equipe se compromete a responder todas as mensagens em até 24 horas úteis. Para assuntos mais urgentes, recomendamos o contato por telefone.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="accordion-item mb-3 border-0 shadow-sm">
-                            <h2 className="accordion-header" id="headingTwo">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
-                                    Quais são os horários de atendimento?
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div className="accordion-body">
-                                    Atendemos de segunda a sexta-feira das 9h às 18h, e aos sábados das 9h às 13h. Não trabalhamos aos domingos e feriados.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="accordion-item mb-3 border-0 shadow-sm">
-                            <h2 className="accordion-header" id="headingThree">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                        <FadeIn direction="up" delay={250}>
+                            <details className="ct-faq-item">
+                                <summary className="ct-faq-question">
                                     Posso visitar a loja física?
-                                </button>
-                            </h2>
-                            <div id="collapseThree" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div className="accordion-body">
-                                    Sim! Nossa loja física está localizada na Rua Jurandyr de Oliveira, 46 em Mogi das Cruzes - SP. Recomendamos agendar sua visita pelo telefone para garantir melhor atendimento.
+                                    <span className="ct-faq-icon" aria-hidden="true">+</span>
+                                </summary>
+                                <div className="ct-faq-answer">
+                                    <p>Sim. Estamos na Rua Jurandyr de Oliveira, 46, em Mogi das Cruzes. Se quiser atendimento dedicado, ligue antes e agendamos.</p>
                                 </div>
-                            </div>
-                        </div>
+                            </details>
+                        </FadeIn>
 
-                        <div className="accordion-item mb-3 border-0 shadow-sm">
-                            <h2 className="accordion-header" id="headingFour">
-                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
-                                    Como faço para rastrear meu pedido?
-                                </button>
-                            </h2>
-                            <div id="collapseFour" className="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div className="accordion-body">
-                                    Após a confirmação do pedido, enviamos um e-mail com o código de rastreio. Caso não tenha recebido, entre em contato conosco pelo telefone ou WhatsApp.
+                        <FadeIn direction="up" delay={300}>
+                            <details className="ct-faq-item">
+                                <summary className="ct-faq-question">
+                                    Como rastrear um pedido?
+                                    <span className="ct-faq-icon" aria-hidden="true">+</span>
+                                </summary>
+                                <div className="ct-faq-answer">
+                                    <p>Enviamos o código de rastreio por e-mail após a confirmação. Se não chegou, chame no telefone ou WhatsApp com o número do pedido.</p>
                                 </div>
-                            </div>
-                        </div>
+                            </details>
+                        </FadeIn>
                     </div>
                 </div>
             </section>

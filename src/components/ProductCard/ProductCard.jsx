@@ -17,6 +17,8 @@ function ProductCard({
     const [isAdded, setIsAdded] = useState(false);
     const { toggleFavorite, isFavorite } = useFavorites();
     const isFav = product ? isFavorite(product.id) : false;
+    const isOutOfStock = !!(product.outOfStock || product.stock === 0);
+    const justAdded = isAdded || addedProductId === product.id;
 
     const handleAddToCart = () => {
         onAddToCart(product);
@@ -30,106 +32,116 @@ function ProductCard({
 
     const highlightText = (text, term) => {
         if (!term || !term.trim()) return text;
-        const regex = new RegExp(`(${term.trim()})`, 'gi');
+
+        const regex = new RegExp(`(${term.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+
         return text.split(regex).map((part, i) =>
-            regex.test(part) ? <mark key={i} className="search-highlight">{part}</mark> : part
+            i % 2 === 1 ? (
+                <mark key={i} className="product-highlight">
+                    {part}
+                </mark>
+            ) : (
+                part
+            )
         );
     };
 
-    const getBadgeClass = (badge) => {
-        const classes = {
-            new: 'badge-new',
-            bestseller: 'badge-bestseller',
-            sale: 'badge-sale'
-        };
-        return classes[badge] || '';
-    };
-
-    const getBadgeText = (badge) => {
-        const texts = {
-            new: 'Novo',
-            bestseller: 'Mais Vendido',
-            sale: 'Promoção'
-        };
-        return texts[badge] || '';
-    };
+    const badgeClass = product.badge ? `badge-${product.badge}` : '';
+    const badgeLabel = product.badge === 'new' ? 'Novo'
+        : product.badge === 'bestseller' ? 'Mais vendido'
+        : product.badge === 'sale' ? 'Promoção'
+        : '';
 
     return (
-        <div className="product-card-item">
-            <div className="card h-100">
-                <div className="product-image-wrapper">
-                    <button
-                        className={`favorite-btn ${isFav ? 'active' : ''}`}
-                        onClick={handleToggleFavorite}
-                        title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-                    >
-                        <i className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`}></i>
-                    </button>
-                    <img
-                        src={product.image}
-                        alt={product.name}
-                        className="product-image"
-                    />
-                    {showBadge && product.badge && (
-                        <span className={`product-badge ${getBadgeClass(product.badge)}`}>
-                            {getBadgeText(product.badge)}
-                        </span>
-                    )}
-                </div>
-                <div className="card-body">
-                    <h6 className="card-title text-start">
-                        {highlightText(product.name, searchTerm)}
-                    </h6>
-                    <p className="card-text text-start">
-                        {highlightText(product.description, searchTerm)}
-                    </p>
-                    {showRating && (
-                        <div className="product-rating text-start">
-                            {renderRating(product.rating).map((star, i) => (
-                                <i key={i} className={`bi ${star}`}></i>
-                            ))}
-                        </div>
-                    )}
-                    <div className="d-flex justify-content-between align-items-center mt-2">
-                        {product.oldPrice && (
-                            <span className="product-old-price">{formatCurrency(product.oldPrice)}</span>
-                        )}
-                        {!product.oldPrice && <span></span>}
-                        <span className="product-price">{formatCurrency(product.price)}</span>
-                    </div>
-                    {showActions && (
-                        <div className="d-flex gap-1 mt-2">
-                            <button
-                                className="btn btn-outline-orange btn-sm flex-grow-1"
-                                onClick={() => onOpenModal(product)}
-                                title="Visualizar detalhes"
-                            >
-                                <i className="bi bi-eye"></i>
-                            </button>
-                            <button
-                                className={`btn btn-success btn-sm flex-grow-1 ${isAdded || addedProductId === product.id ? 'btn-added' : ''}`}
-                                onClick={handleAddToCart}
-                                disabled={isAdded || addedProductId === product.id || product.outOfStock || product.stock === 0}
-                            >
-                                {product.outOfStock || product.stock === 0 ? (
-                                    <>
-                                        <i className="bi bi-exclamation-triangle me-1"></i>Esgotado
-                                    </>
-                                ) : isAdded || addedProductId === product.id ? (
-                                    <>
-                                        <i className="bi bi-check-circle me-1"></i>Adicionado!
-                                    </>
-                                ) : (
-                                    <>
-                                        <i className="bi bi-cart-plus me-1"></i>Adicionar
-                                    </>
-                                )}
-                            </button>
-                        </div>
-                    )}
-                </div>
+        <article className="product-card">
+            <div className="product-card-media">
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-card-image"
+                    loading="lazy"
+                />
+
+                <button
+                    type="button"
+                    className={`product-card-fav ${isFav ? 'is-active' : ''}`}
+                    onClick={handleToggleFavorite}
+                    title={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                    aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
+                    aria-pressed={isFav}
+                >
+                    <i className={`bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}`} aria-hidden="true" />
+                </button>
+
+                {showBadge && product.badge && (
+                    <span className={`product-card-badge ${badgeClass}`}>
+                        {badgeLabel}
+                    </span>
+                )}
             </div>
-        </div>
+
+            <div className="product-card-body">
+                <h3 className="product-card-name">
+                    {highlightText(product.name, searchTerm)}
+                </h3>
+
+                {showRating && (
+                    <div className="product-card-rating" aria-hidden="true">
+                        {renderRating(product.rating).map((star, i) => (
+                            <i key={i} className={`bi ${star}`} />
+                        ))}
+                    </div>
+                )}
+
+                <div className="product-card-pricing">
+                    {product.oldPrice ? (
+                        <span className="product-card-old">{formatCurrency(product.oldPrice)}</span>
+                    ) : (
+                        <span className="product-card-old is-placeholder" aria-hidden="true" />
+                    )}
+                    <span className="product-card-price">{formatCurrency(product.price)}</span>
+                </div>
+
+                {showActions && (
+                    <div className="product-card-actions">
+                        <button
+                            type="button"
+                            className="product-card-btn product-card-btn-ghost"
+                            onClick={() => onOpenModal(product)}
+                            title="Ver detalhes"
+                            aria-label={`Ver detalhes de ${product.name}`}
+                        >
+                            <i className="bi bi-eye" aria-hidden="true" />
+                        </button>
+
+                        <button
+                            type="button"
+                            className={`product-card-btn product-card-btn-primary ${justAdded ? 'is-added' : ''} ${isOutOfStock ? 'is-out' : ''}`}
+                            onClick={handleAddToCart}
+                            disabled={justAdded || isOutOfStock}
+                            aria-live="polite"
+                        >
+                            {isOutOfStock ? (
+                                <>
+                                    <i className="bi bi-slash-circle" aria-hidden="true" />
+                                    Esgotado
+                                </>
+                            ) : justAdded ? (
+                                <>
+                                    <i className="bi bi-check2-circle" aria-hidden="true" />
+                                    Adicionado
+                                </>
+                            ) : (
+                                <>
+                                    <i className="bi bi-cart-plus" aria-hidden="true" />
+                                    Adicionar
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
+            </div>
+        </article>
     );
 }
 

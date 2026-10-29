@@ -41,11 +41,11 @@ function Footer() {
                 <i className="bi bi-flower1 footer-symbol" aria-hidden="true"></i>
 
                 <h2 className="footer-title">
-                    floricultura<span>.</span>
+                    Dama da <span>Noite.</span>
                 </h2>
 
                 <div className="footer-caption">
-                    <span>Floricultura Web</span>
+                    <span>Floricultura</span>
                 </div>
             </div>
 
@@ -66,7 +66,7 @@ function Footer() {
                 </div>
 
                 <span className="footer-copyright">
-                    © {currentYear} Floricultura Web
+                    © {currentYear} Floricultura Dama da Noite
                 </span>
             </div>
         </footer>

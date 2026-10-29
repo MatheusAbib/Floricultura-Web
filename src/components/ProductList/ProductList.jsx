@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProductCard from '../ProductCard/ProductCard';
-
 import './ProductList.scss';
 
-function ProductList({ 
-    products, 
-    title, 
-    onAddToCart, 
-    onOpenModal, 
+function ProductList({
+    products,
+    title,
+    onAddToCart,
+    onOpenModal,
     addedProductId,
     itemsPerPage = 8
 }) {
@@ -15,6 +14,27 @@ function ProductList({
     const [sortType, setSortType] = useState('');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const sortRef = useRef(null);
+
+    useEffect(() => {
+        if (!isDropdownOpen) return;
+
+        const handleClickOutside = (e) => {
+            if (sortRef.current && !sortRef.current.contains(e.target)) {
+                setIsDropdownOpen(false);
+            }
+        };
+        const handleKey = (e) => {
+            if (e.key === 'Escape') setIsDropdownOpen(false);
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('keydown', handleKey);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('keydown', handleKey);
+        };
+    }, [isDropdownOpen]);
 
     const handleSearch = (term) => {
         setSearchTerm(term);
@@ -36,16 +56,22 @@ function ProductList({
         if (!searchTerm.trim()) {
             return products;
         }
-        return products.filter(product =>
-            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.category?.toLowerCase().includes(searchTerm.toLowerCase())
-        );
+        const term = searchTerm.toLowerCase();
+        return products.filter((product) => {
+            const name = (product.name || '').toLowerCase();
+            const description = (product.description || '').toLowerCase();
+            const category = (product.category || '').toLowerCase();
+            return (
+                name.includes(term) ||
+                description.includes(term) ||
+                category.includes(term)
+            );
+        });
     };
 
     const getSortedProducts = (filtered) => {
         if (!sortType) return filtered;
-        let sorted = [...filtered];
+        const sorted = [...filtered];
         switch (sortType) {
             case 'price-asc':
                 sorted.sort((a, b) => a.price - b.price);
@@ -72,17 +98,24 @@ function ProductList({
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentProducts = sorted.slice(startIndex, startIndex + itemsPerPage);
 
-const goToPage = (page) => {
-    if (page >= 1 && page <= totalPages) {
-        setCurrentPage(page);
-        const productListElement = document.querySelector('.product-list');
-        if (productListElement) {
-            const offset = 80; 
-            const top = productListElement.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({ top, behavior: 'smooth' });
+    const goToPage = (page) => {
+        if (page >= 1 && page <= totalPages) {
+            setCurrentPage(page);
+            const productListElement = document.querySelector('.product-list');
+            if (productListElement) {
+                const offset = 80;
+                const top = productListElement.getBoundingClientRect().top + window.scrollY - offset;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
         }
-    }
-};
+    };
+
+    const sortLabel = sortType === 'price-asc' ? 'Menor preço'
+        : sortType === 'price-desc' ? 'Maior preço'
+        : sortType === 'name-asc' ? 'Nome (A–Z)'
+        : sortType === 'name-desc' ? 'Nome (Z–A)'
+        : 'Ordenar';
+
     const renderPagination = () => {
         if (totalPages <= 1) return null;
 
@@ -95,31 +128,30 @@ const goToPage = (page) => {
         }
 
         const pages = [];
-        for (let i = startPage; i <= endPage; i++) {
-            pages.push(i);
-        }
+        for (let i = startPage; i <= endPage; i++) pages.push(i);
 
         return (
             <div className="pagination-container">
-                <button 
-                    className={`page-btn ${currentPage === 1 ? 'disabled' : ''}`}
+                <button
+                    className={`page-btn ${currentPage === 1 ? 'is-disabled' : ''}`}
                     onClick={() => goToPage(currentPage - 1)}
                     disabled={currentPage === 1}
+                    aria-label="Página anterior"
                 >
-                    <i className="bi bi-chevron-left"></i>
+                    <i className="bi bi-chevron-left" aria-hidden="true" />
                 </button>
 
                 {startPage > 1 && (
                     <>
                         <button className="page-btn" onClick={() => goToPage(1)}>1</button>
-                        {startPage > 2 && <span className="page-dots">...</span>}
+                        {startPage > 2 && <span className="page-dots">…</span>}
                     </>
                 )}
 
                 {pages.map(page => (
-                    <button 
+                    <button
                         key={page}
-                        className={`page-btn ${currentPage === page ? 'active' : ''}`}
+                        className={`page-btn ${currentPage === page ? 'is-active' : ''}`}
                         onClick={() => goToPage(page)}
                     >
                         {page}
@@ -128,17 +160,18 @@ const goToPage = (page) => {
 
                 {endPage < totalPages && (
                     <>
-                        {endPage < totalPages - 1 && <span className="page-dots">...</span>}
+                        {endPage < totalPages - 1 && <span className="page-dots">…</span>}
                         <button className="page-btn" onClick={() => goToPage(totalPages)}>{totalPages}</button>
                     </>
                 )}
 
-                <button 
-                    className={`page-btn ${currentPage === totalPages ? 'disabled' : ''}`}
+                <button
+                    className={`page-btn ${currentPage === totalPages ? 'is-disabled' : ''}`}
                     onClick={() => goToPage(currentPage + 1)}
                     disabled={currentPage === totalPages}
+                    aria-label="Próxima página"
                 >
-                    <i className="bi bi-chevron-right"></i>
+                    <i className="bi bi-chevron-right" aria-hidden="true" />
                 </button>
             </div>
         );
@@ -146,131 +179,151 @@ const goToPage = (page) => {
 
     return (
         <div className="product-list" id="product-grid">
-            <div className="row mb-4">
-                <div className="col-12 text-center">
-                    <h2 className="section-title" style={{ display: 'inline-block' }}>{title}</h2>
-                </div>
+            <div className="product-list-header">
+                <p className="product-list-eyebrow">
+                    <span className="product-list-eyebrow-line" />
+                    Acervo
+                </p>
+                <h2 className="product-list-title">{title}</h2>
             </div>
 
-            <div className="row mb-4 align-items-center">
-                <div className="col-md-7 col-lg-6 mb-3 mb-md-0">
-                    <div className="input-group">
-                        <input 
-                            type="text" 
-                            className="form-control" 
+            <div className="product-list-controls">
+                <div className="product-list-search">
+                    <div className="search-pill">
+                        <i className="bi bi-search search-pill-icon" aria-hidden="true" />
+                        <input
+                            type="text"
+                            className="search-pill-input"
                             placeholder="Buscar produtos..."
                             value={searchTerm}
                             onChange={(e) => handleSearch(e.target.value)}
+                            aria-label="Buscar produtos"
                         />
                         {searchTerm && (
-                            <button 
-                                className="btn btn-outline-secondary" 
-                                type="button" 
+                            <button
+                                type="button"
+                                className="search-pill-clear"
                                 onClick={clearSearch}
+                                aria-label="Limpar busca"
                             >
-                                <i className="bi bi-x-lg"></i>
+                                <i className="bi bi-x-lg" aria-hidden="true" />
                             </button>
                         )}
-                        <button className="btn btn-success" type="button">
-                            <i className="bi bi-search"></i>
-                        </button>
                     </div>
                 </div>
 
-                <div className="col-md-5 col-lg-6 text-md-end">
-                    <div className="d-inline-block position-relative">
-                        <button 
-                            className="btn btn-outline-success dropdown-toggle"
-                            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        >
-                            <i className="bi bi-funnel me-2"></i>
-                            {sortType ? (
-                                sortType === 'price-asc' ? 'Menor preço' :
-                                sortType === 'price-desc' ? 'Maior preço' :
-                                sortType === 'name-asc' ? 'Nome (A-Z)' :
-                                sortType === 'name-desc' ? 'Nome (Z-A)' : 'Ordenar'
-                            ) : 'Ordenar'}
-                        </button>
-                        {isDropdownOpen && (
-                            <div className="dropdown-menu show" style={{ position: 'absolute', right: 0, marginTop: '8px', zIndex: 1000 }}>
-                                <button 
-                                    className={`dropdown-item ${sortType === 'price-asc' ? 'active' : ''}`}
+                <div className="product-list-sort" ref={sortRef}>
+                    <button
+                        type="button"
+                        className={`sort-btn ${sortType ? 'is-active' : ''}`}
+                        onClick={() => setIsDropdownOpen(v => !v)}
+                        aria-expanded={isDropdownOpen}
+                        aria-haspopup="listbox"
+                    >
+                        <i className="bi bi-funnel sort-btn-icon" aria-hidden="true" />
+                        <span className="sort-btn-label">{sortLabel}</span>
+                        <i
+                            className={`bi bi-chevron-down sort-btn-caret ${isDropdownOpen ? 'is-open' : ''}`}
+                            aria-hidden="true"
+                        />
+                    </button>
+
+                    {isDropdownOpen && (
+                        <ul className="sort-menu" role="listbox">
+                            <li>
+                                <button
+                                    type="button"
+                                    className={`sort-item ${sortType === 'price-asc' ? 'is-active' : ''}`}
                                     onClick={() => handleSort('price-asc')}
                                 >
-                                    <i className="bi bi-sort-numeric-up me-2"></i>Menor preço
+                                    Menor preço
                                 </button>
-                                <button 
-                                    className={`dropdown-item ${sortType === 'price-desc' ? 'active' : ''}`}
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    className={`sort-item ${sortType === 'price-desc' ? 'is-active' : ''}`}
                                     onClick={() => handleSort('price-desc')}
                                 >
-                                    <i className="bi bi-sort-numeric-down me-2"></i>Maior preço
+                                    Maior preço
                                 </button>
-                                <hr className="dropdown-divider" />
-                                <button 
-                                    className={`dropdown-item ${sortType === 'name-asc' ? 'active' : ''}`}
+                            </li>
+                            <li className="sort-divider" role="separator" />
+                            <li>
+                                <button
+                                    type="button"
+                                    className={`sort-item ${sortType === 'name-asc' ? 'is-active' : ''}`}
                                     onClick={() => handleSort('name-asc')}
                                 >
-                                    <i className="bi bi-sort-alpha-up me-2"></i>Nome (A-Z)
+                                    Nome (A–Z)
                                 </button>
-                                <button 
-                                    className={`dropdown-item ${sortType === 'name-desc' ? 'active' : ''}`}
+                            </li>
+                            <li>
+                                <button
+                                    type="button"
+                                    className={`sort-item ${sortType === 'name-desc' ? 'is-active' : ''}`}
                                     onClick={() => handleSort('name-desc')}
                                 >
-                                    <i className="bi bi-sort-alpha-down me-2"></i>Nome (Z-A)
+                                    Nome (Z–A)
                                 </button>
-                                {sortType && (
-                                    <>
-                                        <hr className="dropdown-divider" />
-                                        <button 
-                                            className="dropdown-item text-danger"
+                            </li>
+                            {sortType && (
+                                <>
+                                    <li className="sort-divider" role="separator" />
+                                    <li>
+                                        <button
+                                            type="button"
+                                            className="sort-item sort-item-danger"
                                             onClick={() => handleSort('')}
                                         >
-                                            <i className="bi bi-x-circle me-2"></i>Limpar
+                                            Limpar ordenação
                                         </button>
-                                    </>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                    </li>
+                                </>
+                            )}
+                        </ul>
+                    )}
                 </div>
             </div>
 
-            <div className="row g-3">
+            <div className="product-grid">
                 {currentProducts.length === 0 ? (
-                    <div className="col-12 text-center py-5">
+                    <div className="product-grid-empty">
                         <div className="empty-state">
-                            <i className="bi bi-emoji-frown display-1 text-muted mb-3"></i>
-                            <h3 className="text-muted">Nenhum produto encontrado</h3>
-                            <p className="text-muted">Não encontramos produtos correspondentes à sua busca.</p>
-                            <button 
-                                className="btn btn-outline-success mt-3"
+                            <i className="bi bi-emoji-frown empty-state-icon" aria-hidden="true" />
+                            <h3 className="empty-state-title">Nenhum produto encontrado</h3>
+                            <p className="empty-state-text">
+                                Não encontramos produtos correspondentes à sua busca.
+                            </p>
+                            <button
+                                type="button"
+                                className="empty-state-btn"
                                 onClick={clearSearch}
                             >
-                                <i className="bi bi-arrow-left me-2"></i>Ver todos os produtos
+                                Ver todos os produtos
                             </button>
                         </div>
                     </div>
                 ) : (
                     currentProducts.map((product) => (
-                        <div className="col-6 col-md-4 col-lg-3" key={product.id}>
-                            <ProductCard 
-                                product={product}
-                                searchTerm={searchTerm}
-                                onAddToCart={onAddToCart}
-                                onOpenModal={onOpenModal}
-                                addedProductId={addedProductId}
-                            />
-                        </div>
+                        <ProductCard
+                            product={product}
+                            searchTerm={searchTerm}
+                            onAddToCart={onAddToCart}
+                            onOpenModal={onOpenModal}
+                            addedProductId={addedProductId}
+                            key={product.id}
+                        />
                     ))
                 )}
             </div>
 
             {sorted.length > 0 && (
-                <div className="mt-4">
+                <div className="product-list-footer">
                     {renderPagination()}
-                    <div className="text-center text-muted small mt-2">
-                        Mostrando {startIndex + 1} - {Math.min(startIndex + itemsPerPage, sorted.length)} de {sorted.length} produtos
-                    </div>
+                    <p className="product-list-count">
+                        Mostrando <strong>{startIndex + 1}</strong>–<strong>{Math.min(startIndex + itemsPerPage, sorted.length)}</strong> de <strong>{sorted.length}</strong> produtos
+                    </p>
                 </div>
             )}
         </div>

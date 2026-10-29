@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext';
 import HeroCarousel from '../../components/HeroCarousel/HeroCarousel';
 import ProductList from '../../components/ProductList/ProductList';
@@ -8,7 +8,6 @@ import Categories from '../../components/Categories/Categories';
 import Footer from '../../components/Footer/Footer';
 import { presentesProducts } from '../../data/presentesData';
 import { categories } from '../../data/categories';
-import './Presentes.scss';
 
 const presentesSlides = [
     {
@@ -28,10 +27,16 @@ const presentesSlides = [
 ];
 
 function Presentes() {
+    const [loading, setLoading] = useState(true);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [addedProductId, setAddedProductId] = useState(null);
-    const { addToCart, addMultipleToCart, showNotification } = useCart();
+    const { addToCart, addMultipleToCart } = useCart();
+
+    useEffect(() => {
+        const timer = setTimeout(() => setLoading(false), 1500);
+        return () => clearTimeout(timer);
+    }, []);
 
     const openModal = (product) => {
         setSelectedProduct(product);
@@ -46,9 +51,16 @@ function Presentes() {
     const handleAddToCart = (product) => {
         addToCart(product);
         setAddedProductId(product.id);
-        showNotification(`${product.name} adicionado ao carrinho!`, 'success');
         setTimeout(() => setAddedProductId(null), 2000);
     };
+
+    if (loading) {
+        return (
+            <div className="loading-overlay">
+                <i className="bi bi-flower1 loading-logo"></i>
+            </div>
+        );
+    }
 
     return (
         <div className="presentes-page">
@@ -64,9 +76,10 @@ function Presentes() {
             </section>
 
             <div className="container py-4">
-                <ProductList 
+                <ProductList
                     products={presentesProducts}
                     onAddToCart={handleAddToCart}
+                    title="Acervo de presentes"
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
                     itemsPerPage={8}
@@ -75,13 +88,13 @@ function Presentes() {
 
             <Newsletter />
 
-<ProductModal 
-    product={selectedProduct}
-    isOpen={isModalOpen}
-    onClose={closeModal}
-    onAddToCart={addToCart}
-    onAddMultiple={addMultipleToCart}
-/>
+            <ProductModal
+                product={selectedProduct}
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onAddToCart={addToCart}
+                onAddMultiple={addMultipleToCart}
+            />
 
             <Footer />
         </div>

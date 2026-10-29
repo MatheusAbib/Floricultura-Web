@@ -14,7 +14,6 @@ import Footer from '../../components/Footer/Footer';
 import './Home.scss';
 
 function Home() {
-    const [copiedCoupon, setCopiedCoupon] = useState(null);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [addedProductId, setAddedProductId] = useState(null);
@@ -55,13 +54,6 @@ function Home() {
         return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
     }, []);
 
-    const copyCoupon = (code) => {
-        navigator.clipboard.writeText(code);
-        setCopiedCoupon(code);
-        showNotification(`Cupom ${code} copiado!`, 'success');
-        setTimeout(() => setCopiedCoupon(null), 2000);
-    };
-
     const openModal = (product) => {
         setSelectedProduct(product);
         setIsModalOpen(true);
@@ -75,7 +67,6 @@ function Home() {
     const handleAddToCart = (product) => {
         addToCart(product);
         setAddedProductId(product.id);
-        showNotification(`${product.name} adicionado ao carrinho!`, 'success');
         setTimeout(() => setAddedProductId(null), 2000);
     };
 
@@ -86,16 +77,19 @@ function Home() {
             <Categories categories={categories} />
 
             <section className="promo-section" id="promocao">
-                <div className="container">
-                    <div className="promo-banner">
-                        <img src="/Floricultura-Web/assets/Carrossel/astromelia.webp" alt="Promoção de Verão" className="img-fluid promo-image" />
-                    </div>
+                <div className="promo-banner">
+                    <img
+                        src="/Floricultura-Web/assets/Carrossel/astromelia.webp"
+                        alt="Promoção de Verão"
+                        className="promo-image"
+                    />
                 </div>
             </section>
 
-            <div className="container py-4" id="lista-plantas">
+            <div id="lista-plantas">
                 <ProductList
                     products={products}
+                    title="Acervo de plantas"
                     onAddToCart={handleAddToCart}
                     onOpenModal={openModal}
                     addedProductId={addedProductId}
@@ -104,23 +98,25 @@ function Home() {
             </div>
 
             <section className="products-section">
-                <div className="container">
-                    <div className="promo-banner">
-                        <img src="/Floricultura-Web/assets/Carrossel/coleção-de-inverno.jpg" alt="Coleção de Inverno" className="img-fluid promo-image" />
-                    </div>
-                    <div className="row py-3" id="inverno-grid">
-                        {invernoProducts.map((product) => (
-                            <div className="col-md-6 col-lg-3" key={product.id}>
-                                <ProductCard
-                                    product={product}
-                                    searchTerm={''}
-                                    onAddToCart={handleAddToCart}
-                                    onOpenModal={openModal}
-                                    addedProductId={addedProductId}
-                                />
-                            </div>
-                        ))}
-                    </div>
+                <div className="products-banner">
+                    <img
+                        src="/Floricultura-Web/assets/Carrossel/coleção-de-inverno.jpg"
+                        alt="Coleção de Inverno"
+                        className="promo-image"
+                    />
+                </div>
+
+                <div className="products-grid" id="inverno-grid">
+                    {invernoProducts.map((product) => (
+                        <ProductCard
+                            product={product}
+                            searchTerm={''}
+                            onAddToCart={handleAddToCart}
+                            onOpenModal={openModal}
+                            addedProductId={addedProductId}
+                            key={product.id}
+                        />
+                    ))}
                 </div>
             </section>
 

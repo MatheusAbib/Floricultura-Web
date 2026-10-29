@@ -27,24 +27,21 @@ export const FavoritesProvider = ({ children }) => {
     }, []);
 
     const toggleFavorite = useCallback((product) => {
-        let wasFavorited;
-        setFavorites(prev => {
-            const exists = prev.find(item => item.id === product.id);
-            let newFavorites;
-            if (exists) {
-                newFavorites = prev.filter(item => item.id !== product.id);
-                wasFavorited = false;
-                showNotification(`${product.name} removido dos favoritos!`, 'info');
-            } else {
-                newFavorites = [...prev, product];
-                wasFavorited = true;
-                showNotification(`${product.name} adicionado aos favoritos!`, 'success');
-            }
-            localStorage.setItem('favorites', JSON.stringify(newFavorites));
-            return newFavorites;
-        });
-        return wasFavorited;
-    }, [showNotification]);
+        const exists = favorites.find(item => item.id === product.id);
+        let newFavorites;
+
+        if (exists) {
+            newFavorites = favorites.filter(item => item.id !== product.id);
+            showNotification(`${product.name} removido dos favoritos!`, 'info');
+        } else {
+            newFavorites = [...favorites, product];
+            showNotification(`${product.name} adicionado aos favoritos!`, 'success');
+        }
+
+        setFavorites(newFavorites);
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        return !exists;
+    }, [favorites, showNotification]);
 
     const isFavorite = useCallback((productId) => {
         return favorites.some(item => item.id === productId);

@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext, useRef } from 'react';
+import { Toast } from 'primereact/toast';
 
 const CartContext = createContext();
 
@@ -13,8 +14,8 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     const [cartCount, setCartCount] = useState(0);
-    const [notification, setNotification] = useState(null);
     const [addedProductId, setAddedProductId] = useState(null);
+    const toastRef = useRef(null);
 
     useEffect(() => {
         const savedCart = localStorage.getItem('cart');
@@ -41,62 +42,69 @@ export const CartProvider = ({ children }) => {
     };
 
     const showNotification = (message, type = 'success') => {
-        setNotification({ message, type });
-        setTimeout(() => setNotification(null), 3000);
+        const severityMap = {
+            success: 'success',
+            info: 'info',
+            warning: 'warn',
+            error: 'error'
+        };
+        const summaryMap = {
+            success: 'Sucesso',
+            info: 'Aviso',
+            warning: 'Atenção',
+            error: 'Erro'
+        };
+        const severity = severityMap[type] || 'info';
+        toastRef.current?.show({
+            severity,
+            summary: summaryMap[severity],
+            detail: message,
+            life: 3000
+        });
     };
 
     const addToCart = (product) => {
         const existingItem = cart.find(item => item.id === product.id);
-
         if (existingItem) {
             const updatedCart = cart.map(item =>
-                item.id === product.id
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
+                item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
             );
             saveCart(updatedCart);
         } else {
-            const newItem = {
+            saveCart([...cart, {
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 image: product.image,
                 quantity: 1
-            };
-            saveCart([...cart, newItem]);
+            }]);
         }
-
         setAddedProductId(product.id);
-        showNotification(`${product.name} adicionado ao carrinho!`);
+        showNotification(`${product.name} adicionado ao carrinho!`, 'success');
         setTimeout(() => setAddedProductId(null), 2000);
     };
 
     const addMultipleToCart = (product, quantity) => {
         const existingItem = cart.find(item => item.id === product.id);
-
         if (existingItem) {
             const updatedCart = cart.map(item =>
-                item.id === product.id
-                    ? { ...item, quantity: item.quantity + quantity }
-                    : item
+                item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
             );
             saveCart(updatedCart);
         } else {
-            const newItem = {
+            saveCart([...cart, {
                 id: product.id,
                 name: product.name,
                 price: product.price,
                 image: product.image,
                 quantity: quantity
-            };
-            saveCart([...cart, newItem]);
+            }]);
         }
-        showNotification(`${quantity}x ${product.name} adicionado ao carrinho!`);
+        showNotification(`${quantity}x ${product.name} adicionado ao carrinho!`, 'success');
     };
 
     const removeFromCart = (productId) => {
-        const updatedCart = cart.filter(item => item.id !== productId);
-        saveCart(updatedCart);
+        saveCart(cart.filter(item => item.id !== productId));
     };
 
     const updateQuantity = (productId, quantity) => {
@@ -104,22 +112,14 @@ export const CartProvider = ({ children }) => {
             removeFromCart(productId);
             return;
         }
-
-        const updatedCart = cart.map(item =>
-            item.id === productId
-                ? { ...item, quantity: quantity }
-                : item
-        );
-        saveCart(updatedCart);
+        saveCart(cart.map(item =>
+            item.id === productId ? { ...item, quantity } : item
+        ));
     };
 
-    const clearCart = () => {
-        saveCart([]);
-    };
+    const clearCart = () => saveCart([]);
 
-    const getCartTotal = () => {
-        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    };
+    const getCartTotal = () => cart.reduce((total, item) => total + (item.price * item.quantity), 0);
 
     const value = {
         cart,
@@ -130,7 +130,6 @@ export const CartProvider = ({ children }) => {
         updateQuantity,
         clearCart,
         getCartTotal,
-        notification,
         showNotification,
         addedProductId,
         setAddedProductId
@@ -138,13 +137,8 @@ export const CartProvider = ({ children }) => {
 
     return (
         <CartContext.Provider value={value}>
+            <Toast ref={toastRef} position="bottom-right" />
             {children}
-            {notification && (
-                <div className={`notification notification-${notification.type}`}>
-                    <i className={`bi ${notification.type === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill'}`}></i>
-                    {notification.message}
-                </div>
-            )}
         </CartContext.Provider>
     );
 };

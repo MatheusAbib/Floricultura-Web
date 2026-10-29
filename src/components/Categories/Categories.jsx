@@ -1,48 +1,87 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Categories.scss';
 
 function Categories({ categories }) {
+    const location = useLocation();
+    const currentPath = location.pathname;
+    const total = categories.length;
+
+    const isCategoryActive = (link) => {
+        if (link.includes('#')) {
+            const hashIndex = link.indexOf('#');
+            const pathPart = link.slice(0, hashIndex) || '/';
+            const normalizedPath = pathPart === '/' ? '/' : pathPart.replace(/\/$/, '');
+            const normalizedCurrent = currentPath === '/' ? '/' : currentPath.replace(/\/$/, '');
+            return normalizedPath === normalizedCurrent;
+        }
+        const normalizedLink = link.replace(/\/$/, '');
+        const normalizedCurrent = currentPath.replace(/\/$/, '');
+        return normalizedLink === normalizedCurrent;
+    };
+
     return (
-        <section className="categories-section py-7">
-            <div className="container">
-                <div className="row text-center mb-5">
-                    <div className="col-12">
-                    </div>
-                </div>
-                <div className="row g-4">
-                    {categories.map((category) => {
-                        const isAnchor = category.link.includes('#');
+        <section className="categories-section">
+            <div className="categories-header">
+                <p className="categories-eyebrow">
+                    <span className="categories-eyebrow-line" />
+                    Explore o catálogo
+                </p>
 
-                        const content = (
-                            <div className="category-card">
-                                <div className="category-icon">
-                                    <i className={`bi ${category.icon}`}></i>
-                                </div>
-                                <h3 className="category-title">{category.name}</h3>
-                            </div>
-                        );
-
-                        if (isAnchor) {
-                            return (
-                                <div className="col-6 col-md-4 col-lg-2" key={category.id}>
-                                    <a href={category.link} className="text-decoration-none">
-                                        {content}
-                                    </a>
-                                </div>
-                            );
-                        }
-
-                        return (
-                            <div className="col-6 col-md-4 col-lg-2" key={category.id}>
-                                <Link to={category.link} className="text-decoration-none">
-                                    {content}
-                                </Link>
-                            </div>
-                        );
-                    })}
-                </div>
+                <h2 className="categories-title">
+                    Navegue por <em className="categories-hand">categoria.</em>
+                </h2>
             </div>
+
+            <ul className="categories-list">
+                {categories.map((category, index) => {
+                    const isAnchor = category.link.includes('#');
+                    const number = String(index + 1).padStart(2, '0');
+                    const isActive = isCategoryActive(category.link);
+
+                    const content = (
+                        <>
+                            <span className="category-number">{number}</span>
+                            <span className="category-icon">
+                                <i className={`bi ${category.icon}`} aria-hidden="true" />
+                            </span>
+                            <span className="category-name">{category.name}</span>
+                            <span className="category-arrow" aria-hidden="true">
+                                ↗
+                            </span>
+                        </>
+                    );
+
+                    if (isAnchor) {
+                        return (
+                            <li className="category-item" key={category.id}>
+                                <a
+                                    href={category.link}
+                                    className={`category-link ${isActive ? 'is-active' : ''}`}
+                                >
+                                    {content}
+                                </a>
+                            </li>
+                        );
+                    }
+
+                    return (
+                        <li className="category-item" key={category.id}>
+                            <Link
+                                to={category.link}
+                                className={`category-link ${isActive ? 'is-active' : ''}`}
+                            >
+                                {content}
+                            </Link>
+                        </li>
+                    );
+                })}
+            </ul>
+
+            <p className="categories-footer">
+                <span>{String(total).padStart(2, '0')}</span>
+                categorias disponíveis
+            </p>
         </section>
     );
 }

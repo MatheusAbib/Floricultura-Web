@@ -4,30 +4,44 @@ import './Testimonials.scss';
 function Testimonials({ testimonials }) {
     return (
         <section className="testimonials-section">
-            <div className="container">
-                <div className="row text-center mb-5">
-                    <div className="col-12">
-                        <h2 className="section-title">Avaliações de Clientes</h2>
-                    </div>
-                </div>
-                <div className="row">
-                    {testimonials.map((testimonial, index) => (
-                        <div className="col-lg-4 mb-4" key={testimonial.id}>
-                            <div className="testimonial-card">
-                                <div className="testimonial-text">
-                                    {testimonial.text}
-                                </div>
-                                <div className="testimonial-author">
-                                    <img src={testimonial.image} className="author-img" alt={testimonial.author} />
-                                    <div>
-                                        <h4 className="author-name">{testimonial.author}</h4>
-                                        <p className="author-location">{testimonial.location}</p>
-                                    </div>
-                                </div>
+            <div className="testimonials-header">
+                <p className="testimonials-eyebrow">
+                    <span className="testimonials-eyebrow-line" />
+                    Quem já adotou
+                </p>
+
+                <h2 className="testimonials-title">
+                    Histórias de quem levou um pouco de{' '}
+                    <em className="testimonials-hand">verde</em> pra casa.
+                </h2>
+            </div>
+
+            <div className="testimonials-grid">
+                {testimonials.map((testimonial) => (
+                    <article className="testimonial-card" key={testimonial.id}>
+                        <span className="testimonial-quote" aria-hidden="true">“</span>
+
+                        <p className="testimonial-text">
+                            {testimonial.text}
+                        </p>
+
+                        <div className="testimonial-author">
+                            <img
+                                src={testimonial.image}
+                                className="testimonial-author-img"
+                                alt={testimonial.author}
+                            />
+                            <div className="testimonial-author-info">
+                                <h3 className="testimonial-author-name">
+                                    {testimonial.author}
+                                </h3>
+                                <p className="testimonial-author-location">
+                                    {testimonial.location}
+                                </p>
                             </div>
                         </div>
-                    ))}
-                </div>
+                    </article>
+                ))}
             </div>
         </section>
     );

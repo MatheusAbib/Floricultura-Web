@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { FavoritesProvider } from './context/FavoritesContext';
 import Navbar from './components/Navbar/Navbar';
-import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import Home from './pages/Home/Home';
 import QuemSomos from './pages/QuemSomos/QuemSomos';
 import Contato from './pages/Contato/Contato';
@@ -22,7 +21,6 @@ function App() {
                 <FavoritesProvider>
                     <div className="app">
                         <Navbar />
-                        <ScrollToTop />
                         <main className="main-content">
                             <Routes>
                                 <Route path="/" element={<Home />} />

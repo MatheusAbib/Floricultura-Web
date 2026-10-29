@@ -1,389 +1,131 @@
 @use '../../styles/variables' as *;
 
-.features-section {
-    padding: 100px 0;
-    background-color: $light-bg;
-    position: relative;
-    overflow: hidden;
-
-    .feature-box {
-        text-align: center;
-        padding: 20px 20px;
-        border-radius: 15px;
-        background: white;
-        border: 1px solid #e8f0e8 !important;
-        transition: $transition;
-        height: 100%;
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, $primary-color, $primary-light);
-            transition: $transition;
-            z-index: -1;
-        }
-
-        &:hover {
-            &::before {
-                height: 100%;
-            }
-
-            .feature-icon,
-            .feature-title,
-            p {
-                color: white;
-            }
-        }
-    }
-
-    .feature-icon {
-        font-size: 2.5rem;
-        color: $primary-color;
-        margin-bottom: 20px;
-        transition: $transition;
-    }
-
-    .feature-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: $primary-dark;
-        transition: $transition;
-    }
-}
-
 .promo-section {
-    margin: 30px 0;
+    padding: 7rem  0 0;
+    background: $light-bg;
 
     .promo-banner {
-        position: relative;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 5vw, 0rem);
         overflow: hidden;
-        margin: 30px 0;
+        border-radius: $radius-lg;
+    }
 
-        .promo-image {
-            width: 100%;
-            height: auto;
-            min-height: 200px;
-            object-fit: cover;
-        }
+    .promo-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: $radius-md;
+        object-fit: cover;
+        transition: transform 1.2s $ease-lux;
     }
 }
 
-.coupons-section {
-    background-color: $light-bg;
-    position: relative;
-    overflow: hidden;
-
-    .coupon-card {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        position: relative;
-        transition: all 0.3s ease;
-        border: 2px dashed $primary-color;
-        height: 100%;
-
-        &.coupon-used {
-            opacity: 0.7;
-            border-color: #6c757d;
-
-            .coupon-header {
-                background: linear-gradient(135deg, #6c757d, #adb5bd);
-            }
-
-            .coupon-code {
-                background: #6c757d;
-                color: white;
-            }
-
-            .copy-coupon:disabled {
-                cursor: not-allowed;
-                opacity: 0.7;
-            }
-
-            .coupon-corner {
-                opacity: 0.3;
-            }
-        }
-    }
-
-    .coupon-header {
-        background: linear-gradient(135deg, $primary-color, $primary-light);
-        color: white;
-        padding: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .coupon-percent {
-        font-size: 1.8rem;
-        font-weight: bold;
-        font-family: 'Playfair Display', serif;
-    }
-
-    .coupon-code {
-        background: white;
-        color: $primary-dark;
-        padding: 4px 12px;
-        border-radius: 30px;
-        font-weight: bold;
-        font-size: 0.9rem;
-    }
-
-    .coupon-body {
-        padding: 20px;
-        text-align: center;
-        position: relative;
-
-        h4 {
-            color: $primary-dark;
-            margin-bottom: 15px;
-        }
-
-        p {
-            color: $gray-text;
-            margin-bottom: 20px;
-        }
-    }
-
-    .copy-coupon {
-        width: 80%;
-        border-radius: 30px;
-        padding: 12px;
-        font-weight: 600;
-        transition: all 0.3s ease;
-
-        &:hover:not(:disabled) {
-            background-color: $primary-dark;
-        }
-
-        &:disabled {
-            cursor: not-allowed;
-            opacity: 0.7;
-        }
-    }
-
-    .coupon-corner {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        color: white;
-        font-size: 1.7rem;
-        opacity: 0.7;
-    }
+#lista-plantas {
+    border-radius: 40% 40% 0 0 / 90px 90px 0 0;
+    background: $light-bg;
 }
 
 .products-section {
-    padding: 60px 0 80px;
-    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem 0px;
 
-    #product-grid {
-        margin-top: 30px;
+    .products-banner {
+        margin: 0rem 0rem 5rem;
+        overflow: hidden;
+        border-radius: $radius-lg;
+        transition: box-shadow $transition;
     }
 
-    .promo-banner {
-        margin: 30px 0;
+    .promo-image {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transition: transform 1.2s $ease-lux;
 
-        .promo-image {
-            width: 100%;
-            height: auto;
-            min-height: 200px;
-            object-fit: cover;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: clamp(1.1rem, 2vw, 2rem);
+    }
+}
+
+@media (max-width: 1024px) {
+    .products-section {
+        .products-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
         }
-    }
-}
-
-
-@keyframes float {
-    0% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@media (max-width: 992px) {
-    .features-section .feature-box {
-        padding: 25px 15px;
-    }
-
-    .features-section .feature-icon {
-        font-size: 2rem;
-        margin-bottom: 15px;
-    }
-
-    .features-section .feature-title {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-
-    .coupons-section .coupon-card {
-        margin-bottom: 20px;
-    }
-
-    .coupons-section .coupon-header {
-        padding: 15px;
-    }
-
-    .coupons-section .coupon-percent {
-        font-size: 2rem;
-    }
-
-    .coupons-section .coupon-code {
-        padding: 4px 12px;
-        font-size: 1rem;
-    }
-
-    .coupons-section .coupon-body {
-        padding: 20px;
-    }
-
-    .coupons-section .coupon-body h4 {
-        font-size: 1.1rem;
-        margin-bottom: 10px;
-    }
-
-    .promo-section .promo-banner .promo-image {
-        min-height: 180px;
-    }
-
-    .products-section .promo-banner .promo-image {
-        min-height: 180px;
     }
 }
 
 @media (max-width: 768px) {
-    .features-section,
-    .testimonials-section {
-       display: none !important;
-    }
-    .coupons-section{
-        display: none !important;
+    .promo-section {
+        padding: 0;
+
+        .promo-banner {
+            padding: 0 1rem;
+            border-radius: $radius-md;
+        }
+
+        .promo-image {
+            display: none;
+        }
     }
 
-    .promo-section .promo-banner .promo-image {
-        min-height: 150px;
+    #lista-plantas {
+        margin-top: -60px;
+        padding: 60px 1rem 2.75rem;
+        border-radius: 50% 50% 0 0 / 60px 60px 0 0;
     }
 
-    .products-section .promo-banner .promo-image {
-        min-height: 150px;
-    }
+    .products-section {
+        padding: 2.75rem 1rem;
 
-    .coupons-section .coupon-card {
-        margin-bottom: 20px;
-    }
+        .products-banner {
+            margin-bottom: 1.75rem;
+            border-radius: $radius-md;
+        }
 
-    .coupons-section .coupon-header {
-        padding: 12px;
-    }
+        .promo-image {
+            display: none;
+        }
 
-    .coupons-section .coupon-percent {
-        font-size: 1.8rem;
-    }
-
-    .coupons-section .coupon-body {
-        padding: 15px;
-    }
-
-    .coupons-section .copy-coupon {
-        padding: 10px;
-        font-size: 0.9rem;
+        .products-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
     }
 }
 
-@media (max-width: 576px) {
-    .promo-section .promo-banner .promo-image {
-        min-height: 130px;
+@media (max-width: 480px) {
+    #lista-plantas {
+        margin-top: -40px;
+        padding: 40px 0.75rem 2.25rem;
+        border-radius: 50% 50% 0 0 / 40px 40px 0 0;
     }
 
-    .products-section .promo-banner .promo-image {
-        min-height: 130px;
-    }
+    .products-section {
+        padding: 0 0.75rem;
 
-    .features-section .feature-box {
-        padding: 20px 8px;
-    }
-
-    .features-section .feature-icon {
-        font-size: 1.5rem;
-    }
-
-    .features-section .feature-title {
-        font-size: 1rem;
-    }
-
-    .features-section .feature-box p {
-        font-size: 0.85rem;
-    }
-
-    .coupons-section .coupon-card {
-        border-width: 1px dashed;
-    }
-
-    .coupons-section .coupon-percent {
-        font-size: 1.6rem;
-    }
-
-    .coupons-section .coupon-code {
-        font-size: 0.9rem;
-        padding: 3px 10px;
-    }
-
-    .coupons-section .coupon-body h4 {
-        font-size: 1rem;
-    }
-
-    .coupons-section .coupon-body p {
-        font-size: 0.85rem;
-        margin-bottom: 15px;
-    }
-
-    .coupons-section .copy-coupon {
-        padding: 6px;
-        font-size: 0.8rem;
+        .products-grid {
+            grid-template-columns: 1fr;
+        }
     }
 }
 
-@media (max-width: 400px) {
-    .promo-section .promo-banner .promo-image {
-        min-height: 100px;
+@media (prefers-reduced-motion: reduce) {
+    .promo-image,
+    .products-banner {
+        transition: none;
     }
 
-    .products-section .promo-banner .promo-image {
-        min-height: 100px;
-    }
-
-    .features-section .feature-box {
-        padding: 15px 5px;
-    }
-
-    .features-section .feature-icon {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-    }
-
-    .coupons-section .coupon-header {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .coupons-section .coupon-percent {
-        margin-bottom: 5px;
-    }
-
-    .coupons-section .coupon-code {
-        margin-top: 5px;
+    .promo-banner:hover .promo-image,
+    .products-banner:hover .promo-image {
+        transform: none;
     }
 }
