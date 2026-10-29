@@ -193,20 +193,15 @@ function Contato() {
 
             <section className="ct-info-section">
                 <div className="ct-info-inner">
-                    <FadeIn direction="up">
                         <p className="ct-eyebrow">
                             <span className="ct-eyebrow-line" />
                             Outros canais
                         </p>
-                    </FadeIn>
-                    <FadeIn direction="up" delay={100}>
                         <h2 className="ct-section-title">
                             Também dá para <em className="ct-hand">falar.</em>
                         </h2>
-                    </FadeIn>
 
                     <div className="ct-info-grid">
-                        <FadeIn direction="up" delay={150}>
                             <div className="ct-info-card">
                                 <i className="bi bi-telephone ct-info-icon" aria-hidden="true" />
                                 <h3 className="ct-info-title">Telefone</h3>
@@ -214,9 +209,7 @@ function Contato() {
                                 <p className="ct-info-line ct-info-line-muted">Segunda a sexta, 9h às 18h</p>
                                 <p className="ct-info-line ct-info-line-muted">Sábado, 9h às 13h</p>
                             </div>
-                        </FadeIn>
 
-                        <FadeIn direction="up" delay={250}>
                             <div className="ct-info-card">
                                 <i className="bi bi-envelope ct-info-icon" aria-hidden="true" />
                                 <h3 className="ct-info-title">E-mail</h3>
@@ -224,9 +217,7 @@ function Contato() {
                                 <p className="ct-info-line">suporte@damadanoite.com.br</p>
                                 <p className="ct-info-line ct-info-line-muted">Resposta em até 24h úteis</p>
                             </div>
-                        </FadeIn>
 
-                        <FadeIn direction="up" delay={350}>
                             <div className="ct-info-card">
                                 <i className="bi bi-geo-alt ct-info-icon" aria-hidden="true" />
                                 <h3 className="ct-info-title">Endereço</h3>
@@ -234,7 +225,6 @@ function Contato() {
                                 <p className="ct-info-line">Mogi das Cruzes — SP</p>
                                 <p className="ct-info-line ct-info-line-muted">CEP 08773-000</p>
                             </div>
-                        </FadeIn>
                     </div>
                 </div>
             </section>
@@ -254,7 +244,6 @@ function Contato() {
                     </FadeIn>
 
                     <div className="ct-faq-list">
-                        <FadeIn direction="up" delay={150}>
                             <details className="ct-faq-item">
                                 <summary className="ct-faq-question">
                                     Qual o prazo de resposta?
@@ -264,9 +253,7 @@ function Contato() {
                                     <p>Respondemos todas as mensagens em até 24h úteis. Para urgências, ligue para a loja.</p>
                                 </div>
                             </details>
-                        </FadeIn>
 
-                        <FadeIn direction="up" delay={200}>
                             <details className="ct-faq-item">
                                 <summary className="ct-faq-question">
                                     Quais os horários de atendimento?
@@ -276,9 +263,7 @@ function Contato() {
                                     <p>De segunda a sexta, das 9h às 18h. Aos sábados, das 9h às 13h. Fechado aos domingos e feriados.</p>
                                 </div>
                             </details>
-                        </FadeIn>
 
-                        <FadeIn direction="up" delay={250}>
                             <details className="ct-faq-item">
                                 <summary className="ct-faq-question">
                                     Posso visitar a loja física?
@@ -288,9 +273,7 @@ function Contato() {
                                     <p>Sim. Estamos na Rua Jurandyr de Oliveira, 46, em Mogi das Cruzes. Se quiser atendimento dedicado, ligue antes e agendamos.</p>
                                 </div>
                             </details>
-                        </FadeIn>
 
-                        <FadeIn direction="up" delay={300}>
                             <details className="ct-faq-item">
                                 <summary className="ct-faq-question">
                                     Como rastrear um pedido?
@@ -300,7 +283,6 @@ function Contato() {
                                     <p>Enviamos o código de rastreio por e-mail após a confirmação. Se não chegou, chame no telefone ou WhatsApp com o número do pedido.</p>
                                 </div>
                             </details>
-                        </FadeIn>
                     </div>
                 </div>
             </section>
