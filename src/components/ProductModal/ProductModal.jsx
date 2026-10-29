@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { renderRating } from '../../utils/renderRating';
 import { useFavorites } from '../../context/FavoritesContext';
@@ -63,7 +63,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
     };
 
     const isOutOfStock = !!(product.outOfStock || product.stock === 0);
-    const stockText = isOutOfStock ? 'Produto esgotado' : `${product.stock} unidades disponíveis`;
+    const stockText = isOutOfStock ? 'Produto esgotado' : `${product.stock} unidades dispon�veis`;
     const stockClass = product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-of-stock';
 
     const iconMap = {
@@ -101,14 +101,14 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
         tipo: 'Tipo',
         uva: 'Uva',
         safra: 'Safra',
-        teorAlcoolico: 'Teor alcoólico',
+        teorAlcoolico: 'Teor alco�lico',
         volume: 'Volume',
-        harmonizacao: 'Harmonização',
+        harmonizacao: 'Harmoniza��o',
         tamanho: 'Tamanho',
         material: 'Material',
         cores: 'Cores',
         inclui: 'Inclui',
-        recomendacao: 'Recomendação',
+        recomendacao: 'Recomenda��o',
         variedades: 'Variedades',
         tipos: 'Tipos',
         peso: 'Peso',
@@ -136,7 +136,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                 title: 'Como cuidar',
                 items: [
                     { icon: 'bi bi-brightness-high', label: 'Luz', value: details.light },
-                    { icon: 'bi bi-droplet', label: 'Água', value: details.water },
+                    { icon: 'bi bi-droplet', label: '�gua', value: details.water },
                     { icon: 'bi bi-wind', label: 'Umidade', value: details.humidity },
                     { icon: 'bi bi-thermometer-half', label: 'Temperatura', value: details.temperature },
                     { icon: 'bi bi-heart', label: 'Cuidados', value: details.care },
@@ -189,7 +189,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                     onClick={onClose}
                     aria-label="Fechar"
                 >
-                    ✕
+                    ?
                 </button>
 
                 <div className="modal-content">
@@ -283,7 +283,7 @@ function ProductModal({ product, isOpen, onClose, onAddToCart, onAddMultiple }) 
                                 disabled={isOutOfStock}
                             >
                                 <i className="bi bi-cart-plus" aria-hidden="true" />
-                                {isOutOfStock ? 'Indisponível' : 'Adicionar ao carrinho'}
+                                {isOutOfStock ? 'Indispon�vel' : 'Adicionar ao carrinho'}
                             </button>
                         </div>
                     </div>

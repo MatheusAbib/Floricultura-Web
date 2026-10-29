@@ -1,4 +1,4 @@
-﻿import React, { createContext, useState, useEffect, useContext, useCallback, useMemo } from 'react';
+import React, { createContext, useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import { useCart } from './CartContext';
 
 const FavoritesContext = createContext();

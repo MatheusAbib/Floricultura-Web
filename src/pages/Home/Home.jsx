@@ -79,7 +79,7 @@ function Home() {
             <section className="promo-section" id="promocao">
                 <div className="promo-banner">
                     <img
-                        src="/Floricultura-Web/assets/Carrossel/astromelia.webp"
+                        src="/Floricultura-Dama-da-Noite/assets/Carrossel/astromelia.webp"
                         alt="Promoção de Verão"
                         className="promo-image"
                     />
@@ -100,7 +100,7 @@ function Home() {
             <section className="products-section">
                 <div className="products-banner">
                     <img
-                        src="/Floricultura-Web/assets/Carrossel/coleção-de-inverno.jpg"
+                        src="/Floricultura-Dama-da-Noite/assets/Carrossel/coleção-de-inverno.jpg"
                         alt="Coleção de Inverno"
                         className="promo-image"
                     />

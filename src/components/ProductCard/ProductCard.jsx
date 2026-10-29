@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { formatCurrency } from '../../utils/formatCurrency';
 import { renderRating } from '../../utils/renderRating';
 import { useFavorites } from '../../context/FavoritesContext';
@@ -49,7 +49,7 @@ function ProductCard({
     const badgeClass = product.badge ? `badge-${product.badge}` : '';
     const badgeLabel = product.badge === 'new' ? 'Novo'
         : product.badge === 'bestseller' ? 'Mais vendido'
-        : product.badge === 'sale' ? 'Promoção'
+        : product.badge === 'sale' ? 'Promo��o'
         : '';
 
     return (
